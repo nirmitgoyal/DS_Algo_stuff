@@ -325,7 +325,7 @@ public class LinkedList {
         Node prev = null;
         Node temp = null;
         Node result = null;
-        Node curr1 = head1, curr2 = head2;//good to copy head to newly created nodes
+        Node curr1 = head1, curr2 = head2; //good to copy head to newly created nodes
 
         int carry = 0, sum;
 

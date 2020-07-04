@@ -3,8 +3,6 @@ import javafx.scene.control.Cell;
 import java.util.ArrayList;
 
 public class IslandSizeWithMaxSameColors {
-    public static void main(String[] args) {
-    }
 
     int islandSizeWithMaxSameColors(int[][] m) {
         if (m.length == 0 || m == null)

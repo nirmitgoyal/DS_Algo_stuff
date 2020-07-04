@@ -525,11 +525,11 @@ class BinaryTree {
     }
 }
 
-class Node {
-    Integer data;
-    Node left, right, nextRight, prev;
+public class Node {
+    public Integer data;
+    public Node left, right, nextRight, prev, next;
 
-    Node(Integer item) {
+    public Node(Integer item) {
         data = item;
         left = right = nextRight = null;
     }
