@@ -1,0 +1,32 @@
+Heap:
+
+* https://www.youtube.com/watch?v=t0Cq6tVNRBA
+* heap(min) in java is priorityQ: https://stackoverflow.com/questions/14165325/is-there-a-heap-in-java
+PriorityQueue<Integer> minHeap = new PriorityQueue<>(); //internally it's an array
+
+* Height of a heap = log(n)
+* LOT of heap does NOT gives a sorted array
+
+Operations:
+* peek
+Fetches minimum element of the array O(1)
+
+* poll
+Polls  minimum element of the array. takes O(height)=O(log(n))
+
+* insert
+Inserting a new key takes O(height)=O(log(n)) time
+
+
+
+--------------------------------------------------------------------------------------------------------------------------
+Binary tree:
+
+If there are n nodes in binary tree, maximum height of the binary tree is n-1 and minimum height is floor(logn).
+
+--------------------------------------------------------------------------------------------------------------------------
+Binary search tree:
+* If there are n nodes in a binary search tree, maximum height of the binary search tree is n-1 and minimum height is floor(logn).
+* inorder gives sorted elements
+
+
