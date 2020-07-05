@@ -585,8 +585,6 @@ class Scratch {
 
     //https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
     //see:    https://www.youtube.com/watch?v=GuTPwotSdYw
-    //complexity to print all permutations is O(n^2 * n!)
-    //complexity to count all permutations is O(n * n!)
     static String s;
 
     void printPermu(int start, int end) {
