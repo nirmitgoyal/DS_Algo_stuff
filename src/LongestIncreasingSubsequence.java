@@ -1,4 +1,5 @@
 public class LongestIncreasingSubsequence {
+
     int lengthOfLongestIncreasingSubsequence(int[] a) {
         int[] cache = new int[n];
 
