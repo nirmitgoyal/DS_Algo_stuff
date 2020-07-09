@@ -1,4 +1,4 @@
-import com.company.Node;
+import models.Node;
 
 public class isBST {
     Boolean isBST(Node node, Integer minBound, Integer maxBound) {

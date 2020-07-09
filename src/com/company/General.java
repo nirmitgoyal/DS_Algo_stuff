@@ -741,7 +741,7 @@ class Scratch {
     //    So we need index of previous and next smaller bar for every bar. For this we use stack and keep pushing in it the indexes of bars which are longer than the one at the top.
     //    If a incoming bar is of smaller height than the bar at the top of stack, we have got the right smaller index for the bar at the top of stack.
     //    So we pop the top element i.e index of bar whose area we're going to calculate.
-    //    Index of previous smaller is now saved at the top of the stack and next smaller is the incoming bar that is waiting to be pushed in the stack. Now we can calculate its area.
+    //    models.Index of previous smaller is now saved at the top of the stack and next smaller is the incoming bar that is waiting to be pushed in the stack. Now we can calculate its area.
     //    We'll do this for every bar and keep track of the maximum area. Handle the corner cases like left smaller index of the first bar and right smaller index of last bar.
 
     //    Explaination 2:

@@ -51,7 +51,7 @@ public class BinarySearchTree {
     //    https://www.geeksforgeeks.org/a-program-to-check-if-a-binary-tree-is-bst-or-not/
     //    https://www.youtube.com/watch?v=yEwSGhSsT0U&vl=en
     //    wrong:
-    boolean wrongIsBST(com.company.Node node) {
+    boolean wrongIsBST(models.Node node) {
         if (node == null)
             return true;
 
@@ -72,7 +72,7 @@ public class BinarySearchTree {
 
     //    right:
     //    O(n^2)
-    boolean isBST(com.company.Node node) {
+    boolean isBST(models.Node node) {
         if (node == null)
             return true;
 
@@ -81,7 +81,7 @@ public class BinarySearchTree {
     }
 
     //O(n)
-    Boolean isBST(com.company.Node node, Integer minBound, Integer maxBound) {
+    Boolean isBST(models.Node node, Integer minBound, Integer maxBound) {
         //base
         if (node == null)
             return true;

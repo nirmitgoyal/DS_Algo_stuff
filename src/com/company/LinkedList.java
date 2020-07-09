@@ -1,7 +1,7 @@
 package com.company;
 
 public class LinkedList {
-    private static Node head;
+    private static models.Node head;
 
     //    https://www.geeksforgeeks.org/given-only-a-pointer-to-a-node-to-be-deleted-in-a-singly-linked-list-how-do-you-delete-it/
 
@@ -16,7 +16,7 @@ public class LinkedList {
         if (n == 0)
             return;
 
-        Node p1 = head, p2 = head;
+        models.Node p1 = head, p2 = head;
         int count = 0;
 
         while (count <= n) {
@@ -45,8 +45,8 @@ public class LinkedList {
 
     //    https://www.youtube.com/watch?v=sYcOK51hl-A
     //    https://www.geeksforgeeks.org/reverse-a-linked-list/
-    Node iterativeReverse(Node head) {
-        Node //3 vars
+    models.Node iterativeReverse(models.Node head) {
+        models.Node //3 vars
                 curr = head,
                 prev = null,
                 nextNode;
@@ -65,8 +65,8 @@ public class LinkedList {
     //    https://www.geeksforgeeks.org/reverse-a-linked-list-in-groups-of-given-size-iterative-approach/
     //    use recursive approach
     //    method: we first reverse all the k blocks, then point the head of every block to the new head(which is prev)
-    Node reverseK(Node head) {
-        Node
+    models.Node reverseK(models.Node head) {
+        models.Node
                 curr = head,
                 prev = null,
                 nextNode = null;
@@ -89,7 +89,7 @@ public class LinkedList {
 
     //    https://www.youtube.com/watch?v=PazsaUFz9io
     //    https://www.geeksforgeeks.org/flattening-a-linked-list/
-    Node divide2D(Node head) {
+    models.Node divide2D(models.Node head) {
         //base
         if (head == null)
             return null;
@@ -97,18 +97,18 @@ public class LinkedList {
         if (head.right == null)
             return head;
 
-        Node head2 = divide2D(head.right);
+        models.Node head2 = divide2D(head.right);
 
         return merge(head, head2);
     }
 
-    Node clone(Node head1) {
-        Node head2 = new Node(head1.data);
-        Node temp = head2;
+    models.Node clone(models.Node head1) {
+        models.Node head2 = new models.Node(head1.data);
+        models.Node temp = head2;
         head1 = head1.next;
 
         while (head1 != null) {
-            temp.next = new Node(head1.data);
+            temp.next = new models.Node(head1.data);
             temp = temp.next;
             head1 = head1.next;
         }
@@ -118,10 +118,10 @@ public class LinkedList {
     //    https://www.youtube.com/watch?v=EHpS2TBfWQg
     //    https://www.geeksforgeeks.org/clone-linked-list-next-random-pointer-o1-space/
     //    my implementation
-    Node cloneHavingRandom(Node head) {
-        Node head2 = clone(head);
-        Node curr2 = head2;
-        Node curr = head, nextNode = head;
+    models.Node cloneHavingRandom(models.Node head) {
+        models.Node head2 = clone(head);
+        models.Node curr2 = head2;
+        models.Node curr = head, nextNode = head;
         while (curr2 != null) {//curr2 or nextNode
             curr = nextNode;
             nextNode = curr.next;
@@ -138,13 +138,13 @@ public class LinkedList {
     }
 
     //    https://www.geeksforgeeks.org/reverse-a-linked-list/
-    Node recursiveReverse(Node curr, Node prev) {
+    models.Node recursiveReverse(models.Node curr, models.Node prev) {
         if (curr.next == null) {
             curr.next = prev;
             return curr;
         }
 
-        Node nextNode = curr.next;
+        models.Node nextNode = curr.next;
 
         curr.next = prev;
 
@@ -154,7 +154,7 @@ public class LinkedList {
 
     //    https://www.geeksforgeeks.org/write-a-function-to-get-the-intersection-point-of-two-linked-lists/
     //    Method 3(Using difference of node counts)
-    Node intersect(Node n1, Node n2) {
+    models.Node intersect(models.Node n1, models.Node n2) {
         head1 = n1;
         head2 = n2;
         while (n1 != null) {
@@ -189,15 +189,15 @@ public class LinkedList {
 
     //    https://www.geeksforgeeks.org/intersection-of-two-sorted-linked-lists/
     // this method changes the linkedLists
-    Node intersect(Node head1, Node head2) {
-        Node curr1 = head1, curr2 = head2;//good to copy head to newly created nodes
+    models.Node intersect(models.Node head1, models.Node head2) {
+        models.Node curr1 = head1, curr2 = head2;//good to copy head to newly created nodes
 
 //      if not sorted, sort these linked lists using merge sort
         curr1 = divide(curr1);
         curr2 = divide(curr2);
 
-        Node dummy = new Node(null);
-        Node head = dummy;
+        models.Node dummy = new models.Node(null);
+        models.Node head = dummy;
         int prev = -1;
 
         while (curr1 != null && curr2 != null) {
@@ -244,17 +244,17 @@ public class LinkedList {
     //
     //        merge(l, mid, r);
     //    }
-    Node divide(Node node) {
+    models.Node divide(models.Node node) {
         if (node == null || node.next == null)
             return node;
 
-        Node mid = getMiddleNode(node);
+        models.Node mid = getMiddleNode(node);
 
-        Node mNext = mid.next;//store the 2nd half to pass it to divide fun //
+        models.Node mNext = mid.next;//store the 2nd half to pass it to divide fun //
         mid.next = null;//
 
-        Node left = divide(node);
-        Node right = divide(mNext);
+        models.Node left = divide(node);
+        models.Node right = divide(mNext);
 
         return merge(left, right);
     }
@@ -263,10 +263,10 @@ public class LinkedList {
     //https://www.geeksforgeeks.org/merge-two-sorted-linked-lists/
     //https://www.geeksforgeeks.org/merge-two-sorted-lists-place/
     //Note: use dummy node for linked list merge sort for easy implementation
-    Node merge(Node head1, Node head2) {
-        Node curr1 = head1, curr2 = head2;//good to copy head to newly created nodes
-        Node dummy = new Node(-1);
-        Node head = dummy;
+    models.Node merge(models.Node head1, models.Node head2) {
+        models.Node curr1 = head1, curr2 = head2;//good to copy head to newly created nodes
+        models.Node dummy = new models.Node(-1);
+        models.Node head = dummy;
 
         while (curr1 != null && curr2 != null) {
             if (curr1.data < curr2.data) {
@@ -296,19 +296,19 @@ public class LinkedList {
 
     //    //with new memory allocated
     // https://www.geeksforgeeks.org/merge-two-sorted-linked-lists/
-    Node merge(Node left, Node right) {
+    models.Node merge(models.Node left, models.Node right) {
         //.
         //.
         //.
 
         if (curr1.data < curr2.data) {
-            curr3.next = new Node(curr1.data);//just change these
+            curr3.next = new models.Node(curr1.data);//just change these
             curr1 = curr1.next;
         }
     }
 
-    Node getMiddleNode(Node node) {
-        Node slowPtr = node, fastPtr = node;
+    models.Node getMiddleNode(models.Node node) {
+        models.Node slowPtr = node, fastPtr = node;
 
         while (fastPtr.next != null && fastPtr.next.next != null) {//
             slowPtr = slowPtr.next;
@@ -321,11 +321,11 @@ public class LinkedList {
     //    https://www.geeksforgeeks.org/sum-of-two-linked-lists/
     //    https://www.geeksforgeeks.org/add-two-numbers-represented-by-linked-lists/
     //    reverse the list accordingly to achieve the logic
-    Node sum(Node head1, Node head2) {
-        Node prev = null;
-        Node temp = null;
-        Node result = null;
-        Node curr1 = head1, curr2 = head2; //good to copy head to newly created nodes
+    models.Node sum(models.Node head1, models.Node head2) {
+        models.Node prev = null;
+        models.Node temp = null;
+        models.Node result = null;
+        models.Node curr1 = head1, curr2 = head2; //good to copy head to newly created nodes
 
         int carry = 0, sum;
 
@@ -337,11 +337,11 @@ public class LinkedList {
             else carry = 0;
 
             if (prev == null) {
-                temp = new Node(sum % 10);
+                temp = new models.Node(sum % 10);
                 prev = temp;
                 result = prev;
             } else {
-                temp = new Node(sum % 10);
+                temp = new models.Node(sum % 10);
                 prev.next = temp;
             }
 
@@ -354,15 +354,15 @@ public class LinkedList {
         }
 
         if (carry > 0) {
-            temp = new Node(carry);
+            temp = new models.Node(carry);
             prev.next = temp;
         }
 
         return result;
     }
 
-    private void print(Node head) {
-        Node curr = head;//copy head pointer to a reference
+    private void print(models.Node head) {
+        models.Node curr = head;//copy head pointer to a reference
 
         while (curr != null) {
             System.out.println(curr.data);
@@ -372,20 +372,20 @@ public class LinkedList {
 
     //  inserts a new Node on the front of the list.
     private void push(int data) {
-        Node node = new Node(data);
+        models.Node node = new models.Node(data);
 
         node.next = head;
         head = node;
     }
 
-    private void deleteNext(Node node) {
+    private void deleteNext(models.Node node) {
         node.next = node.next.next;
     }
 }
 
 public class Node {
     Integer data, h, d;
-    Node left, right, next, random;
+    models.Node left, right, next, random;
 
     Node(Integer data) {
         this.data = data;

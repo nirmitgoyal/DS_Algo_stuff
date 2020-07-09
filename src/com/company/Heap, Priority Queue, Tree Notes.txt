@@ -17,7 +17,7 @@ Polls  minimum element of the array. takes O(height)=O(log(n))
 * insert
 Inserting a new key takes O(height)=O(log(n)) time
 
-
+* log A + log B = log AB
 
 --------------------------------------------------------------------------------------------------------------------------
 Binary tree:

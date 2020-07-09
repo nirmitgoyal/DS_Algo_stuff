@@ -1,6 +1,7 @@
 package com.company;
 
 import javafx.util.Pair;
+import models.Node;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,8 +15,8 @@ import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Math.max;
 
 class BinaryTree {
-    Node root;
-    static private Node head = null;
+    models.Node root;
+    static private models.Node head = null;
 
     //    use: https://www.youtube.com/watch?v=suj1ro8TIVY
     //    https://www.geeksforgeeks.org/serialize-deserialize-binary-tree/
@@ -30,7 +31,7 @@ class BinaryTree {
     int path[];
     boolean visited[]=new boolean[n];
 
-    void kDistantFromLeaf(Node node, int i) {
+    void kDistantFromLeaf(models.Node node, int i) {
         //
 
 //      append myself to the path array
@@ -53,9 +54,9 @@ class BinaryTree {
     //https://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-4/
     //https://www.geeksforgeeks.org/convert-given-binary-tree-doubly-linked-list-set-3/
     //https://www.geeksforgeeks.org/in-place-convert-a-given-binary-tree-to-doubly-linked-list/
-    static private Node prevNode = null;
+    static private models.Node prevNode = null;
 
-    void treeToDLL(Node node) {
+    void treeToDLL(models.Node node) {
         //
 
         //recurse left subtree
@@ -75,18 +76,18 @@ class BinaryTree {
     //    Use:  https://www.geeksforgeeks.org/print-a-binary-tree-in-vertical-order-set-3-using-level-order-traversal/
     //    https://www.geeksforgeeks.org/print-binary-tree-vertical-order/
     //    https://www.geeksforgeeks.org/print-binary-tree-vertical-order-set-2/
-    void vertical(Node node) {
+    void vertical(models.Node node) {
         //
 
-        Queue<Pair<Node, Integer>> q = new LinkedList<>();
-        Map<Integer, ArrayList<Node>> m = new HashMap<>();
+        Queue<Pair<models.Node, Integer>> q = new LinkedList<>();
+        Map<Integer, ArrayList<models.Node>> m = new HashMap<>();
 
         q.add(new Pair<>(node, 0));
         m.put(0, new ArrayList<>(Arrays.asList(node)));
 
         while (!q.isEmpty()) {
-            Pair<Node, Integer> currPair = q.poll();
-            Node currNode = currPair.getKey();
+            Pair<models.Node, Integer> currPair = q.poll();
+            models.Node currNode = currPair.getKey();
             int dist = currPair.getValue();
 
             if (currNode.left != null) {
@@ -116,13 +117,13 @@ class BinaryTree {
     // take a Q and a stack
     // 1) Instead of printing a node, push the node to stack
     // 2) R->L
-    void reverseLevelOrder(Node node) {
-        Stack<Node> S = new Stack<>();
-        Queue<Node> Q = new LinkedList<>();
+    void reverseLevelOrder(models.Node node) {
+        Stack<models.Node> S = new Stack<>();
+        Queue<models.Node> Q = new LinkedList<>();
         Q.add(node);
 
         while (!Q.isEmpty()) {
-            Node currNode = Q.poll();
+            models.Node currNode = Q.poll();
             S.push(currNode);
 
             if (currNode.right != null)
@@ -139,11 +140,11 @@ class BinaryTree {
 
     //    https://www.geeksforgeeks.org/level-order-traversal-in-spiral-form/
     //    use method: Take 2 stacks and alternatively fill those stacks, depending on situation given. One stack is to be pushed R->L another L->R
-    void spiral(Node node) {
+    void spiral(models.Node node) {
         //
 
-        Stack<Node> sPushRL = new Stack<>();
-        Stack<Node> sPushLR = new Stack<>();
+        Stack<models.Node> sPushRL = new Stack<>();
+        Stack<models.Node> sPushLR = new Stack<>();
 
         sPushRL.add(node);
         int level = 1, c1 = 0, c2 = 0;
@@ -165,7 +166,7 @@ class BinaryTree {
 //          on every level
             if (isEven(level)) {
                 while (c2 > 0) {
-                    Node currNode = sPushLR.pop();
+                    models.Node currNode = sPushLR.pop();
                     System.out.println(currNode);
 
                     if (currNode.right != null) {
@@ -179,7 +180,7 @@ class BinaryTree {
                 }
             } else {
                 while (c1 > 0) {
-                    Node currNode = sPushRL.pop();
+                    models.Node currNode = sPushRL.pop();
                     System.out.println(currNode);
 
                     if (currNode.left != null) {
@@ -200,17 +201,17 @@ class BinaryTree {
     //https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
     //https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-tree-set-2-using-parent-pointer/
     //see: https://www.youtube.com/watch?v=13m9ZCB8gjw
-    static Node n1, n2;
+    static models.Node n1, n2;
 
-    private Node LCABTree(Node node) {
+    private models.Node LCABTree(models.Node node) {
         if (node == null)
             return null;
 
         if (node == n1 || node == n2)//1
             return node;
 
-        Node leftSearchResult = LCA(node.left);//2
-        Node rightSearchResult = LCA(node.right);//3
+        models.Node leftSearchResult = LCA(node.left);//2
+        models.Node rightSearchResult = LCA(node.right);//3
 
         //4
         if (leftSearchResult == null && rightSearchResult == null)
@@ -227,7 +228,7 @@ class BinaryTree {
     //    https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-search-tree/
     //    see: https://www.youtube.com/watch?v=TIoCCStdiFo
     //    this code works; tested on gfg
-    Node lcaBST(Node node) {
+    models.Node lcaBST(models.Node node) {
         if (node == null)
             return null;
 
@@ -243,9 +244,9 @@ class BinaryTree {
     //    Assume, that this node is in the path and add it in the path. Now 3 cases, 1st if the current node's data is same as the value, then return T. 2nd and 3rd, check if the path
     //    is there for left subtree and right subtree. If the path is there, return T. Else it means that the path is not there, now remove this node from the path and return F
     int inputValue;
-    static private ArrayList<Node> path = new ArrayList<>();
+    static private ArrayList<models.Node> path = new ArrayList<>();
 
-    boolean isThereAPathBetweenANodeAndAValueAlsoCreateThatPath(Node node) {
+    boolean isThereAPathBetweenANodeAndAValueAlsoCreateThatPath(models.Node node) {
         //
 
         path.add(node);
@@ -266,9 +267,9 @@ class BinaryTree {
     //    If currSum>max, then this is the leaf node we want and update max; Else do nothing.
     //    postorder and preoder are the most common traversal
     static private int maxSumFromRootToLeaf = 0;
-    static private Node targetLeaf;
+    static private models.Node targetLeaf;
 
-    void maxSumFromRootToLeaf(Node node, int currSum) {
+    void maxSumFromRootToLeaf(models.Node node, int currSum) {
         if (node == null) return;
 
         currSum += node.data;
@@ -291,7 +292,7 @@ class BinaryTree {
     //    O(n)
     int maxPathSum = MIN_VALUE;
 
-    int maxGain(Node node) {
+    int maxGain(models.Node node) {
         if (node == null) return 0;
 
         int maxGainFromLeft = max(maxGain(node.left), 0);
@@ -307,7 +308,7 @@ class BinaryTree {
     //    O(n)
     int maxPathSum = MIN_VALUE;
 
-    int maxGainWithLeaves(Node node) {
+    int maxGainWithLeaves(models.Node node) {
         if (node == null) return 0;
 
         if (isLeaf(node))
@@ -326,17 +327,17 @@ class BinaryTree {
     }
 
     //    https://www.geeksforgeeks.org/construct-tree-from-given-inorder-and-preorder-traversal/
-    static private Map<Node, Integer> inorderMap = new HashMap();
+    static private Map<models.Node, Integer> inorderMap = new HashMap();
     static private Integer[] preorderInput = new Integer[10];
     static private int[] inorder = new int[10];
     //convert preorder array to queue
     static Queue<Integer> preorder = new LinkedList<>(Arrays.asList(preorderInput));
 
-    Node treeFromInorderAndPostorder(int inorderStartIndex, int inorderEndIndex) {
+    models.Node treeFromInorderAndPostorder(int inorderStartIndex, int inorderEndIndex) {
         if (preorder.isEmpty() || (inorderStartIndex > inorderEndIndex))//5
             return null;
 
-        Node node = new Node(preorder.poll());//1
+        models.Node node = new models.Node(preorder.poll());//1
 
         int inorderIndex = indexOf(node);
         node.left = treeFromInorderAndPostorder(inorderStartIndex, inorderIndex - 1);//2
@@ -345,17 +346,17 @@ class BinaryTree {
         return node;//4
     }
 
-    private int indexOf(Node node) {
+    private int indexOf(models.Node node) {
         return inorderMap.get(node);
     }
 
     void LOT() {
-        Queue<Node> queue = new LinkedList<Node>();
+        Queue<models.Node> queue = new LinkedList<models.Node>();
 
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            Node tempNode = queue.poll();
+            models.Node tempNode = queue.poll();
             System.out.print(tempNode.data + " ");
 
             if (tempNode.left != null) {
@@ -368,7 +369,7 @@ class BinaryTree {
         }
     }
 
-    void printBoundary(Node node) {
+    void printBoundary(models.Node node) {
         System.out.println("anti clockwise Boundary Traversal of binary tree");
         if (node == null)
             return;
@@ -382,7 +383,7 @@ class BinaryTree {
 
 
     //    https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/
-    private boolean isBalanced(Node node, Height height) {
+    private boolean isBalanced(models.Node node, Height height) {
         /* If tree is empty then return true */
         if (node == null) {
             height.height = 0;
@@ -412,11 +413,11 @@ class BinaryTree {
 
     //    https://www.geeksforgeeks.org/iterative-method-to-find-height-of-binary-tree/   another iterative method
     //    iterative traversal of trtee
-    Integer heightIterative(Node root) {
+    Integer heightIterative(models.Node root) {
         if (root == null)
             return 0;
 
-        Queue<Node> q = new LinkedList<>();
+        Queue<models.Node> q = new LinkedList<>();
 
         q.add(root);
         Integer height = 0;
@@ -429,7 +430,7 @@ class BinaryTree {
             //every level
             height++;
             while (count > 0) {
-                Node node = q.poll();
+                models.Node node = q.poll();
 
                 if (node.left != null)
                     q.add(node.left);
@@ -445,7 +446,7 @@ class BinaryTree {
 
     //    Height is the number of nodes along the longest path from the root node down to the farthest leaf node = (max(leftH, rightH) + 1)
     //    https://www.geeksforgeeks.org/write-a-c-program-to-find-the-maximum-depth-or-height-of-a-tree/
-    Integer height(Node node) {
+    Integer height(models.Node node) {
         if (node == null)
             return 0;
 
@@ -461,12 +462,12 @@ class BinaryTree {
     // see these setps:
     int maxDiameter;
 
-    Node diameter1(Node node) {
+    models.Node diameter1(models.Node node) {
         if (node == null)
-            return new Node(null, null, 0, 0);
+            return new models.Node(null, null, 0, 0);
 
-        Node leftNode = diameter1(node.left);
-        Node rightNode = diameter1(node.right);
+        models.Node leftNode = diameter1(node.left);
+        models.Node rightNode = diameter1(node.right);
 
 
         node.h = max(leftNode.h, rightNode.h) + 1;
@@ -477,7 +478,7 @@ class BinaryTree {
         return node;
     }
 
-    int height(Node node) {
+    int height(models.Node node) {
         if (node == null)
             return 0;
 
@@ -493,8 +494,8 @@ class BinaryTree {
 
     //    https://www.youtube.com/watch?v=wGXB9OWhPTg
     //    Inorder Tree Traversal without recursion and without stack! || morris traversal
-    void inorder(Node root) {
-        Node current = root;
+    void inorder(models.Node root) {
+        models.Node current = root;
 
         while (current != null) {
             //left is null then print the node and go to right
@@ -503,7 +504,7 @@ class BinaryTree {
                 current = current.right;
             } else {
                 //find the predecessor.
-                Node predecessor = current.left;
+                models.Node predecessor = current.left;
                 //To find predecessor keep going right till right node is not null or right node is not current.
                 while (predecessor.right != current && predecessor.right != null)
                     predecessor = predecessor.right;
@@ -522,16 +523,6 @@ class BinaryTree {
 
     private boolean isLeaf(Node node) {
         return (node.left == null && node.right == null);
-    }
-}
-
-public class Node {
-    public Integer data;
-    public Node left, right, nextRight, prev, next;
-
-    public Node(Integer item) {
-        data = item;
-        left = right = nextRight = null;
     }
 }
 
