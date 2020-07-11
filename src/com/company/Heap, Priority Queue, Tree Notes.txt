@@ -1,5 +1,7 @@
 Heap:
+Min Heap: A complete BT, where the value of each node is >= the value of its parent node.
 
+A complete binary tree.
 * https://www.youtube.com/watch?v=t0Cq6tVNRBA
 * heap(min) in java is priorityQ: https://stackoverflow.com/questions/14165325/is-there-a-heap-in-java
 PriorityQueue<Integer> minHeap = new PriorityQueue<>(); //internally it's an array
