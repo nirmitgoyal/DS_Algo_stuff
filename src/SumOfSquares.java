@@ -1,5 +1,5 @@
 public class SumOfSquares {
-    int minElementsRequires(int[] list, int n) {//n > 0 //return value of Integer.MAX_VALUE means not possible
+    int minElementsRequires(int[] list, int n) {//n > 0 //list always contains a 1 //return value of Integer.MAX_VALUE means not possible
         int[] minElementsRequired = new int[n + 1];
         //fill with Integer.MAX_VALUE
         minElementsRequired[0] = 0;
