@@ -64,7 +64,7 @@ public class LinkedList {
     //    https://www.geeksforgeeks.org/reverse-a-list-in-groups-of-given-size/
     //    https://www.geeksforgeeks.org/reverse-a-linked-list-in-groups-of-given-size-iterative-approach/
     //    use recursive approach
-    //    method: we first reverse all the k blocks, then point the head of every block to the new head(which is prev)
+    //    method: we first reverse all the k blocks, then point the head's next of every block to the new head(which is prev)
     models.Node reverseK(models.Node head) {
         models.Node
                 curr = head,
@@ -82,9 +82,9 @@ public class LinkedList {
         }
 
         if (nextNode != null) //
-            head.next = reverseK(nextNode);//
+            head.next = reverseK(nextNode); //
 
-        return prev;//
+        return prev; //
     }
 
     //    https://www.youtube.com/watch?v=PazsaUFz9io
