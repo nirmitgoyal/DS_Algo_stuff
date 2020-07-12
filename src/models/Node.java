@@ -2,16 +2,16 @@ package models;
 
 public class Node {
     public Integer data;
-    public Node left, right, nextRight, prev, next;
+    public Node L, R, nextRight, prev, next;
 
     public Node(Integer item) {
         data = item;
-        left = right = nextRight = null;
+        L = R = nextRight = null;
     }
 
-    public Node(int data, Node left, Node right) {
+    public Node(int data, Node L, Node R) {
         this.data=data;
-        this.left=left;
-        this.right=right;
+        this.L = L;
+        this.R = R;
     }
 }

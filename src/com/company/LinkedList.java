@@ -94,10 +94,10 @@ public class LinkedList {
         if (head == null)
             return null;
 
-        if (head.right == null)
+        if (head.R == null)
             return head;
 
-        models.Node head2 = divide2D(head.right);
+        models.Node head2 = divide2D(head.R);
 
         return merge(head, head2);
     }

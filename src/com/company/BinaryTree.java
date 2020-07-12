@@ -46,8 +46,8 @@ class BinaryTree {
             return;
         }
 
-        kDistantFromLeaf(node.left, i);
-        kDistantFromLeaf(node.right, i);
+        kDistantFromLeaf(node.L, i);
+        kDistantFromLeaf(node.R, i);
     }
 
     //https://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-2/
@@ -90,24 +90,24 @@ class BinaryTree {
             models.Node currNode = currPair.getKey();
             int dist = currPair.getValue();
 
-            if (currNode.left != null) {
+            if (currNode.L != null) {
                 int distLeft = dist - 1;
-                q.add(new Pair<>(currNode.left, distLeft));
+                q.add(new Pair<>(currNode.L, distLeft));
 
                 if (m.containsKey(distLeft)) {
-                    m.get(distLeft).add(currNode.left);
+                    m.get(distLeft).add(currNode.L);
                 } else {
-                    m.put(distLeft, new ArrayList<>(Arrays.asList(currNode.left)));
+                    m.put(distLeft, new ArrayList<>(Arrays.asList(currNode.L)));
                 }
             }
-            if (currNode.right != null) {
+            if (currNode.R != null) {
                 int distRight = dist + 1;
-                q.add(new Pair<>(currNode.right, distRight));
+                q.add(new Pair<>(currNode.R, distRight));
 
                 if (m.containsKey(distRight)) {
-                    m.get(distRight).add(currNode.right);
+                    m.get(distRight).add(currNode.R);
                 } else {
-                    m.put(distRight, new ArrayList<>(Arrays.asList(currNode.right)));
+                    m.put(distRight, new ArrayList<>(Arrays.asList(currNode.R)));
                 }
             }
         }
@@ -126,11 +126,11 @@ class BinaryTree {
             models.Node currNode = Q.poll();
             S.push(currNode);
 
-            if (currNode.right != null)
-                Q.add(currNode.right);
+            if (currNode.R != null)
+                Q.add(currNode.R);
 
-            if (currNode.left != null)
-                Q.add(currNode.left);
+            if (currNode.L != null)
+                Q.add(currNode.L);
         }
 
         while (!S.empty()) {
@@ -169,11 +169,11 @@ class BinaryTree {
                     models.Node currNode = sPushLR.pop();
                     System.out.println(currNode);
 
-                    if (currNode.right != null) {
-                        sPushRL.push(currNode.right);
+                    if (currNode.R != null) {
+                        sPushRL.push(currNode.R);
                     }
-                    if (currNode.left != null) {
-                        sPushRL.push(currNode.left);
+                    if (currNode.L != null) {
+                        sPushRL.push(currNode.L);
                     }
 
                     c2--;
@@ -183,11 +183,11 @@ class BinaryTree {
                     models.Node currNode = sPushRL.pop();
                     System.out.println(currNode);
 
-                    if (currNode.left != null) {
-                        sPushLR.push(currNode.left);
+                    if (currNode.L != null) {
+                        sPushLR.push(currNode.L);
                     }
-                    if (currNode.right != null) {
-                        sPushLR.push(currNode.right);
+                    if (currNode.R != null) {
+                        sPushLR.push(currNode.R);
                     }
 
                     c1--;
@@ -210,8 +210,8 @@ class BinaryTree {
         if (node == n1 || node == n2)//1
             return node;
 
-        models.Node leftSearchResult = LCA(node.left);//2
-        models.Node rightSearchResult = LCA(node.right);//3
+        models.Node leftSearchResult = LCA(node.L);//2
+        models.Node rightSearchResult = LCA(node.R);//3
 
         //4
         if (leftSearchResult == null && rightSearchResult == null)
@@ -236,9 +236,9 @@ class BinaryTree {
             return node;
 
         if (n1.data < node.data && n2.data < node.data)
-            return lcaBST(node.left);
+            return lcaBST(node.L);
         else
-            return lcaBST(node.right);
+            return lcaBST(node.R);
     }
 
     //    Assume, that this node is in the path and add it in the path. Now 3 cases, 1st if the current node's data is same as the value, then return T. 2nd and 3rd, check if the path
@@ -253,8 +253,8 @@ class BinaryTree {
 
         //3 cases
         if ((node.data == inputValue)
-                || (node.left != null && isThereAPathBetweenANodeAndAValueAlsoCreateThatPath(node.left))
-                || (node.right != null && isThereAPathBetweenANodeAndAValueAlsoCreateThatPath(node.right))) {
+                || (node.L != null && isThereAPathBetweenANodeAndAValueAlsoCreateThatPath(node.L))
+                || (node.R != null && isThereAPathBetweenANodeAndAValueAlsoCreateThatPath(node.R))) {
             return true;
         } else {// If not present in subtree rooted with node, remove node.data from path and return false
             path.remove(path.size() - 1);
@@ -282,8 +282,8 @@ class BinaryTree {
             }
         }
 
-        maxSumFromRootToLeaf(node.left, currSum);
-        maxSumFromRootToLeaf(node.right, currSum);
+        maxSumFromRootToLeaf(node.L, currSum);
+        maxSumFromRootToLeaf(node.R, currSum);
     }
 
     //    https://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/
@@ -295,8 +295,8 @@ class BinaryTree {
     int maxGain(models.Node node) {
         if (node == null) return 0;
 
-        int maxGainFromLeft = max(maxGain(node.left), 0);
-        int maxGainFromRight = max(maxGain(node.right), 0);
+        int maxGainFromLeft = max(maxGain(node.L), 0);
+        int maxGainFromRight = max(maxGain(node.R), 0);
 
         maxPathSum = max(maxPathSum, (maxGainFromLeft + maxGainFromRight + node.data));
 
@@ -313,16 +313,16 @@ class BinaryTree {
 
         if (isLeaf(node))
             return node.data;
-        int maxGainFromLeft = maxGainWithLeaves(node.left);
-        int maxGainFromRight = maxGainWithLeaves(node.right);
+        int maxGainFromLeft = maxGainWithLeaves(node.L);
+        int maxGainFromRight = maxGainWithLeaves(node.R);
         //we cannot combine the below statements
-        if (node.left != null && node.right != null) {
+        if (node.L != null && node.R != null) {
             maxPathSum = max(maxPathSum, maxGainFromLeft + maxGainFromRight + node.data);//this statement is just present here only, as we need a node with 2 childs to have 2 leaf nodes
             return max(maxGainFromLeft, maxGainFromRight) + node.data;
         }
-        if (node.left != null)
+        if (node.L != null)
             return maxGainFromRight + node.data;
-        if (node.right != null)
+        if (node.R != null)
             return maxGainFromLeft + node.data;
     }
 
@@ -340,8 +340,8 @@ class BinaryTree {
         models.Node node = new models.Node(preorder.poll());//1
 
         int inorderIndex = indexOf(node);
-        node.left = treeFromInorderAndPostorder(inorderStartIndex, inorderIndex - 1);//2
-        node.right = treeFromInorderAndPostorder(inorderIndex + 1, inorderEndIndex);//3
+        node.L = treeFromInorderAndPostorder(inorderStartIndex, inorderIndex - 1);//2
+        node.R = treeFromInorderAndPostorder(inorderIndex + 1, inorderEndIndex);//3
 
         return node;//4
     }
@@ -359,12 +359,12 @@ class BinaryTree {
             models.Node tempNode = queue.poll();
             System.out.print(tempNode.data + " ");
 
-            if (tempNode.left != null) {
-                queue.add(tempNode.left);
+            if (tempNode.L != null) {
+                queue.add(tempNode.L);
             }
 
-            if (tempNode.right != null) {
-                queue.add(tempNode.right);
+            if (tempNode.R != null) {
+                queue.add(tempNode.R);
             }
         }
     }
@@ -374,11 +374,11 @@ class BinaryTree {
         if (node == null)
             return;
         System.out.println(node.data);
-        printLeftBoundary(node.left);
+        printLeftBoundary(node.L);
 
         printLeaves(node);
 
-        printRightBoundary(node.right);
+        printRightBoundary(node.R);
     }
 
 
@@ -392,8 +392,8 @@ class BinaryTree {
 
         /* Get heights of left and right sub trees */
         Height lheixght = new Height(), rheight = new Height();
-        boolean l = isBalanced(node.left, lheight);
-        boolean r = isBalanced(node.right, rheight);
+        boolean l = isBalanced(node.L, lheight);
+        boolean r = isBalanced(node.R, rheight);
         int lh = lheight.height, rh = rheight.height;
 
         /* Height of current node is max of heights of
@@ -412,14 +412,14 @@ class BinaryTree {
     }
 
     //    https://www.geeksforgeeks.org/iterative-method-to-find-height-of-binary-tree/   another iterative method
-    //    iterative traversal of trtee
+    //    iterative traversal of tree
     Integer heightIterative(models.Node root) {
         if (root == null)
             return 0;
 
         Queue<models.Node> q = new LinkedList<>();
-
         q.add(root);
+
         Integer height = 0;
 
         while (true) {
@@ -432,10 +432,10 @@ class BinaryTree {
             while (count > 0) {
                 models.Node node = q.poll();
 
-                if (node.left != null)
-                    q.add(node.left);
-                if (node.right != null)
-                    q.add(node.right);
+                if (node.L != null)
+                    q.add(node.L);
+                if (node.R != null)
+                    q.add(node.R);
 
                 count--;
             }
@@ -450,8 +450,8 @@ class BinaryTree {
         if (node == null)
             return 0;
 
-        int leftH = height(node.left);
-        int rightH = height(node.right);
+        int leftH = height(node.L);
+        int rightH = height(node.R);
 
         return (max(leftH, rightH) + 1);
     }
@@ -466,8 +466,8 @@ class BinaryTree {
         if (node == null)
             return new models.Node(null, null, 0, 0);
 
-        models.Node leftNode = diameter1(node.left);
-        models.Node rightNode = diameter1(node.right);
+        models.Node leftNode = diameter1(node.L);
+        models.Node rightNode = diameter1(node.R);
 
 
         node.h = max(leftNode.h, rightNode.h) + 1;
@@ -482,8 +482,8 @@ class BinaryTree {
         if (node == null)
             return 0;
 
-        int leftH = height(node.left);
-        int rightH = height(node.right);
+        int leftH = height(node.L);
+        int rightH = height(node.R);
 
         maxDiameter = max(maxDiameter, leftH + rightH + 1);//
 
@@ -499,30 +499,30 @@ class BinaryTree {
 
         while (current != null) {
             //left is null then print the node and go to right
-            if (current.left == null) {
+            if (current.L == null) {
                 System.out.print(current.data + " ");
-                current = current.right;
+                current = current.R;
             } else {
                 //find the predecessor.
-                models.Node predecessor = current.left;
+                models.Node predecessor = current.L;
                 //To find predecessor keep going right till right node is not null or right node is not current.
-                while (predecessor.right != current && predecessor.right != null)
-                    predecessor = predecessor.right;
+                while (predecessor.R != current && predecessor.R != null)
+                    predecessor = predecessor.R;
                 //if right node is null then go left after establishing link from predecessor to current.
-                if (predecessor.right == null) {
-                    predecessor.right = current;
-                    current = current.left;//(LEFT)
+                if (predecessor.R == null) {
+                    predecessor.R = current;
+                    current = current.L;//(LEFT)
                 } else { //left is already visit. Go rigth after visiting current.
-                    predecessor.right = null;
+                    predecessor.R = null;
                     System.out.print(current.data + " ");//(ROOT)
-                    current = current.right;//(RIGHT)
+                    current = current.R;//(RIGHT)
                 }
             }
         }
     }
 
     private boolean isLeaf(Node node) {
-        return (node.left == null && node.right == null);
+        return (node.L == null && node.R == null);
     }
 }
 

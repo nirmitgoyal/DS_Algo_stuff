@@ -57,17 +57,17 @@ public class BinarySearchTree {
 
         boolean case1 = true, case2 = true;
 
-        if (node.left != null) {
-            if (node.data > node.left.data)
+        if (node.L != null) {
+            if (node.data > node.L.data)
                 case1 = true;
             else case1 = false;
         }
-        if (node.right != null) {
-            if (node.data < node.right.data)
+        if (node.R != null) {
+            if (node.data < node.R.data)
                 case2 = true;
             else case2 = false;
         }
-        return case1 && case2 && wrongIsBST(node.left) && wrongIsBST(node.right);
+        return case1 && case2 && wrongIsBST(node.L) && wrongIsBST(node.R);
     }
 
     //    right:
@@ -76,8 +76,8 @@ public class BinarySearchTree {
         if (node == null)
             return true;
 
-        return areAllNodesLesser(node.left, node.data) && areAllNodesGreater(node.right, node.data)
-                && isBST(node.left) && isBST(node.right);
+        return areAllNodesLesser(node.L, node.data) && areAllNodesGreater(node.R, node.data)
+                && isBST(node.L) && isBST(node.R);
     }
 
     //O(n)
@@ -87,7 +87,7 @@ public class BinarySearchTree {
             return true;
 
         return node.data > minBound && node.data <= maxBound
-                && isBST(node.left, minBound, node.data) && isBST(node.right, node.data, maxBound);
+                && isBST(node.L, minBound, node.data) && isBST(node.R, node.data, maxBound);
     }
 
     Node insert(Node node, Integer value) {
