@@ -1,0 +1,73 @@
+Heap:
+Min Heap: A complete BT, where the value of each node is >= the value of its parent node.
+
+A complete binary tree.
+* https://www.youtube.com/watch?v=t0Cq6tVNRBA
+* heap(min) in java is priorityQ: https://stackoverflow.com/questions/14165325/is-there-a-heap-in-java
+PriorityQueue<Integer> minHeap = new PriorityQueue<>(); //internally it's an array
+Max heap using pq
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+
+
+* Height of a heap = log(n)
+* LOT of heap does NOT gives a sorted array
+
+Operations:
+* peek
+Fetches minimum element of the array O(1)
+
+* poll
+Polls  minimum element of the array. takes O(height)=O(log(n))
+
+* insert
+Inserting a new key takes O(height)=O(log(n)) time
+
+* log A + log B = log AB
+
+--------------------------------------------------------------------------------------------------------------------------
+Binary tree:
+
+If there are n nodes in binary tree, maximum height of the binary tree is n-1 and minimum height is floor(logn).
+
+--------------------------------------------------------------------------------------------------------------------------
+Binary search tree:
+* If there are n nodes in a binary search tree, maximum height of the binary search tree is n-1 and minimum height is floor(logn).
+* inorder gives sorted elements
+
+--------------------------------------------------------------------------------------------------------------------------
+* How to get and put(set and clear) a bit in a variable:
+https://youtu.be/NLKQEOgBAnw?list=WL&t=414
+
+* Complexity of String.substring(beginIndex, endIndex) is O(n) //even for StringBuilder.substring()
+beginIndex :  inclusive.
+endIndex :    exclusive.
+
+* Iterate map:
+        map.forEach((key, value) -> {
+            sout(key + " " + value);
+        });
+
+* LinkedList is doubly liked list
+Deque can be used as both doubly liked list and doubly ended queue. Deque<Integer> deque = new LinkedList<>();
+It has functions like addFirst(3), pollLast(), peekLast() in O(1), remove(object: 3) in O(n) - (both for LinkedList<>() and ArrayDeque<>()); the diff b/w LinkedList based DQ and ArrayDeque is that Linked one uses LinkedList internally, while Array one uses Array
+
+* total number of subsets in an array: O(2^n)
+* total number of subarrays in an array: O(n^2)
+
+* Iteration over the collection-views of a LinkedHashMap requires time proportional to the size of the map, regardless of its capacity. Iteration over a HashMap is likely to be more
+expensive, requiring time proportional to its capacity.
+
+* n! grows faster than an exponential with a constant base like 2^n and e^n
+
+* gcd:
+https://www.geeksforgeeks.org/c-program-find-gcd-hcf-two-numbers/
+O(Log min(a, b))
+
+* Initialize Reference:
+LinkedList<Integer> linkedList=new LinkedList<>();
+Stack<Integer> stack = new Stack<>();
+Queue<Integer> q = new LinkedList<>();
+PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+Deque<Integer> dq = new LinkedList<>();
+
+

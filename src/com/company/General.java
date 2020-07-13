@@ -10,45 +10,6 @@ import static java.lang.Math.min;
 import static java.lang.Math.round;
 import static java.util.Collections.swap;
 
-//How to get and put(set and clear) a bit in a variable:
-//https://youtu.be/NLKQEOgBAnw?list=WL&t=414
-
-//complexity of String.substring(beginIndex, endIndex) is O(n) //even for StringBuilder.substring()
-//beginIndex :  inclusive.
-//endIndex :    exclusive.
-
-//Iterate map:
-//        map.forEach((key, value) -> {
-//            sout(key + " " + value);
-//        });
-
-//LinkedList is doubly liked list
-//Deque can be used as both doubly liked list and doubly ended queue. Deque<Integer> deque = new LinkedList<>();
-// It has functions like addFirst(3), pollLast(), peekLast() in O(1), remove(object: 3) in O(n) - (both for LinkedList<>() and ArrayDeque<>()); the diff b/w LinkedList based DQ and ArrayDeque is that Linked one uses LinkedList internally, while Array one uses Array
-
-//max heap using pq
-//PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
-
-//total number of subsets in an array: O(2^n)
-//total number of subarrays in an array: O(n^2)
-
-//Iteration over the collection-views of a LinkedHashMap requires time proportional to the size of the map, regardless of its capacity. Iteration over a HashMap is likely to be more
-//expensive, requiring time proportional to its capacity.
-
-//n! grows faster than an exponential with a constant base like 2^n and e^n
-
-//gcd:
-//https://www.geeksforgeeks.org/c-program-find-gcd-hcf-two-numbers/
-//O(Log min(a, b))
-
-//Initialize Reference:
-//LinkedList<Integer> linkedList=new LinkedList<>();
-//Stack<Integer> stack = new Stack<>();
-//Queue<Integer> q = new LinkedList<>();
-//PriorityQueue<Integer> maxHeap = new PriorityQueue<>();
-//Deque<Integer> deque = new LinkedList<>();
-
-
 class Scratch {
     //    https://www.interviewbit.com/problems/minimize-the-absolute-difference/
 
@@ -111,8 +72,9 @@ class Scratch {
     PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 
     //    https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/
-    //    approach 1: n*logk: Using heap(priorityQ) of k size
-    //    approach 2: n: Using dequeue. https://www.youtube.com/watch?v=5VDQxLAlfu0
+    //    approach 0:  O((n-k)*k)=O(nk) (brute force) - Sliding window/2 pointer method
+    //    approach 1: n*klogk: Using heap(priorityQ) of k size
+    //    approach 2: n: Using dequeue. https://www.youtube.com/watch?v=Szyj6BY9iSA
 
     //    https://www.geeksforgeeks.org/check-if-an-array-can-be-divided-into-pairs-whose-sum-is-divisible-by-k/
     //    use: brute force
