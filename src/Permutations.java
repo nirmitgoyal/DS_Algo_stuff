@@ -20,7 +20,7 @@ public class Permutations {
         for (int i = index; i < n; i++) {
             swap(a, i, index);
             permutationsHelper(a, i + 1);
-            swap(a, i, index);//backtrack
+            swap(a, i, index); //backtrack
         }
     }
 }
