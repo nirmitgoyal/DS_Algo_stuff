@@ -30,6 +30,9 @@ this comes to be the asymptomaticTop K Frequent Elements complexity
 * log A + log B = log AB
 
 -------------------------------------------------------------------------------------------------------------------------
+* Stack Space complexity for quick sort: logn (since the array is pretty much divided into half each time)
+
+-------------------------------------------------------------------------------------------------------------------------
 Get int from char int('5') of size 1: '5' - '0'
 
 -------------------------------------------------------------------------------------------------------------------------
