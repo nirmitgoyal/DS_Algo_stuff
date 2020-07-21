@@ -1,24 +1,22 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class GenerateAllStringsWithNMatchedParentheses {
 
-    List<String> generateAllStringsWithNMatchedParentheses(int n) {
-        return generateAllStringsWithNMatchedParenthesesHelper(n, 0, 0, "");
-    }
-
-    private List<String> generateAllStringsWithNMatchedParenthesesHelper(int n, int leftCount, int rightCount, String s) {
-        if (s.length() == 2 * n)
-            return Arrays.asList(s);
-
+    ArrayList<String> generateAllStringsWithNMatchedParentheses(int n) {
         ArrayList<String> result = new ArrayList<>();
 
-        if (leftCount < n)
-            result.add(generateAllStringsWithNMatchedParenthesesHelper(n, leftCount + 1, rightCount, s + "(");
-        if (rightCount < leftCount)
-            generateAllStringsWithNMatchedParenthesesHelper(n, leftCount, rightCount + 1, s + ")");
+        generateAllStringsWithNMatchedParenthesesHelper(n, result, 0, 0, "");
 
         return result;
+    }
+
+    private void generateAllStringsWithNMatchedParenthesesHelper(int n, ArrayList<String> result, int leftCount, int rightCount, String s) {
+        if (s.length() == 2 * n)
+            result.add(s);
+
+        if (leftCount < n)
+            generateAllStringsWithNMatchedParenthesesHelper(n, result, leftCount + 1, rightCount, s + "(");
+        if (rightCount < leftCount)
+            generateAllStringsWithNMatchedParenthesesHelper(n, result, leftCount, rightCount + 1, s + ")");
     }
 }
