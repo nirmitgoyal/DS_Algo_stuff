@@ -49,6 +49,10 @@ public class HeightBalancedBT {
     }
 
     static class Return {
-        public boolean isBalanaced, h;
+        public boolean isBalanaced;
+        public int h;
+
+        public Return(boolean isBalanaced, int h) {
+        }
     }
 }
