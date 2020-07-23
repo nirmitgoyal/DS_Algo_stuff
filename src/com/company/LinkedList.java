@@ -385,7 +385,7 @@ public class LinkedList {
 
 public class Node {
     Integer data, h, d;
-    models.Node left, right, next, random;
+    models.Node left, right, next, random, L, R;
 
     Node(Integer data) {
         this.data = data;

@@ -1,4 +1,4 @@
-package com.company;
+import models.Node;
 
 public class HeightBalancedBT {
     static boolean isBalanced = true;
@@ -29,5 +29,26 @@ public class HeightBalancedBT {
             return -1;
 
         return (Math.max(LSTH, RSTH) + 1);
+    }
+
+    boolean height3(Node node) {
+        return height3Helper(node).isBalanaced;
+    }
+
+    private Return height3Helper(Node node) {
+        if (node == null)
+            return new Return(true, 0);
+
+        Return leftReturn = height3Helper(node.L);
+        Return rightReturn = height3Helper(node.R);
+
+        return new Return((Math.abs(leftReturn.h - rightReturn.h) <= 1
+                && leftReturn.isBalanaced
+                && rightReturn.isBalanaced),
+                (Math.max(leftReturn.h, rightReturn.h) + 1));
+    }
+
+    static class Return {
+        public boolean isBalanaced, h;
     }
 }
