@@ -1,6 +1,8 @@
-import javafx.scene.control.Cell;
+import models.Cell;
+import models.Pair;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class IslandSizeWithMaxSameColors {
 
@@ -27,15 +29,15 @@ public class IslandSizeWithMaxSameColors {
         m[row][col] = -1;
 
         int ans = 1;
-        for (Cell<Integer, Integer> cell : getNeighbours(row, col)) {
+        for (Cell cell : getNeighbours(row, col)) {
             ans += DFS(m, cell.row, cell.col);
         }
 
         return ans;
     }
 
-    private ArrayList<Cell<Integer, Integer>> getNeighbours(int row, int col) {
-        ArrayList<Cell<Integer, Integer>> neighbours = new ArrayList<>();
+    private ArrayList<Cell> getNeighbours(int row, int col) {
+        ArrayList<Cell> neighbours = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
             int newRow = row + rows[i];
@@ -45,5 +47,31 @@ public class IslandSizeWithMaxSameColors {
                     && m[newRow][newCol] == m[row][col])
                 neighbours.add(new Cell(newRow, newCol));
         }
+    }
+
+    int DFSIterative(int[][] m, int row, int col) {
+        Stack<Cell> stack = new Stack<>();
+        stack.push(new Cell(row, col));//1. Push 1st element
+
+        int ans = 0;
+
+        while (!stack.isEmpty()) {//2. Iterate till stack is not empty
+            Cell e = stack.pop();
+            int r = e.row;
+            int c = e.col;
+
+            if (m[r][c] == -1) {
+                continue;
+            }
+
+            ans++;
+
+            m[r][c] = -1;
+
+            for (Cell cell : getNeighbours(row, col)) {
+                stack.push(cell);//3. Push in stack if a neighbour
+            }
+        }
+        return ans;
     }
 }

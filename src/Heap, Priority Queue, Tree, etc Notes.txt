@@ -38,7 +38,8 @@ Get int from char int('5') of size 1: '5' - '0'
 -------------------------------------------------------------------------------------------------------------------------
 Binary tree:
 
-If there are n nodes in binary tree, maximum height of the binary tree is n-1 and minimum height is floor(logn).
+* If there are n nodes in binary tree, maximum height of the binary tree is n-1 and minimum height is floor(logn).
+* The maximum number of nodes at level ‘l’ of a binary tree is 2^l
 
 --------------------------------------------------------------------------------------------------------------------------
 Binary search tree:

@@ -3,14 +3,15 @@ public class Partition {
         int R = n - 2;
         int pivot = a[n - 1];
 
-        while (i <= R) {
+        int i = 0;
+        while (i <= R) {//<= confirmed
             if (a[i] > pivot) {
-                swap(i, R);
+                swap(a, i, R);
                 R--;
             } else {
                 i++;
             }
         }
-        swap(i, n - 1);
+        swap(a, i, n - 1);
     }
 }
