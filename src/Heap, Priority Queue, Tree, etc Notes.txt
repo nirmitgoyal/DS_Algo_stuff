@@ -4,9 +4,11 @@ Min Heap: A complete BT, where the value of each node is >= the value of its par
 A complete binary tree.
 * https://www.youtube.com/watch?v=t0Cq6tVNRBA
 * heap(min) in java is priorityQ: https://stackoverflow.com/questions/14165325/is-there-a-heap-in-java
-PriorityQueue<Integer> minHeap = new PriorityQueue<>(); //internally it's an array
+PriorityQueue<Integer> minHeap = new PriorityQueue<>(); //internally it's an array for java too
 Max heap using pq:
 PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+
+* getting min element from pq: O(logn) (since it heapifies)
 
 * Height of a heap = log(n)
 * LOT of heap does NOT gives a sorted array
