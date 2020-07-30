@@ -1,3 +1,5 @@
+import java.util.Collections;
+
 public class LongestIncreasingSubsequence {
 
     int lengthOfLongestIncreasingSubsequence(int[] a) {

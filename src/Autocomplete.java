@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 public class Autocomplete {
 
@@ -37,14 +38,6 @@ public class Autocomplete {
         return result;
     }
 
-    private void dfs(Node node, String prefix, List<String> result) {
-        if (node.isEndOfWord)
-            result.add(prefix);
-
-        node.children.forEach((c, e) ->
-                dfs(e, prefix + c, result));//maintaining 2 states: Node and prefix
-    }
-
     private void buildTrie(List<String> words) {
         for (String word : words) {
             Node curr = root;
@@ -56,5 +49,37 @@ public class Autocomplete {
 
             curr.isEndOfWord = true;
         }
+    }
+
+    private void dfs(Node node, String prefix, List<String> result) {
+        if (node.isEndOfWord)
+            result.add(prefix);
+
+        node.children.forEach((c, e) ->
+                dfs(e, prefix + c, result));//maintaining 2 states: Node and prefix
+    }
+
+    private void dfsIterative(Node node, String prefix, List<String> result) {
+        Stack<State> stack = new Stack<>();
+        stack.push(new State(node, prefix));
+
+        while (!stack.isEmpty()) {
+            State state = stack.pop();
+            Node curr = state.node;
+            String currPrefix = state.prefix;
+
+            if (curr.isEndOfWord)
+                result.add(currPrefix);
+
+            curr.children.forEach((c, e) ->
+                    stack.push(new State(e, currPrefix + c)));
+        }
+    }
+
+    private class State {
+        Node node;
+        String prefix;
+
+        public State(Node node, String prefix) { }
     }
 }

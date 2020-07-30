@@ -96,3 +96,4 @@ Deque<Integer> dq = new LinkedList<>();
 * In, pre, post order tree traversals are DFS
 LOT is BFS
 -------------------------------------------------------------------------------------------------------------------------
+Collections.reverse(list) reverses a list in O(1) space
