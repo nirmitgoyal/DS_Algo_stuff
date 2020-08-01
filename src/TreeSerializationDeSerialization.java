@@ -11,7 +11,7 @@ public class TreeSerializationDeSerialization {
         if (node == null)
             return "#";
 
-        return String.valueOf(node.data) + " " + treeSerialization(node.L) + " " + treeSerialization(node.R);
+        return String.valueOf(node.data) + " " + treeSerialization(node.L) + " " + treeSerialization(node.R) + " ";
     }
 
     Node treeDeSerialization(String s) {

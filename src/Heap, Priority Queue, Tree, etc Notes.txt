@@ -57,6 +57,8 @@ https://youtu.be/NLKQEOgBAnw?list=WL&t=414
 beginIndex :  inclusive.
 endIndex :    exclusive.
 
+* Complexity of String.contains(anotherString) is O(n*m)
+Do not care to use .indexOf() for checking if a string(text) contains another string(pattern)
 -------------------------------------------------------------------------------------------------------------------------
 * Iterate map:
         map.forEach((key, value) -> {

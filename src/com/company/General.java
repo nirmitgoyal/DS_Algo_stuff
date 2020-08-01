@@ -196,7 +196,7 @@ class Scratch {
 //    https://www.geeksforgeeks.org/algorithms-gq/pattern-searching/
 //    https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
 //    My own O(n+m) string search algo:
-    int subString(@NotNull String pattern, String text){
+    int subString(String pattern, String text){
         Map<Character, Integer> patternMap = new HashMap<>();
         Map<Character, Integer> textMap = new HashMap<>();
         //initialize both maps with count 0 for all chars
@@ -209,8 +209,7 @@ class Scratch {
             textMap.put(keyText, (textMap.get(keyText) + 1));
         }
 
-        int index = compare(textMap, patternMap);
-        if (index != -1)
+        if (textMap.equals(patternMap))//override equals method
             return index;
 
         int startIndex = 0, endIndex = pattern.length();
