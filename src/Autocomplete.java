@@ -9,11 +9,11 @@ public class Autocomplete {
     private Node root = new Node();
 
     public static class Node {
-        private Map<Character, Node> children;
-        private boolean isEndOfWord;
+        Map<Character, Node> childs;
+        boolean isEndOfWord;
 
         Node() {
-            children = new HashMap<>();
+            childs = new HashMap<>();
             isEndOfWord = false;
         }
     }
@@ -27,9 +27,9 @@ public class Autocomplete {
 
         //Reach till the end of prefix
         for (char c : prefix) {
-            if (!curr.children.containsKey(c))
+            if (!curr.childs.containsKey(c))
                 return result;//empty list
-            curr = curr.children.get(c);
+            curr = curr.childs.get(c);
         }
         //Now we reached till the end of prefix
 
@@ -43,8 +43,8 @@ public class Autocomplete {
             Node curr = root;
 
             for (char c : word) {//though foreach loop not applicable for String
-                if (!curr.children.containsKey(c))
-                    curr.children.put(c, new Node());
+                if (!curr.childs.containsKey(c))
+                    curr.childs.put(c, new Node());
             }
 
             curr.isEndOfWord = true;
@@ -55,7 +55,7 @@ public class Autocomplete {
         if (node.isEndOfWord)
             result.add(prefix);
 
-        node.children.forEach((c, e) ->
+        node.childs.forEach((c, e) ->
                 dfs(e, prefix + c, result));//maintaining 2 states: Node and prefix
     }
 
@@ -71,7 +71,7 @@ public class Autocomplete {
             if (curr.isEndOfWord)
                 result.add(currPrefix);
 
-            curr.children.forEach((c, e) ->
+            curr.childs.forEach((c, e) ->
                     stack.push(new State(e, currPrefix + c)));
         }
     }
