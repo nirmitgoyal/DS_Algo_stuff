@@ -32,7 +32,9 @@ this comes to be the asymptomaticTop K Frequent Elements complexity
 * log A + log B = log AB
 
 -------------------------------------------------------------------------------------------------------------------------
-* Stack Space complexity for quick sort: logn (since the array is pretty much divided into half each time)
+* Stack Space complexity for quick sort: Av - logn (since the array is pretty much divided into half each time), Worst - O(n); since there can be case where
+partitionIndex does comes out to be at the ends of the array and we have to divide it n-1 times.
+Quick sort cannot be done iteratively as we will have to call the quickSort inside
 
 -------------------------------------------------------------------------------------------------------------------------
 Get int from char int('5') of size 1: '5' - '0'
@@ -102,3 +104,18 @@ Collections.reverse(list) reverses a list in O(1) space
 
 -------------------------------------------------------------------------------------------------------------------------
 Time complexity of bitwise operators like <<, >> is O(1)
+
+-------------------------------------------------------------------------------------------------------------------------
+String s1="317";
+String s2="172";
+System.out.println(s1.compareTo(s2)); //2 +ve number shows s1>s2
+
+s1="20";
+s2="5";
+System.out.println(s1.compareTo(s2)); //-3 -ve number shows s1<s2
+
+The character sequence represented by this String object is compared lexicographically to the character sequence represented by the argument string.
+The result is a negative integer if this String object lexicographically precedes(comes before) the argument string.
+The result is a positive integer if this String object lexicographically follows the argument string.
+The result is zero if the strings are equal;
+

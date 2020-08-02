@@ -753,13 +753,11 @@ class Scratch {
     //https://www.geeksforgeeks.org/maximum-size-rectangle-binary-sub-matrix-1s/
 
     void quickSort(Integer start, Integer end) {
-        if (start > end) {
-            return;
+        if (start < end) {
+            Integer partitionIndex = partition(start, end);
+            quickSort(start, partitionIndex - 1);
+            quickSort(partitionIndex + 1, end);
         }
-
-        Integer partitionIndex = partition(start, end);
-        quickSort(start, partitionIndex - 1);
-        quickSort(partitionIndex + 1, end);
     }
 
     //take 'pivotElement' as last element and an index as 'partitionIndex' as starting index.
