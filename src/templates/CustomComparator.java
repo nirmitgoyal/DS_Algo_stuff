@@ -3,7 +3,7 @@ package templates;
 import java.util.Comparator;
 
 // CustomCollectionSort compare template
-class CustomComparator implements Comparator<Integer> {
+public class CustomComparator implements Comparator<Integer> {
     /**
      * Compares its two arguments for order.  Returns a negative integer,
      * zero, or a positive integer as the first argument is less than, equal

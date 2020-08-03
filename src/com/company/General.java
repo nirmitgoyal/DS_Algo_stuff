@@ -626,7 +626,7 @@ class Scratch {
     }
 
     private void addElement(Integer e) {
-        if (maxHeap.size() == 0 || e < maxHeap.peek()) {
+        if (e <= maxHeap.peek()||maxHeap.size() == 0) {
             maxHeap.add(e);
         } else
             minHeap.add(e);

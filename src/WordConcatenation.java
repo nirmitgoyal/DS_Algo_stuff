@@ -29,8 +29,7 @@ public class WordConcatenation {
             String prefix = word.substring(0, i);
             String suffix = word.substring(i, n);
 
-            if (set.contains(prefix)
-                    && (set.contains(suffix) || canForm(suffix, set, cache))) {
+            if (set.contains(prefix) && (set.contains(suffix) || canForm(suffix, set, cache))) {
                 cache.put(word, true);//just for caching optimization
                 return true;
             }
