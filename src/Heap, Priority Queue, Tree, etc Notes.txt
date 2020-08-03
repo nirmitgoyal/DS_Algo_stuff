@@ -55,7 +55,7 @@ Binary search tree:
 https://youtu.be/NLKQEOgBAnw?list=WL&t=414
 
 -------------------------------------------------------------------------------------------------------------------------
-* Complexity of String.substring(beginIndex, endIndex) is O(n) //even for StringBuilder.substring()
+* Time and space complexity of String.substring(beginIndex, endIndex) is O(n) //even for StringBuilder.substring()
 beginIndex :  inclusive.
 endIndex :    exclusive.
 
@@ -74,7 +74,7 @@ It has functions like addFirst(3), pollLast(), peekLast() in O(1), remove(object
 
 -------------------------------------------------------------------------------------------------------------------------
 * total number of subsets in an array: O(2^n)
-* total number of subarrays in an array: O(n^2)
+* total number of subarrays in an array: O(n^2) = O(n*n)
 
 -------------------------------------------------------------------------------------------------------------------------
 * Iteration over the collection-views of a LinkedHashMap requires time proportional to the size of the map, regardless of its capacity. Iteration over a HashMap is likely to be more
@@ -119,3 +119,8 @@ The result is a negative integer if this String object lexicographically precede
 The result is a positive integer if this String object lexicographically follows the argument string.
 The result is zero if the strings are equal;
 
+-------------------------------------------------------------------------------------------------------------------------
+O(n + m) != O(n) + O(m)
+
+-------------------------------------------------------------------------------------------------------------------------
+log(2^n)=n (log base 2)
