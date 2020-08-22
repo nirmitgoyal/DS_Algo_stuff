@@ -21,24 +21,45 @@ public class Main {
 //            String s = scanner.nextLine();       // read whole line as String
 //            long n = scanner.nextLong();
 
-            out.println(solution());
+            out.println(smallestSetCoveringIntervals(new int[]{999999999}, new int[]{1000000000} ));
         }
         out.close();
     }
 
-    static int solution() {
-        return -1;
-    }
+    static long smallestSetCoveringIntervals(int[] first, int[] last) {
 
-    public static class Pair {
-        Long first, second;
 
-        Pair() {
+        Integer[][] a = new Integer[first.length][first.length];
+        for (int i = 0; i < first.length; i++) {
+            a[i][0] = first[i];
+            a[i][1] = last[i];
+        }
+        Arrays.sort(a, new CustomComparator());
+
+        long n = 0, largest = -1, secondLargest = -1;
+
+        for (Integer[] interval : a) {
+            long start = interval[0], end = interval[1];
+
+            boolean isLargestIn = (start <= largest);
+            boolean isSecondLargestIn = (start <= secondLargest);
+
+            if (isLargestIn && isSecondLargestIn)
+                continue;
+
+            n += (isLargestIn ? 1 : 2);
+
+            secondLargest = (isLargestIn ? largest : end - 1);
+            largest = end;
         }
 
-        Pair(Long first, Long second) {
-            this.first = first;
-            this.second = second;
+        return n;
+    }
+
+    public static class CustomComparator implements Comparator<Integer[]> {
+        @Override
+        public int compare(Integer[] first, Integer[] last) {
+            return (!first[1].equals(last[1]) ? first[1].compareTo(last[1]) : last[0].compareTo(first[0]));
         }
     }
 
@@ -84,5 +105,7 @@ public class Main {
             return str;
         }
     }
+
+
 }
 

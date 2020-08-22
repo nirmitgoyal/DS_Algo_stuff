@@ -8,6 +8,6 @@ public class Pair {
         this.second = second;
     }
 
-    Pair() {
+    Pair(long sum, int i) {
     }
 }

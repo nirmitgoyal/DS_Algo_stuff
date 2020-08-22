@@ -8,7 +8,7 @@ public class InvertTree {
 
         Node left=invert(node.L);
         Node right=invert(node.R);
-        node.L=right;
+        node.L =right;
         node.R=left;
 
         return node;
