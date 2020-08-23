@@ -1,4 +1,5 @@
 public class Mountain {
+
     boolean isMountain(int[] a) {
         int n = a.length;
         if (n < 3)
