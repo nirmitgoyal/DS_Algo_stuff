@@ -46,7 +46,7 @@ public class isCyclePresent {
 
         boolean hasCycle = false;
         for (int currNode : getNeighbours(node)) {
-            if (DFSUnDirected(currNode,node) && node != parentNode) {
+            if (DFSUnDirected(currNode, node) && node != parentNode) {
                 hasCycle = true;
                 break;
             }

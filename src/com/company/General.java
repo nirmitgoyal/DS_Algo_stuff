@@ -1,39 +1,31 @@
 package com.company;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.PriorityQueue;
+import java.util.Set;
+import java.util.Stack;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import static java.lang.Math.round;
 import static java.util.Collections.swap;
 
 class Scratch {
     //    https://www.interviewbit.com/problems/minimize-the-absolute-difference/
 
-    //    https://www.geeksforgeeks.org/next-greater-element-in-same-order-as-input/
-    //    https://www.geeksforgeeks.org/next-greater-element/
-    //    Approach: Do this for every element from back(3 steps):
-    //    Step1: Pop from the stack till the top is <= curr(and stack is not empty).
-    //    Step2: Now if stack is not empty, then top is NGE, else, NGE is null for this element.
-    //    Step3: Now, push this element in stack
-    Stack<Integer> s=new Stack();
-
-    {
-        for (int i = n - 1; i >= 0; i--) {
-            while ((s.peek() <= a[i]) && !s.isEmpty())
-                s.pop();
-
-            if (!s.empty())
-                System.out.println("null");
-            else
-                System.out.println(a[i] + ":" + s.peek());
-
-            s.push(a[i]);
-        }
-    }
+    //    https://www.geeksforgeeks.org/sort-array-according-order-defined-another-array/
+    //    use: Method 3 (Using Hashing)
+    static ArrayList<Integer> order = new ArrayList<>(Arrays.asList(4, 6, 2, 1));
+    //    use: https://www.geeksforgeeks.org/find-first-non-repeating-character-stream-characters/:
+    //    another method: https://www.geeksforgeeks.org/queue-based-approach-for-first-non-repeating-character-in-a-stream/
+    static Node head, tail;
 
     //    https://www.geeksforgeeks.org/longest-common-substring-dp-29/
     //    https://www.geeksforgeeks.org/print-longest-common-substring/
@@ -63,13 +55,9 @@ class Scratch {
     //    Remember to iniialize DLL with 2 nodes head and tail with dummy values.
     //    We have to implement our own DLL.
     //    use this code:    2. Optimized Approach: https://www.geeksforgeeks.org/design-a-data-structure-for-lru-cache/.
-
-
-    //    https://www.geeksforgeeks.org/nearly-sorted-algorithm/
-    //    use min heap(priorityQ) method: https://www.geeksforgeeks.org/sort-a-nearly-sorted-array-using-stl/
-    //    see https://youtu.be/yQ84lk-EXTQ?t=567
-    //    O(k*logk) + O((n-k)*logK) = O(nlogK)
-    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+    //https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
+    //see:    https://www.youtube.com/watch?v=GuTPwotSdYw
+    static String s;
 
     //    https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/
     //    approach 0:  O((n-k)*k)=O(nk) (brute force) - Sliding window/2 pointer method
@@ -165,16 +153,58 @@ class Scratch {
     //    https://www.youtube.com/watch?v=Y0ZqKpToTic.
     //    https://www.youtube.com/watch?v=_fgjrs570YE
     //    https://www.geeksforgeeks.org/coin-change-dp-7/
-
-    //    https://www.geeksforgeeks.org/sort-array-according-order-defined-another-array/
-    //    use: Method 3 (Using Hashing)
-    static ArrayList<Integer> order = new ArrayList<>(Arrays.asList(4, 6, 2, 1));
-
+    static PriorityQueue<Integer> bigHeap, smallHeap;
+    //    Explaination 2:
+    //    For every bar, if I can calculate the area under histogram such that it is the largest bar in the continuous set of bars and take there maximum value I will get my solution.
+    //    Now, how to calculate the area under histogram such that it is the largest bar in continuous set of bars ? => Simple, I need to find first bar on left as well as right that are
+    //    smaller than current bar!
+    //    But naive complexity for this would be O(n^2) , so we use stack.
+    //    How stack solution works?
+    //    We push elements to stack. But before pushing we check if current element is smaller than stack top element because it will imply I found out the right smaller index for element on
+    //    top of stack! What about left smaller index? It was pushed right before pushing the stack top element!
+    static ArrayList<Integer> a;
+    static Integer maxArea = 0, n = a.size(), area = 0, i;
+    static Stack<Integer> s = new Stack<>();//contains indexes
+    //    https://www.geeksforgeeks.org/next-greater-element-in-same-order-as-input/
+    //    https://www.geeksforgeeks.org/next-greater-element/
+    //    Approach: Do this for every element from back(3 steps):
+    //    Step1: Pop from the stack till the top is <= curr(and stack is not empty).
+    //    Step2: Now if stack is not empty, then top is NGE, else, NGE is null for this element.
+    //    Step3: Now, push this element in stack
+    Stack<Integer> s = new Stack();
+    //    https://www.geeksforgeeks.org/nearly-sorted-algorithm/
+    //    use min heap(priorityQ) method: https://www.geeksforgeeks.org/sort-a-nearly-sorted-array-using-stl/
+    //    see https://youtu.be/yQ84lk-EXTQ?t=567
+    //    O(k*logk) + O((n-k)*logK) = O(nlogK)
+    PriorityQueue<Integer> minHeap = new PriorityQueue<>();
     //    https://www.geeksforgeeks.org/find-the-smallest-window-in-a-string-containing-all-characters-of-another-string/
     //    Note: we have to match the count too
     //    use 2 pointers method: https://youtu.be/eS6PZLjoaq8?t=632 - O(n)
     Map<Character, Integer> sMap = new HashMap<>();//char->count //all chars set to 0
     Map<Character, Integer> patternMap = new HashMap<>();
+    //    https://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/
+    //    https://www.geeksforgeeks.org/design-a-stack-that-supports-getmin-in-o1-time-and-o1-extra-space/
+    //    https://leetcode.com/problems/min-stack/
+    //    A1: take 1 more stack - min, which will keep minimum element corresponding to every value in stack; O(1), O(n)
+    //    A2: The idea is to store the gap between the min value and the current value; O(1), O(1)
+    //    similar logic for max
+    //    A2:
+    int min;
+    Stack<Integer> stack;
+
+    {
+        for (int i = n - 1; i >= 0; i--) {
+            while ((s.peek() <= a[i]) && !s.isEmpty())
+                s.pop();
+
+            if (!s.empty())
+                System.out.println("null");
+            else
+                System.out.println(a[i] + ":" + s.peek());
+
+            s.push(a[i]);
+        }
+    }
 
     {
         while (r < n) {
@@ -190,46 +220,6 @@ class Scratch {
                 r++;
             }
         }
-    }
-
-
-//    https://www.geeksforgeeks.org/algorithms-gq/pattern-searching/
-//    https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
-//    My own O(n+m) string search algo:
-    int subString(String pattern, String text){
-        Map<Character, Integer> patternMap = new HashMap<>();
-        Map<Character, Integer> textMap = new HashMap<>();
-        //initialize both maps with count 0 for all chars
-
-        for (int i = 0; i < pattern.length(); i++) {
-            char keyPattern = pattern.charAt(i);
-            patternMap.put(keyPattern, (patternMap.get(keyPattern) + 1));
-
-            char keyText = text.charAt(i);
-            textMap.put(keyText, (textMap.get(keyText) + 1));
-        }
-
-        if (textMap.equals(patternMap))//override equals method
-            return index;
-
-        int startIndex = 0, endIndex = pattern.length();
-
-        while (endIndex < text.length()) {
-            char keyStart = text.charAt(startIndex);
-            char keyEnd = text.charAt(endIndex);
-
-            textMap.put(keyStart, textMap.get(keyStart) - 1);
-            textMap.put(keyEnd, textMap.get(keyEnd) + 1);
-
-            index = compare(textMap, patternMap);
-            if (index != -1)
-                return index;
-
-            startIndex++;
-            endIndex++;
-        }
-
-        return -1;
     }
 
     //    https://www.geeksforgeeks.org/find-a-tour-that-visits-all-stations/
@@ -261,7 +251,6 @@ class Scratch {
 
         return start;
     }
-
 
     //    https://www.geeksforgeeks.org/minimum-number-appends-needed-make-string-palindrome/
     //    https://www.geeksforgeeks.org/minimum-characters-added-front-make-string-palindrome/
@@ -315,62 +304,6 @@ class Scratch {
         return dp[n][W];
     }
 
-    //    https://www.geeksforgeeks.org/design-and-implement-special-stack-data-structure/
-    //    https://www.geeksforgeeks.org/design-a-stack-that-supports-getmin-in-o1-time-and-o1-extra-space/
-    //    https://leetcode.com/problems/min-stack/
-    //    A1: take 1 more stack - min, which will keep minimum element corresponding to every value in stack; O(1), O(n)
-    //    A2: The idea is to store the gap between the min value and the current value; O(1), O(1)
-    //    similar logic for max
-    //    A2:
-    int min;
-    Stack<Integer> stack;
-
-    public void push(int x) {
-        if (stack.isEmpty()) {
-            stack.push(0);
-            min = x;
-        } else {
-            stack.push(x - min);//Could be negative if min value needs to change
-            if (x < min) min = x;
-        }
-    }
-
-    public void pop() {
-        if (stack.isEmpty()) return;
-
-        int pop = stack.pop();
-
-        if (pop < 0) min = min + (-pop);//If negative, increase the min value
-
-    }
-
-    public int top() {
-        int top = stack.peek();
-        if (top > 0) {
-            return (top + min);
-        } else {
-            return (min);
-        }
-    }
-
-    public int getMin() {
-        return min;
-    }
-
-    //    use: https://www.geeksforgeeks.org/find-first-non-repeating-character-stream-characters/:
-    //    another method: https://www.geeksforgeeks.org/queue-based-approach-for-first-non-repeating-character-in-a-stream/
-    static Node head, tail;
-
-    static class Node {
-        char data;
-        Node prev, next;
-
-        public Node(char data) {
-            this.data = data;
-            prev = next = null;
-        }
-    }
-
     static void delete(Node node) {
         if (node == tail) {
             tail = tail.prev;
@@ -385,16 +318,6 @@ class Scratch {
         node.prev = tail;
         tail.next = node;
         tail = tail.next;
-    }
-
-    static class Value {
-        int c;
-        Node node;
-
-        public Value(int c, Node node) {
-            this.c = c;
-            this.node = node;
-        }
     }
 
     private static void firstNonRepeatingCharInStream(String s) {
@@ -544,9 +467,79 @@ class Scratch {
         }
     }
 
-    //https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
-    //see:    https://www.youtube.com/watch?v=GuTPwotSdYw
-    static String s;
+    //    https://www.geeksforgeeks.org/algorithms-gq/pattern-searching/
+//    https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
+//    My own O(n+m) string search algo:
+    int subString(String pattern, String text) {
+        Map<Character, Integer> patternMap = new HashMap<>();
+        Map<Character, Integer> textMap = new HashMap<>();
+        //initialize both maps with count 0 for all chars
+
+        for (int i = 0; i < pattern.length(); i++) {
+            char keyPattern = pattern.charAt(i);
+            patternMap.put(keyPattern, (patternMap.get(keyPattern) + 1));
+
+            char keyText = text.charAt(i);
+            textMap.put(keyText, (textMap.get(keyText) + 1));
+        }
+
+        if (textMap.equals(patternMap))//override equals method
+            return index;
+
+        int startIndex = 0, endIndex = pattern.length();
+
+        while (endIndex < text.length()) {
+            char keyStart = text.charAt(startIndex);
+            char keyEnd = text.charAt(endIndex);
+
+            textMap.put(keyStart, textMap.get(keyStart) - 1);
+            textMap.put(keyEnd, textMap.get(keyEnd) + 1);
+
+            index = compare(textMap, patternMap);
+            if (index != -1)
+                return index;
+
+            startIndex++;
+            endIndex++;
+        }
+
+        return -1;
+    }
+
+    public void push(int x) {
+        if (stack.isEmpty()) {
+            stack.push(0);
+            min = x;
+        } else {
+            stack.push(x - min);//Could be negative if min value needs to change
+            if (x < min) min = x;
+        }
+    }
+
+    public void pop() {
+        if (stack.isEmpty()) return;
+
+        int pop = stack.pop();
+
+        if (pop < 0) min = min + (-pop);//If negative, increase the min value
+
+    }
+
+    public int top() {
+        int top = stack.peek();
+        if (top > 0) {
+            return (top + min);
+        } else {
+            return (min);
+        }
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    //    https://www.geeksforgeeks.org/submatrix-sum-queries/
+    //    use: https://www.youtube.com/watch?v=-d8KbQVx-mM
 
     void printPermu(int start, int end) {
         if (end - start == 0) {//length is 0
@@ -576,9 +569,6 @@ class Scratch {
                 i++;
         }
     }
-
-    //    https://www.geeksforgeeks.org/submatrix-sum-queries/
-    //    use: https://www.youtube.com/watch?v=-d8KbQVx-mM
 
     //    https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/
     //    https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/ //replace k=2
@@ -626,13 +616,11 @@ class Scratch {
     }
 
     private void addElement(Integer e) {
-        if (e <= maxHeap.peek()||maxHeap.size() == 0) {
+        if (e <= maxHeap.peek() || maxHeap.size() == 0) {
             maxHeap.add(e);
         } else
             minHeap.add(e);
     }
-
-    static PriorityQueue<Integer> bigHeap, smallHeap;
 
     private void balanceSize() {
 
@@ -655,6 +643,22 @@ class Scratch {
         } else
             return (double) bigHeap.peek();
     }
+
+    //    https://leetcode.com/problems/largest-rectangle-in-histogram/
+    //    https://www.geeksforgeeks.org/largest-rectangular-area-in-a-histogram-set-1/
+    //    https://www.geeksforgeeks.org/largest-rectangle-under-histogram/
+    //    very tough
+    //    O(n^2): Brute force: one by one consider all bars as starting points and calculate area of all rectangles starting with every bar. Finally return maximum of all possible areas.
+    //
+    //    O(n):
+    //    Explaination 1:
+    //    For every bar in the histogram, consider it to be included in the required rectangle of maximum area. Now calculate the area of the rectangle that it can form.
+    //    This bar can form the rectangle between its previous smaller bar and next smaller bar.
+    //    So we need index of previous and next smaller bar for every bar. For this we use stack and keep pushing in it the indexes of bars which are longer than the one at the top.
+    //    If a incoming bar is of smaller height than the bar at the top of stack, we have got the right smaller index for the bar at the top of stack.
+    //    So we pop the top element i.e index of bar whose area we're going to calculate.
+    //    models.Index of previous smaller is now saved at the top of the stack and next smaller is the incoming bar that is waiting to be pushed in the stack. Now we can calculate its area.
+    //    We'll do this for every bar and keep track of the maximum area. Handle the corner cases like left smaller index of the first bar and right smaller index of last bar.
 
     //    https://www.geeksforgeeks.org/longest-palindromic-substring-set-2/
     //    https://www.geeksforgeeks.org/longest-palindrome-substring-set-1/
@@ -689,34 +693,6 @@ class Scratch {
         return max;
     }
 
-    //    https://leetcode.com/problems/largest-rectangle-in-histogram/
-    //    https://www.geeksforgeeks.org/largest-rectangular-area-in-a-histogram-set-1/
-    //    https://www.geeksforgeeks.org/largest-rectangle-under-histogram/
-    //    very tough
-    //    O(n^2): Brute force: one by one consider all bars as starting points and calculate area of all rectangles starting with every bar. Finally return maximum of all possible areas.
-    //
-    //    O(n):
-    //    Explaination 1:
-    //    For every bar in the histogram, consider it to be included in the required rectangle of maximum area. Now calculate the area of the rectangle that it can form.
-    //    This bar can form the rectangle between its previous smaller bar and next smaller bar.
-    //    So we need index of previous and next smaller bar for every bar. For this we use stack and keep pushing in it the indexes of bars which are longer than the one at the top.
-    //    If a incoming bar is of smaller height than the bar at the top of stack, we have got the right smaller index for the bar at the top of stack.
-    //    So we pop the top element i.e index of bar whose area we're going to calculate.
-    //    models.Index of previous smaller is now saved at the top of the stack and next smaller is the incoming bar that is waiting to be pushed in the stack. Now we can calculate its area.
-    //    We'll do this for every bar and keep track of the maximum area. Handle the corner cases like left smaller index of the first bar and right smaller index of last bar.
-
-    //    Explaination 2:
-    //    For every bar, if I can calculate the area under histogram such that it is the largest bar in the continuous set of bars and take there maximum value I will get my solution.
-    //    Now, how to calculate the area under histogram such that it is the largest bar in continuous set of bars ? => Simple, I need to find first bar on left as well as right that are
-    //    smaller than current bar!
-    //    But naive complexity for this would be O(n^2) , so we use stack.
-    //    How stack solution works?
-    //    We push elements to stack. But before pushing we check if current element is smaller than stack top element because it will imply I found out the right smaller index for element on
-    //    top of stack! What about left smaller index? It was pushed right before pushing the stack top element!
-    static ArrayList<Integer> a;
-    static Integer maxArea = 0, n = a.size(), area = 0, i;
-    static Stack<Integer> s = new Stack<>();//contains indexes
-
     Integer maxArea() {
         for (i = 0; i < n; i++) {
             if ((s.size() == 0) || (a[i] >= a[s.peek()])) {
@@ -749,9 +725,6 @@ class Scratch {
         return max(maxArea, area);
     }
 
-    //Maximum size rectangle binary sub-matrix with all 1s
-    //https://www.geeksforgeeks.org/maximum-size-rectangle-binary-sub-matrix-1s/
-
     void quickSort(Integer start, Integer end) {
         if (start < end) {
             Integer partitionIndex = partition(start, end);
@@ -776,6 +749,9 @@ class Scratch {
 
         return partitionIndex;
     }
+
+    //Maximum size rectangle binary sub-matrix with all 1s
+    //https://www.geeksforgeeks.org/maximum-size-rectangle-binary-sub-matrix-1s/
 
     // Merges two subarrays of arr[] in place
     // First subarray is arr[l .. m]
@@ -932,14 +908,6 @@ class Scratch {
         }
     }
 
-    //    https://www.youtube.com/watch?v=wAyrtLAeWvI
-    //    https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/ still calling o(1) space
-    //    https://www.geeksforgeeks.org/write-an-iterative-olog-y-function-for-powx-y/
-
-    //    O(n) space: f[i] = max(f[i - 1] + a[i], a[i])
-    //    https://www.youtube.com/watch?v=99ssGWhLPUE
-    //    https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/MaximumSumSubsequence.java
-
     //    https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
     //method: find the sum of all positive chunks of the array, and return the maximum of it
     private Integer maximumSumSubarray(ArrayList<Integer> a) {
@@ -980,9 +948,13 @@ class Scratch {
         return -1;
     }
 
-    //    use: https://www.geeksforgeeks.org/maximum-product-subarray-set-2-using-two-traversals/
-    //    https://www.geeksforgeeks.org/maximum-product-subarray/
-    //    https://www.geeksforgeeks.org/maximum-product-subarray-set-3/
+    //    https://www.youtube.com/watch?v=wAyrtLAeWvI
+    //    https://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/ still calling o(1) space
+    //    https://www.geeksforgeeks.org/write-an-iterative-olog-y-function-for-powx-y/
+
+    //    O(n) space: f[i] = max(f[i - 1] + a[i], a[i])
+    //    https://www.youtube.com/watch?v=99ssGWhLPUE
+    //    https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/MaximumSumSubsequence.java
 
     //    https://www.geeksforgeeks.org/length-of-the-longest-substring-without-repeating-characters/
     //    use: https://www.geeksforgeeks.org/print-longest-substring-without-repeating-characters/
@@ -1011,10 +983,6 @@ class Scratch {
         return s.substring(globalStart, globalStart + max);
     }
 
-//    completely different question
-//    https://www.geeksforgeeks.org/find-the-longest-substring-with-k-unique-characters-in-a-given-string/
-//    very simple
-
     void updateMax(int i, int max, int currLength, int currStart, int globalStart) {
         currLength = i - currStart;
 
@@ -1023,9 +991,10 @@ class Scratch {
             globalStart = currStart;
         }
     }
-    //    https://www.geeksforgeeks.org/find-the-element-that-appears-once/
-    //    use: https://www.youtube.com/watch?v=mHfvInveXDQ
-    //    make use of isKthBitSet( fun.
+
+    //    use: https://www.geeksforgeeks.org/maximum-product-subarray-set-2-using-two-traversals/
+    //    https://www.geeksforgeeks.org/maximum-product-subarray/
+    //    https://www.geeksforgeeks.org/maximum-product-subarray-set-3/
 
     Integer binarySearch(int value) {//return index
         int start = 0, end = n - 1;
@@ -1045,6 +1014,10 @@ class Scratch {
 
         return -1;
     }
+
+//    completely different question
+//    https://www.geeksforgeeks.org/find-the-longest-substring-with-k-unique-characters-in-a-given-string/
+//    very simple
 
     //https://www.geeksforgeeks.org/search-an-element-in-a-sorted-and-pivoted-array/
     //https://www.geeksforgeeks.org/find-minimum-element-in-a-sorted-and-rotated-array/
@@ -1070,6 +1043,9 @@ class Scratch {
             }
         }
     }
+    //    https://www.geeksforgeeks.org/find-the-element-that-appears-once/
+    //    use: https://www.youtube.com/watch?v=mHfvInveXDQ
+    //    make use of isKthBitSet( fun.
 
     //    https://www.geeksforgeeks.org/counting-inversions/
     //    see: https://www.youtube.com/watch?v=owZhw-A0yWE
@@ -1131,8 +1107,6 @@ class Scratch {
         return inversions;
     }
 
-    //    https://www.geeksforgeeks.org/anagram-substring-search-search-permutations/
-
     Boolean isKthBitSet(Integer n, Integer k) {
         return (n & (1 << k)) >= 1;
     }
@@ -1155,8 +1129,7 @@ class Scratch {
         return true;
     }
 
-    //    https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/TwoStringInterleavingToFormThird.java
-    //    https://www.geeksforgeeks.org/check-whether-a-given-string-is-an-interleaving-of-two-other-given-strings-set-2/
+    //    https://www.geeksforgeeks.org/anagram-substring-search-search-permutations/
 
     //    https://www.geeksforgeeks.org/given-an-array-a-and-a-number-x-check-for-pair-in-a-with-sum-as-x/
     //    https://www.geeksforgeeks.org/write-a-c-program-that-given-a-set-a-of-n-numbers-and-another-number-x-determines-whether-or-not-there-exist-two-elements-in-s-whose-sum-is-exactly-x/
@@ -1192,6 +1165,9 @@ class Scratch {
         return stringBuilder.reverse().toString().trim();
     }
 
+    //    https://github.com/mission-peace/interview/blob/master/src/com/interview/dynamic/TwoStringInterleavingToFormThird.java
+    //    https://www.geeksforgeeks.org/check-whether-a-given-string-is-an-interleaving-of-two-other-given-strings-set-2/
+
     //    Problems on Trie:
     //    https://www.geeksforgeeks.org/longest-common-prefix-using-word-by-word-matching/
     //    https://www.geeksforgeeks.org/longest-common-prefix-using-trie/
@@ -1210,6 +1186,26 @@ class Scratch {
         }
 
         return prefix;
+    }
+
+    static class Node {
+        char data;
+        Node prev, next;
+
+        public Node(char data) {
+            this.data = data;
+            prev = next = null;
+        }
+    }
+
+    static class Value {
+        int c;
+        Node node;
+
+        public Value(int c, Node node) {
+            this.c = c;
+            this.node = node;
+        }
     }
 
     //https://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property
@@ -1280,18 +1276,6 @@ class Scratch {
                     + ", width=" + width + "]";
         }
 
-        class Pair {
-            Integer first, second;
-
-            Pair() {
-            }
-
-            Pair(Integer first, Integer second) {
-                this.first = first;
-                this.second = second;
-            }
-        }
-
         ArrayList<Integer> customSort(ArrayList<Integer> a) {
             Collections.sort(a, new CustomCollectionSort());
             a.sort(new CustomCollectionSort());
@@ -1316,7 +1300,6 @@ class Scratch {
             return i >= 0 && j >= 0 && i < r && j < c;
         }
 
-
         private int floorSqrt(int x) {
             // Base Cases
             if (x == 0 || x == 1)
@@ -1340,6 +1323,18 @@ class Scratch {
                     end = mid - 1;
             }
             return ans;
+        }
+
+        class Pair {
+            Integer first, second;
+
+            Pair() {
+            }
+
+            Pair(Integer first, Integer second) {
+                this.first = first;
+                this.second = second;
+            }
         }
     }
 }

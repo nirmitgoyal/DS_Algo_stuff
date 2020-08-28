@@ -1,7 +1,7 @@
 public class FirstAndLastIndicesInSortedArray {
-    firstAndLastIndicesOfAnElementInSortedArray(int[] a, int element){
-        firstAndLastIndicesOfAnElementInSortedArraHelper(a, 0, n-1,  element, true);
-        firstAndLastIndicesOfAnElementInSortedArraHelper(a, 0, n-1,  element, false);
+    firstAndLastIndicesOfAnElementInSortedArray(int[] a, int element) {
+        firstAndLastIndicesOfAnElementInSortedArraHelper(a, 0, n - 1, element, true);
+        firstAndLastIndicesOfAnElementInSortedArraHelper(a, 0, n - 1, element, false);
     }
 
     int firstAndLastIndicesOfAnElementInSortedArraHelper(int[] a, int start, int end, int element, boolean isFirstIndex) {

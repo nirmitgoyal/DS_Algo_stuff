@@ -1,7 +1,13 @@
 package templates;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.StringTokenizer;
 
 //template from http://codeforces.com/blog/entry/7018 with my customization
 //long max value:(64 b) 9*10^18  i.e. 18 to 19 digits
@@ -21,7 +27,7 @@ public class Main {
 //            String s = scanner.nextLine();       // read whole line as String
 //            long n = scanner.nextLong();
 
-            out.println(smallestSetCoveringIntervals(new int[]{999999999}, new int[]{1000000000} ));
+            out.println(smallestSetCoveringIntervals(new int[]{999999999}, new int[]{1000000000}));
         }
         out.close();
     }

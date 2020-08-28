@@ -8,16 +8,6 @@ import java.util.Map;
 //map(char->Node), bool endOfWord
 public class Trie {
 
-    public static class Node {
-        Map<Character, Node> children;
-        boolean endOfWord;
-
-        Node() {
-            children = new HashMap<>();
-            endOfWord = false;
-        }
-    }
-
     private final Node root;
 
     public Trie() {
@@ -147,6 +137,15 @@ public class Trie {
         return false;
     }
 
+    public static class Node {
+        Map<Character, Node> children;
+        boolean endOfWord;
+
+        Node() {
+            children = new HashMap<>();
+            endOfWord = false;
+        }
+    }
 
 
 //    https://leetcode.com/problems/word-search-ii/

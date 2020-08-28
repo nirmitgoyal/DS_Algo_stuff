@@ -16,7 +16,7 @@ public class Contains {
             int indexOld = i - pattern.length();
             if (Utils.isSafe(indexOld, n)) {
                 textMap.put(c, (textMap.get(c) - 1));
-                cleanMap(textMap,c);
+                cleanMap(textMap, c);
             }
 
             textMap.put(c, (textMap.getOrDefault(c, 0) + 1));

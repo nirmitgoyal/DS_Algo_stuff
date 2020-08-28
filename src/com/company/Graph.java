@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Stack;
 
 import static java.lang.Integer.MAX_VALUE;
 
@@ -20,6 +19,20 @@ public class Graph {
 
     private static boolean[] visited = new boolean[1000];//
     private static ArrayList<ArrayList<Integer>> g = new ArrayList<>();//adjacencyList
+    //topological sort implementation is DFS but just contains an extra arraylist to store the order
+    private static ArrayList<Integer> a = new ArrayList<>();
+    //    https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
+    //    https://www.geeksforgeeks.org/detect-cycle-direct-graph-using-colors/
+    //    https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
+    //    2 methods:
+    //    1. If DFS has a back egde(just see the method, but prefer using 2nd method)
+    //    2. While doing DFS, if we encounter an edge from current node to a GRAY node, then this edge is back edge and hence there is a cycle.(prefer)
+    //    no need of visited array
+    private static String[] bucket = new String[1000];
+    //    https://www.geeksforgeeks.org/print-all-possible-paths-from-top-left-to-bottom-right-of-a-mxn-matrix/
+    //    exponential  time complexity
+    //    use DFS
+    ArrayList<Integer> path = new ArrayList<>();
 
     public static void main(String[] args) {
         //topological sort
@@ -77,6 +90,42 @@ public class Graph {
         }
     }
 
+    static void topologicalSort(Integer node) {
+        // Mark the current node as visited
+        visited[node] = true;
+
+        // Recur for all the nodes adjacent to this node
+        ArrayList<Integer> connectedNodes = g.get(node);
+        for (int i = 0; i < connectedNodes.size(); i++) {
+            Integer currNode = connectedNodes.get(i);
+            if (!visited[currNode])
+                topologicalSort(currNode);
+        }
+
+        a.add(node);
+    }
+
+    static Boolean isCyclePresentDirected(int node) {
+        bucket[node] = "gray";
+
+        ArrayList<Integer> connectedNodes = g.get(node);
+        for (int i = 0; i < connectedNodes.size(); i++) {
+            int currNode = connectedNodes.get(i);
+
+            if (bucket[currNode] == "gray" || (bucket[currNode] == "white" && isCyclePresentDirected(currNode))) {
+                return true;
+            }
+        }
+
+        bucket[node] = "black";
+
+        return false;
+    }
+
+    private static void addEdge(Integer source, Integer dest) {
+        g.get(source).add(dest);//get returned a linkedList, and then we added an element in the linkedlist
+    }
+
     //    https://www.quora.com/Why-is-the-complexity-of-DFS-O-V+E
     void DFS(int node) {
         // Mark the current node as visited and print it
@@ -104,50 +153,6 @@ public class Graph {
                 DFS(j);
     }
 
-    //topological sort implementation is DFS but just contains an extra arraylist to store the order
-    private static ArrayList<Integer> a = new ArrayList<>();
-
-    static void topologicalSort(Integer node) {
-        // Mark the current node as visited
-        visited[node] = true;
-
-        // Recur for all the nodes adjacent to this node
-        ArrayList<Integer> connectedNodes = g.get(node);
-        for (int i = 0; i < connectedNodes.size(); i++) {
-            Integer currNode = connectedNodes.get(i);
-            if (!visited[currNode])
-                topologicalSort(currNode);
-        }
-
-        a.add(node);
-    }
-
-    //    https://www.geeksforgeeks.org/detect-cycle-in-a-graph/
-    //    https://www.geeksforgeeks.org/detect-cycle-direct-graph-using-colors/
-    //    https://www.geeksforgeeks.org/detect-cycle-undirected-graph/
-    //    2 methods:
-    //    1. If DFS has a back egde(just see the method, but prefer using 2nd method)
-    //    2. While doing DFS, if we encounter an edge from current node to a GRAY node, then this edge is back edge and hence there is a cycle.(prefer)
-    //    no need of visited array
-    private static String[] bucket = new String[1000];
-
-    static Boolean isCyclePresentDirected(int node) {
-        bucket[node] = "gray";
-
-        ArrayList<Integer> connectedNodes = g.get(node);
-        for (int i = 0; i < connectedNodes.size(); i++) {
-            int currNode = connectedNodes.get(i);
-
-            if (bucket[currNode] == "gray" || (bucket[currNode] == "white" && isCyclePresentDirected(currNode))) {
-                return true;
-            }
-        }
-
-        bucket[node] = "black";
-
-        return false;
-    }
-
     //difference from directed function: pass parent node as well so that when you compare gray adjacent nodes you have to make sure the adjacent gray node is not the parent that u just visited
     Boolean isCyclePresentUndirected(int node, int parentNode) {
         bucket[node] = "gray";
@@ -163,19 +168,6 @@ public class Graph {
         bucket[node] = "black";
 
         return false;
-    }
-
-    //    https://www.geeksforgeeks.org/min-cost-path-dp-6/
-    //    https://www.geeksforgeeks.org/minimum-cost-path-left-right-bottom-moves-allowed///
-    //    use: BFS for every such problem
-    class Node {
-        int row, col;
-        int value;
-        int dist;
-
-        public Node(int row, int col, int value, int dist) {
-            //
-        }
     }
 
     //build graph earlier using buildGraph() - a function
@@ -208,13 +200,6 @@ public class Graph {
         }
 
         return min;
-    }
-
-    //    https://www.geeksforgeeks.org/minimum-time-required-so-that-all-oranges-become-rotten/
-    //    use this method: https://leetcode.com/articles/rotting-oranges/ (personalized code below)
-    //    using my below method will take a lot of time and becomes very complex due to an additional member 'type'
-    class Node {
-        int row, col, type, time;
     }
 
     int minTime(int[][] original) {
@@ -286,11 +271,6 @@ public class Graph {
         }
     }
 
-    //    https://www.geeksforgeeks.org/print-all-possible-paths-from-top-left-to-bottom-right-of-a-mxn-matrix/
-    //    exponential  time complexity
-    //    use DFS
-    ArrayList<Integer> path = new ArrayList<>();
-
     void DFS(int node) {
         path.add(node);
 
@@ -310,7 +290,23 @@ public class Graph {
         return false;
     }
 
-    private static void addEdge(Integer source, Integer dest) {
-        g.get(source).add(dest);//get returned a linkedList, and then we added an element in the linkedlist
+    //    https://www.geeksforgeeks.org/min-cost-path-dp-6/
+    //    https://www.geeksforgeeks.org/minimum-cost-path-left-right-bottom-moves-allowed///
+    //    use: BFS for every such problem
+    class Node {
+        int row, col;
+        int value;
+        int dist;
+
+        public Node(int row, int col, int value, int dist) {
+            //
+        }
+    }
+
+    //    https://www.geeksforgeeks.org/minimum-time-required-so-that-all-oranges-become-rotten/
+    //    use this method: https://leetcode.com/articles/rotting-oranges/ (personalized code below)
+    //    using my below method will take a lot of time and becomes very complex due to an additional member 'type'
+    class Node {
+        int row, col, type, time;
     }
 }

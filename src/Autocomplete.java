@@ -8,16 +8,6 @@ public class Autocomplete {
 
     private Node root = new Node();
 
-    public static class Node {
-        Map<Character, Node> childs;
-        boolean isEndOfWord;
-
-        Node() {
-            childs = new HashMap<>();
-            isEndOfWord = false;
-        }
-    }
-
     List<String> autocomplete(List<String> words, String prefix) {
         List<String> result = new ArrayList<>();
 
@@ -76,10 +66,21 @@ public class Autocomplete {
         }
     }
 
+    public static class Node {
+        Map<Character, Node> childs;
+        boolean isEndOfWord;
+
+        Node() {
+            childs = new HashMap<>();
+            isEndOfWord = false;
+        }
+    }
+
     private class State {
         Node node;
         String prefix;
 
-        public State(Node node, String prefix) { }
+        public State(Node node, String prefix) {
+        }
     }
 }

@@ -15,7 +15,10 @@ import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Math.max;
 
 class BinaryTree {
-    models.Node root;
+    //https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
+    //https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-tree-set-2-using-parent-pointer/
+    //see: https://www.youtube.com/watch?v=13m9ZCB8gjw
+    static models.Node n1, n2;
     static private models.Node head = null;
 
     //    use: https://www.youtube.com/watch?v=suj1ro8TIVY
@@ -23,13 +26,47 @@ class BinaryTree {
 
     //    https://www.geeksforgeeks.org/connect-nodes-level-level-order-traversal/
     //    use level order traversal and mark prev.nextRight=currNode
-
-
+    //https://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-2/
+    //https://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-4/
+    //https://www.geeksforgeeks.org/convert-given-binary-tree-doubly-linked-list-set-3/
+    //https://www.geeksforgeeks.org/in-place-convert-a-given-binary-tree-to-doubly-linked-list/
+    static private models.Node prevNode = null;
+    static private ArrayList<models.Node> path = new ArrayList<>();
+    //    https://www.geeksforgeeks.org/find-the-maximum-sum-path-in-a-binary-tree/ //O(n)
+    //    While traversing the tree recursively, keep track of the sum of every path in a var currSum. If you reach a leaf node, compare this currSum with a global maximum max.
+    //    If currSum>max, then this is the leaf node we want and update max; Else do nothing.
+    //    postorder and preoder are the most common traversal
+    static private int maxSumFromRootToLeaf = 0;
+    static private models.Node targetLeaf;
+    //    https://www.geeksforgeeks.org/construct-tree-from-given-inorder-and-preorder-traversal/
+    static private Map<models.Node, Integer> inorderMap = new HashMap();
+    static private Integer[] preorderInput = new Integer[10];
+    //convert preorder array to queue
+    static Queue<Integer> preorder = new LinkedList<>(Arrays.asList(preorderInput));
+    static private int[] inorder = new int[10];
+    models.Node root;
     //    https://www.geeksforgeeks.org/print-nodes-distance-k-leaf-node/
     //    Approach: Append myself on the path and if I'm a leaf, then print the nodes at distance k from here
     int k;
     int path[];
-    boolean visited[]=new boolean[n];
+    boolean visited[] = new boolean[n];
+    //    Assume, that this node is in the path and add it in the path. Now 3 cases, 1st if the current node's data is same as the value, then return T. 2nd and 3rd, check if the path
+    //    is there for left subtree and right subtree. If the path is there, return T. Else it means that the path is not there, now remove this node from the path and return F
+    int inputValue;
+    //    https://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/
+    //    https://leetcode.com/problems/binary-tree-maximum-path-sum/
+    //    see: https://www.youtube.com/watch?v=mOdetMWwtoI
+    //    O(n)
+    int maxPathSum = MIN_VALUE;
+    //    https://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/
+    //    https://www.youtube.com/watch?v=sa7p6jTW2FQ
+    //    O(n)
+    int maxPathSum = MIN_VALUE;
+    // https://www.geeksforgeeks.org/diameter-of-a-binary-tree/
+    // https://www.geeksforgeeks.org/diameter-of-a-binary-tree-in-on-a-new-method/
+    //height of a tree is maximum value of (leftSubTreeHeight + rightSubTreeHeight + 1) for each node.
+    // see these setps:
+    int maxDiameter;
 
     void kDistantFromLeaf(models.Node node, int i) {
         //
@@ -49,12 +86,6 @@ class BinaryTree {
         kDistantFromLeaf(node.L, i);
         kDistantFromLeaf(node.R, i);
     }
-
-    //https://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-2/
-    //https://www.geeksforgeeks.org/convert-a-given-binary-tree-to-doubly-linked-list-set-4/
-    //https://www.geeksforgeeks.org/convert-given-binary-tree-doubly-linked-list-set-3/
-    //https://www.geeksforgeeks.org/in-place-convert-a-given-binary-tree-to-doubly-linked-list/
-    static private models.Node prevNode = null;
 
     void treeToDLL(models.Node node) {
         //
@@ -198,11 +229,6 @@ class BinaryTree {
         }
     }
 
-    //https://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
-    //https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-tree-set-2-using-parent-pointer/
-    //see: https://www.youtube.com/watch?v=13m9ZCB8gjw
-    static models.Node n1, n2;
-
     private models.Node LCABTree(models.Node node) {
         if (node == null)
             return null;
@@ -232,7 +258,7 @@ class BinaryTree {
         if (node == null)
             return null;
 
-        if ((n1.data <=node.data && n2.data >= node.data) || (n1.data >= node.data && n2.data <= node.data))
+        if ((n1.data <= node.data && n2.data >= node.data) || (n1.data >= node.data && n2.data <= node.data))
             return node;
 
         if (n1.data < node.data && n2.data < node.data)
@@ -240,11 +266,6 @@ class BinaryTree {
         else
             return lcaBST(node.R);
     }
-
-    //    Assume, that this node is in the path and add it in the path. Now 3 cases, 1st if the current node's data is same as the value, then return T. 2nd and 3rd, check if the path
-    //    is there for left subtree and right subtree. If the path is there, return T. Else it means that the path is not there, now remove this node from the path and return F
-    int inputValue;
-    static private ArrayList<models.Node> path = new ArrayList<>();
 
     boolean isThereAPathBetweenANodeAndAValueAlsoCreateThatPath(models.Node node) {
         //
@@ -261,13 +282,6 @@ class BinaryTree {
             return false;
         }
     }
-
-    //    https://www.geeksforgeeks.org/find-the-maximum-sum-path-in-a-binary-tree/ //O(n)
-    //    While traversing the tree recursively, keep track of the sum of every path in a var currSum. If you reach a leaf node, compare this currSum with a global maximum max.
-    //    If currSum>max, then this is the leaf node we want and update max; Else do nothing.
-    //    postorder and preoder are the most common traversal
-    static private int maxSumFromRootToLeaf = 0;
-    static private models.Node targetLeaf;
 
     void maxSumFromRootToLeaf(models.Node node, int currSum) {
         if (node == null) return;
@@ -286,12 +300,6 @@ class BinaryTree {
         maxSumFromRootToLeaf(node.R, currSum);
     }
 
-    //    https://www.geeksforgeeks.org/find-maximum-path-sum-in-a-binary-tree/
-    //    https://leetcode.com/problems/binary-tree-maximum-path-sum/
-    //    see: https://www.youtube.com/watch?v=mOdetMWwtoI
-    //    O(n)
-    int maxPathSum = MIN_VALUE;
-
     int maxGain(models.Node node) {
         if (node == null) return 0;
 
@@ -302,11 +310,6 @@ class BinaryTree {
 
         return (max(maxGainFromLeft, maxGainFromRight) + node.data);
     }
-
-    //    https://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/
-    //    https://www.youtube.com/watch?v=sa7p6jTW2FQ
-    //    O(n)
-    int maxPathSum = MIN_VALUE;
 
     int maxGainWithLeaves(models.Node node) {
         if (node == null) return 0;
@@ -325,13 +328,6 @@ class BinaryTree {
         if (node.R != null)
             return maxGainFromLeft + node.data;
     }
-
-    //    https://www.geeksforgeeks.org/construct-tree-from-given-inorder-and-preorder-traversal/
-    static private Map<models.Node, Integer> inorderMap = new HashMap();
-    static private Integer[] preorderInput = new Integer[10];
-    static private int[] inorder = new int[10];
-    //convert preorder array to queue
-    static Queue<Integer> preorder = new LinkedList<>(Arrays.asList(preorderInput));
 
     models.Node treeFromInorderAndPostorder(int inorderStartIndex, int inorderEndIndex) {
         if (preorder.isEmpty() || (inorderStartIndex > inorderEndIndex))//5
@@ -380,7 +376,6 @@ class BinaryTree {
 
         printRightBoundary(node.R);
     }
-
 
     //    https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/
     private boolean isBalanced(models.Node node, Height height) {
@@ -455,12 +450,6 @@ class BinaryTree {
 
         return (max(leftH, rightH) + 1);
     }
-
-    // https://www.geeksforgeeks.org/diameter-of-a-binary-tree/
-    // https://www.geeksforgeeks.org/diameter-of-a-binary-tree-in-on-a-new-method/
-    //height of a tree is maximum value of (leftSubTreeHeight + rightSubTreeHeight + 1) for each node.
-    // see these setps:
-    int maxDiameter;
 
     models.Node diameter1(models.Node node) {
         if (node == null)

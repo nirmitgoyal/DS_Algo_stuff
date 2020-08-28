@@ -9,8 +9,8 @@ public class isBST {
         return
 
                 node.data > minBound
-                && node.data <= maxBound
-                && isBST(node.L, minBound, node.data)
-                && isBST(node.R, node.data, maxBound);
+                        && node.data <= maxBound
+                        && isBST(node.L, minBound, node.data)
+                        && isBST(node.R, node.data, maxBound);
     }
 }

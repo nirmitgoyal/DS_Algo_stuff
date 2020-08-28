@@ -6,16 +6,6 @@ import java.util.Map;
 public class ShortestUniquePrefix {
     private Node root = new Node();
 
-    public static class Node {
-        Map<Character, Node> childs;
-        Integer count;
-
-        Node() {
-            childs = new HashMap<>();
-            count=0;
-        }
-    }
-
     List<String> ShortestUniquePrefix(List<String> words) {
         List<String> result = new ArrayList<>();
 
@@ -52,6 +42,16 @@ public class ShortestUniquePrefix {
             }
 
             curr.count++;
+        }
+    }
+
+    public static class Node {
+        Map<Character, Node> childs;
+        Integer count;
+
+        Node() {
+            childs = new HashMap<>();
+            count = 0;
         }
     }
 }

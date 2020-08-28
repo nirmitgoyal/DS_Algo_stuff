@@ -26,7 +26,7 @@ public class RemoveZeroSumConsecutiveLLNodes {
                 while (curr2 != nextNode) {
                     int sumToRemove = prev.data + curr2.data;
                     map.remove(sumToRemove);
-                    curr2=curr2.next;
+                    curr2 = curr2.next;
                 }
                 prev.next = nextNode;
             } else {

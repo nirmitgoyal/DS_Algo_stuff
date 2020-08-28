@@ -12,9 +12,9 @@ public class BinarySearchTree {
 
         findCorrupts(root);
 
-        if (node2 ==null){
+        if (node2 == null) {
             swap(node1, node3);
-        }else {
+        } else {
             swap(node1, node2);
         }
     }
@@ -38,10 +38,11 @@ public class BinarySearchTree {
 
         findCorrupts(node.right);
     }
+
     private void swap(Node node1, Node node2) {
-        int temp=node1.data;
-        node1.data=node2.data;
-        node2.data=temp;
+        int temp = node1.data;
+        node1.data = node2.data;
+        node2.data = temp;
     }
 
     //    https://www.geeksforgeeks.org/find-pairs-with-given-sum-such-that-pair-elements-lie-in-different-bsts/
