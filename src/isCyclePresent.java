@@ -1,27 +1,28 @@
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class isCyclePresent {
-    static ArrayList<ArrayList<Integer>> g;
+    static Map<Integer, List<Integer>> g;
 
     static Map<Integer, Boolean> visited = new HashMap<>();
     static Map<Integer, Boolean> cache = new HashMap<>();
 
     //O(n)
     boolean isCyclePresent(int[] nodes) {
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
             if (DFS(i))
                 return true;
-        }
+
         return false;
     }
 
     boolean DFS(int node) {
-        if (cache.containsKey(node))
+        if (cache.containsKey(node))//for optimization
             return cache.get(node);
 
-        if (visited.containsKey(node) && visited.get(node))
+        if (visited.containsKey(node)
+                && visited.get(node))
             return true;
         visited.put(node, true);
 
@@ -46,7 +47,7 @@ public class isCyclePresent {
 
         boolean hasCycle = false;
         for (int currNode : getNeighbours(node)) {
-            if (DFSUnDirected(currNode, node) && node != parentNode) {
+            if (DFSUnDirected(currNode, node) && currNode != parentNode) {
                 hasCycle = true;
                 break;
             }
