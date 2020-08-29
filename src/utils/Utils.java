@@ -1,6 +1,8 @@
+package utils;
+
 public class Utils {
-    public static boolean isSafe(int i, int n) {
-        return i >= 0 && i < n;
+    public static boolean isSafe(int index, int n) {
+        return index >= 0 && index < n;
     }
 
     public static boolean isEqual(Map<K, V> m1, Map<K, V> m2) {

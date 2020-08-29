@@ -1,3 +1,5 @@
+import utils.Utils;
+
 public class ProductExceptSelf {
     static int[] productExceptSelf(int[] a) {//1 2 3 4
         int n = a.length;
