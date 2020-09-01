@@ -25,7 +25,7 @@ public class FilterLeavesBT {
         node.L = toBeDeletedElegantCode(node.L);
         node.R = toBeDeletedElegantCode(node.R);
 
-        if (isLeaf(node) && node.data = deleteValue)
+        if (isLeaf(node) && node.data == deleteValue)
             return null;
         return node;
     }
@@ -44,6 +44,4 @@ public class FilterLeavesBT {
 
         return isLeaf(node) && node.data == deleteValue;
     }
-
-
 }

@@ -23,6 +23,7 @@ public class TreeSerializationDeSerialization {
 
     private Node treeDeSerializationHelper(Queue<String> q) {
         String data = q.poll();//LinkedList returns a null if it is empty
+
         if (data == null || data.equals("#"))
             return null;
 

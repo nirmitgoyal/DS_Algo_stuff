@@ -50,6 +50,7 @@ Binary search tree:
 * If there are n nodes in a binary search tree, maximum height of the binary search tree is n-1 and minimum height is floor(logn).
 * inorder gives sorted elements
 
+countBTs(n) = countBSTs(n) * n!
 --------------------------------------------------------------------------------------------------------------------------
 * How to get and put(set and clear) a bit in a variable:
 https://youtu.be/NLKQEOgBAnw?list=WL&t=414

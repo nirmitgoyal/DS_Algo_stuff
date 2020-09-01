@@ -2,38 +2,44 @@ import models.Node;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class GenerateAllBSTsFrom1Ton {
-    void GenerateAllBSTsFrom1Ton(int n) {
-        ArrayList<Integer> numbers = new ArrayList<>();
-        //fill from 1 to n;
 
-        GenerateAllBSTsFrom1TonHelper(numbers);
+    List<Node> GenerateAllBSTsFrom1Ton(int n) {
+        List<Integer> numbers = new ArrayList<>();
+
+        //fill from 1 to n
+        int value = 1;
+        for (int i = 0; i < n; i++)
+            numbers.add(value++);
+
+        return GenerateAllBSTsFrom1TonHelper(numbers);
     }
 
-    private ArrayList<Node> GenerateAllBSTsFrom1TonHelper(ArrayList<Integer> numbers) {
-        if (numbers.length == 0)
-            return null;
-        if (numbers.length == 1)
+    private List<Node> GenerateAllBSTsFrom1TonHelper(List<Integer> numbers) {
+        if (numbers.size() == 0)
+            return new ArrayList<>();
+        if (numbers.size() == 1)
             return new ArrayList<>(Arrays.asList(new Node(numbers.get(0))));
 
-        ArrayList<Node> bsts = new ArrayList<>();
+        List<Node> bsts = new ArrayList<>();
         for (int n : numbers) {
-            ArrayList<Integer> lefts = new ArrayList<>();
+            List<Integer> lefts = new ArrayList<>();
             for (int i = 0; i <= n; i++)
                 lefts.add(numbers.get(i));
-            ArrayList<Integer> rights = new ArrayList<>();
+
+            List<Integer> rights = new ArrayList<>();
             for (int i = n + 1; i < numbers.length; i++)
                 rights.add(numbers.get(i));
-            ArrayList<Node> leftNodes = GenerateAllBSTsFrom1TonHelper(lefts);
-            ArrayList<Node> rightNodes = GenerateAllBSTsFrom1TonHelper(rights);
 
-            //add in every possible way. Since they are sorted, no need to do a BST check
-            for (Node leftNode : leftNodes) {
-                for (Node rightNode : rightNodes) {
+            List<Node> leftNodes = GenerateAllBSTsFrom1TonHelper(lefts);
+            List<Node> rightNodes = GenerateAllBSTsFrom1TonHelper(rights);
+
+            //Add in every possible way. Since they are sorted, no need to do a BST check
+            for (Node leftNode : leftNodes)
+                for (Node rightNode : rightNodes)
                     bsts.add(new Node(n, leftNode, rightNode));
-                }
-            }
         }
 
         return bsts;
