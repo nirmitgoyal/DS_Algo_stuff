@@ -16,4 +16,13 @@ public class Utils {
 
         return true;
     }
+
+    public static String swap(String s, int i, int j) {
+        StringBuilder sb = new StringBuilder(s);
+
+        sb.setCharAt(i, s.charAt(j));
+        sb.setCharAt(j, s.charAt(i));
+
+        return sb.toString();
+    }
 }

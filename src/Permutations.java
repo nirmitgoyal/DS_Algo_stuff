@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static java.util.Collections.swap;
 
@@ -19,9 +20,9 @@ public class Permutations {
         }
 
         for (int i = index; i < n; i++) {
-            swap(a, i, index);
+            swap(Arrays.asList(a), i, index);
             permutationsHelper(result, a, (i + 1));
-            swap(a, i, index); //backtrack
+            swap(Arrays.asList(a), i, index); //backtrack
         }
     }
 }
