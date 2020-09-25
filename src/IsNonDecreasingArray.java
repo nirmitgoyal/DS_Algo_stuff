@@ -1,4 +1,11 @@
 public class IsNonDecreasingArray {
+    /**
+
+            *
+        *           *
+     *          *
+
+     */
     boolean isNonDecreasingArray(int[] a) {
         int faultyIndex = -1;
 
@@ -15,6 +22,7 @@ public class IsNonDecreasingArray {
                 || faultyIndex == n - 2
                 || a[faultyIndex + 2] >= a[faultyIndex]
                 || a[faultyIndex - 1] <= a[faultyIndex + 1])//will reach this last or condition only if faultyIndex>faultyIndex+2>=faultyIndex+1
+            // see the above graph for 3rd & 4th condition
             return true;
         else
             return false;
