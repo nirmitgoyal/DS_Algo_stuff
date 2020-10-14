@@ -5,14 +5,13 @@ import java.util.Map;
 
 public class GroupAnagrams {
 
-    List<List<String>> groupAnagrams(ArrayList<String> a) {
+    List<List<String>> groupAnagrams(List<String> a) {
         List<List<String>> ans = new ArrayList<>();
         Map<int[], List<String>> map = new HashMap<>();
 
-        for (String s : a) {
-            map.getOrDefault(getHaskKey(s), new ArrayList<String>())
+        for (String s : a)
+            map.getOrDefault(getHaskKey(s), new ArrayList<>())
                     .add(s);
-        }
 
         map.forEach((key, value) -> {
             ans.add(value);

@@ -17,7 +17,7 @@ public class SortedArrayToBST {
             if (mid != 0)
                 node.L = sortedArrayToBSTHelper(a, start, mid - 1);
             if (mid != a.length - 1)
-                node.right = sortedArrayToBSTHelper(a, mid + 1, end);
+                node.R = sortedArrayToBSTHelper(a, mid + 1, end);
 
             return node;
         }
@@ -41,7 +41,7 @@ public class SortedArrayToBST {
             Node parent = e.node;
 
             if (e.start < e.end) {
-                int mid = (start + end) / 2;
+                int mid = (e.start + e.end) / 2;
                 parent.data = 0;
 
                 if (mid != 0) {
@@ -49,8 +49,8 @@ public class SortedArrayToBST {
                     stack.push(new Element(e.start, mid - 1, parent.L));
                 }
                 if (mid != n - 1) {
-                    parent.right = new Node(null);
-                    stack.push(new Element(mid + 1, e.end, parent.right));
+                    parent.R = new Node(null);
+                    stack.push(new Element(mid + 1, e.end, parent.R));
                 }
             }
         }

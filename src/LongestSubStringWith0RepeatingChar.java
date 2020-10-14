@@ -15,12 +15,15 @@ public class LongestSubStringWith0RepeatingChar {
 
         while (end < n) {
             char c = s.charAt(end);
-            if (map.containsKey(c) && map.get(c) >= start) //map.get(c) >= start, since we are not removing old chars from map
+
+            if (map.containsKey(c) && (map.get(c) >= start)) //map.get(c) >= start, since we are not removing old chars from map
                 start = map.get(c) + 1;
 
             max = max(end - start + 1, max);
 
             map.put(c, end);
+
+
             end++;
         }
 
