@@ -3,30 +3,31 @@ import models.Node;
 public class InorderSuccessor {
 
     //TODO: validations
-    Node InorderSuccessor(Node node, int value) {
-        Node curr = search(node, value);
+    Node InorderSuccessor(Node root, int value) {
+        Node node = search(root, value); //log n
 
         return nextGreater(node);
     }
 
     private Node nextGreater(Node node) {
-        Node me;
+        Node curr;
 
         if (node.R != null) {
-            me = node.R;
+            curr = node.R;
 
-            while (me.L != null) {
-                me = me.L;
-            }
-            return me;
+            while (curr.L != null)
+                curr = curr.L;
+
+            return curr;
         } else {
-            me = node;
+            curr = node;
             Node parentNode = node.parent;
 
-            while (parentNode != null && parentNode.L != me) {
-                me = parentNode;
+            while (parentNode != null && parentNode.L != curr) {
+                curr = parentNode;
                 parentNode = parentNode.parent;
             }
+
             return parentNode;
         }
     }
