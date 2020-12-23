@@ -14,6 +14,7 @@ public class TreeSerializationDeSerialization {
         return String.valueOf(node.data) + " " + treeSerialization(node.L) + " " + treeSerialization(node.R) + " ";
     }
 
+
     Node treeDeSerialization(String s) {
         Queue<String> q = new LinkedList<>();
 
@@ -22,9 +23,9 @@ public class TreeSerializationDeSerialization {
     }
 
     private Node treeDeSerializationHelper(Queue<String> q) {
-        String data = q.poll();//LinkedList returns a null if it is empty
+        String data = q.poll(); //LinkedList returns a null if it is empty
 
-        if (data == null || data.equals("#"))
+        if (data == null || data == "#")
             return null;
 
         Node node = new Node(Integer.valueOf(data));
