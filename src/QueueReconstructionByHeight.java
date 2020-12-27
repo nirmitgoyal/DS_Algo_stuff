@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 class Element {
     public Integer h, c;
 }
 
-class CustomCollectionSort implements Comparator<Element> {
+class CustomComparator implements Comparator<Element> {
+
     public int compare(Element first, Element second) {
         if (first.h.equals(second.h))
             return first.c.compareTo(second.c);
@@ -14,11 +16,15 @@ class CustomCollectionSort implements Comparator<Element> {
 }
 
 public class QueueReconstructionByHeight {
-    void QueueReconstructionByHeight(ArrayList<Element> a) {
-        a.sort(new CustomCollectionSort());
 
-        for (int i = 0; i < n; i++) {
-            a.add(a.c, a.get(i));
-        }
+    List<Element> QueueReconstructionByHeight(ArrayList<Element> a) { // [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]
+        List<Element> result = new ArrayList<>();
+
+        a.sort(new CustomComparator()); // [ [7, 0] [7, 1] [6, 1] [5, 0] [5, 2] [4, 4] ]
+
+        for (int i = 0; i < n; i++)
+            result.add(a.get(i).c, a.get(i));
+
+        return result; // [ [5, 0] [7, 0] [5, 2] [6, 1] [4, 4] [7, 1]]
     }
 }

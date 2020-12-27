@@ -10,9 +10,7 @@ public class RemoveZeroSumConsecutiveLLNodes {
         dummy.next = head;
 
         Node curr = head;
-
         Map<Integer, Node> map = new HashMap<>();
-
         int sum = 0;
 
         while (curr != null) {
@@ -20,15 +18,17 @@ public class RemoveZeroSumConsecutiveLLNodes {
 
             if (map.containsKey(sum)) {
                 Node prev = map.get(sum);
-                Node nextNode = curr.next;
-                Node curr2 = prev.next;
+                Node next = curr.next;
 
-                while (curr2 != nextNode) {
+                //we need to remove all nodes from the map after prev(to not have the stale data, inserting the bugs in future)
+                Node curr2 = prev.next;
+                while (curr2 != next) {
                     int sumToRemove = prev.data + curr2.data;
                     map.remove(sumToRemove);
                     curr2 = curr2.next;
                 }
-                prev.next = nextNode;
+
+                prev.next = next;
             } else {
                 map.put(sum, curr);
             }

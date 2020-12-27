@@ -1,27 +1,28 @@
 import models.Node;
 
 public class reverseKLinkedLists {
-    //    https://www.geeksforgeeks.org/reverse-a-list-in-groups-of-given-size/
-    //    https://www.geeksforgeeks.org/reverse-a-linked-list-in-groups-of-given-size-iterative-approach/
-    //    use recursive approach
-    Node reverseK(models.Node head) {
+
+//    Input:  1->2->3->4->5->6->NULL, k = 3
+//    Output: 3->2->1->6->5->4->NULL
+//    use recursive approach
+    Node reverseKLinkedLists(Node head, int k) {
         Node
                 curr = head,
                 prev = null,
-                nextNode = null;
+                next = null;
         int count = 0;
 
         //reverse linked list using iterative approach
         while (curr != null && count != k) {
-            nextNode = curr.next;
+            next = curr.next;
             curr.next = prev;
             prev = curr;
-            curr = nextNode;
+            curr = next;
             count++;
         }
 
-        if (nextNode != null) //
-            head.next = reverseK(nextNode); //
+        if (next != null) //
+            head.next = reverseKLinkedLists(next, k); // head.next, coz head(1) will point to (6)
 
         return prev; //
     }

@@ -1,4 +1,22 @@
 public class IsNonDecreasingArray {
+
+    boolean isNonDecreasingArrayGreedy(int[] a) {
+        int count = 0; //the number of changes
+
+        for (int i = 1; i < n; i++) {
+            if (a[i] < a[i - 1]) {
+                count++;
+
+                if ((i - 2 < 0) || a[i - 2] <= a[i]) //modify a[i-1] on priority
+                    a[i - 1] = a[i];
+                else
+                    a[i] = a[i - 1]; //have to modify a[i]
+            }
+        }
+
+        return count <= 1;
+    }
+
     /**
 
             *
@@ -6,7 +24,7 @@ public class IsNonDecreasingArray {
      *          *
 
      */
-    boolean isNonDecreasingArray(int[] a) {
+    boolean isNonDecreasingArrayAnalytical(int[] a) {
         int faultyIndex = -1;
 
         for (int i = 0; i < n - 1; i++) {

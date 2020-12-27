@@ -8,10 +8,10 @@ public class Permutations {
 
     void permutations(int[] a) {
         ArrayList<int[]> result = new ArrayList<>();
-        permutationsHelper(result, a, 0);
+        permutationsHelper(0, a, result);
     }
 
-    void permutationsHelper(ArrayList<int[]> result, int[] a, int index) {
+    void permutationsHelper(int index, int[] a, ArrayList<int[]> result) {
         int n = a.length;
 
         if (index == n - 1) {
@@ -21,7 +21,7 @@ public class Permutations {
 
         for (int i = index; i < n; i++) {
             swap(Arrays.asList(a), i, index);
-            permutationsHelper(result, a, (i + 1));
+            permutationsHelper((i + 1), a, result); //i+1 coz we are fixing i now
             swap(Arrays.asList(a), i, index); //backtrack
         }
     }

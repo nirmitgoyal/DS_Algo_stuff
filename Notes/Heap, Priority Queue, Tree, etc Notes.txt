@@ -1,14 +1,17 @@
 Heap:
 Min Heap: A complete BT, where the value of each node is >= the value of its parent node.
 
-A complete binary tree.
-* https://www.youtube.com/watch?v=t0Cq6tVNRBA
-* heap(min) in java is priorityQ: https://stackoverflow.com/questions/14165325/is-there-a-heap-in-java
+A complete vs full binary tree:
+https://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/FullvsComplete.html#:~:text=A%20full%20binary%20tree%20(sometimes,as%20far%20left%20as%20possible.
+
+* Heap add() & pop():
+https://www.youtube.com/watch?v=t0Cq6tVNRBA
+* PriorityQ is implemented as a min-heap in java:
+https://stackoverflow.com/questions/14165325/is-there-a-heap-in-java
+
 PriorityQueue<Integer> minHeap = new PriorityQueue<>(); //internally it's an array for java too
 Max heap using pq:
 PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
-
-* getting min element from pq: O(logn) (since it heapifies)
 
 * Height of a heap = log(n)
 * LOT of heap does NOT gives a sorted array
@@ -18,15 +21,15 @@ Operations:
 Fetches minimum element of the array O(1)
 
 * poll
-Polls  minimum element of the array. takes O(height)=O(log(n))
+Polls  minimum element of the array. takes O(height)=O(log(n))  (since it heapifies)
 
-* insert
-Inserting a new key takes O(height)=O(log(n)) time
+* add
+Inserting a new key takes O(height) = O(log(n)) time
 
 * inserting n elements/building a heap/pq OR inserting n elements in a heap containing m elements
 O(n) //in the 2nd case n is the new size
 This complexity is bcoz inserting every node takes O(h) time and h increases very slowly and due to analysis,
-this comes to be the asymptomaticTop K Frequent Elements complexity
+this comes to be the asymptomatic Top K Frequent Elements complexity
 
 -------------------------------------------------------------------------------------------------------------------------
 * log A + log B = log AB

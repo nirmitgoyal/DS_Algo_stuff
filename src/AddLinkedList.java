@@ -6,7 +6,7 @@ public class AddLinkedList {
         Node head = null, curr = null;
         Node curr1 = head1, curr2 = head2; //good to copy head to newly created nodes
 
-        int carry = 0, sum;
+        int carry = 0, sum = 0;
 
         while (curr1 != null || curr2 != null) {
             sum = carry + (curr1 != null ? curr1.data : 0) + (curr2 != null ? curr2.data : 0);
@@ -28,6 +28,7 @@ public class AddLinkedList {
         if (carry > 0) {
             curr.next = new Node(carry);
         }
+
 
         return head;
     }
