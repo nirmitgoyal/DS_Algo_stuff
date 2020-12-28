@@ -1,23 +1,15 @@
-import java.util.ArrayList;
-
 public class FirstMissingPositiveInteger {
 
-    int firstMissingPositiveInteger(ArrayList<Integer> a) {
-        a.add(0);
-        int n = a.size();//this is the new size
+    int firstMissingPositiveInteger(int[] a) { // -2, 4, 1 , 0, 9 -> 2
+        for(int i = 0; i < n; i++)
+            while((a[i] > 0 && a[i] <= n) && a[i] != a[a[i] - 1]) //while elements are not in their correct position, put them in their correct position
+                swap(a,  i, a[i] - 1);
 
-        while (isSafe(a.get(0), n)) {
-            swap(a, 0, a.get(0));
-        }
-        for (int i = 1; i < n; i++) {
-            if (isSafe(a.get(i), n))
-                swap(a, i, a.get(i));
-        }
-        for (int i = 1; i < n; i++) {
-            if (i != a.get(i))
-                return i;
-        }
-        return n;
+        for(int i = 0; i < n; i++)
+            if(a[i] != (i + 1))
+                return (i + 1);
+
+        return n + 1;
     }
 }
 

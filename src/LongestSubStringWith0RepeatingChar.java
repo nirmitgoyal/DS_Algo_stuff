@@ -7,26 +7,28 @@ public class LongestSubStringWith0RepeatingChar {
 
     int longestSubStringWith0RepeatingChar(String s) {
         int n = s.length();
+
         if (n <= 1)
             return n;
 
+
         Map<Character, Integer> map = new HashMap<>();
-        int start = 0, end = 0, max = 0;
+        int startIndex = 0, endIndex = 0, maxLength = 1;
 
-        while (end < n) {
-            char c = s.charAt(end);
+        while (endIndex < n) {
+            char c = s.charAt(endIndex);
 
-            if (map.containsKey(c) && (map.get(c) >= start)) //map.get(c) >= start, since we are not removing old chars from map
-                start = map.get(c) + 1;
+            if (map.containsKey(c) && (map.get(c) >= startIndex)) //map.get(c) >= startIndex, since we are not cleaning the map
+                startIndex = map.get(c) + 1;
 
-            max = max(end - start + 1, max);
+            maxLength = max(endIndex - startIndex + 1, maxLength);
 
-            map.put(c, end);
+            map.put(c, endIndex);
 
 
-            end++;
+            endIndex++;
         }
 
-        return max;
+        return maxLength;
     }
 }

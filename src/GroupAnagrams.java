@@ -5,18 +5,20 @@ import java.util.Map;
 
 public class GroupAnagrams {
 
-    List<List<String>> groupAnagrams(List<String> a) {
-        List<List<String>> ans = new ArrayList<>();
-        Map<int[], List<String>> map = new HashMap<>();
+    List<List<String>> groupAnagrams(List<String> words) {
+        List<List<String>> result = new ArrayList<>();
+        Map<int[], List<String>> map = new HashMap<>(); //Key contains array repr. of the freq. of chars
 
-        for (String s : a)
-            map.getOrDefault(getHaskKey(s), new ArrayList<>())
-                    .add(s);
+        for (String s : words)
+            map
+                .getOrDefault(getHaskKey(s), new ArrayList<>())
+                .add(s);
 
-        map.forEach((key, value) -> {
-            ans.add(value);
+        map.forEach((key, anagrams) -> {
+            result.add(anagrams);
         });
-        return ans;
+
+        return result;
     }
 
     private int[] getHaskKey(String s) {
@@ -26,7 +28,7 @@ public class GroupAnagrams {
             char c = s.charAt(i);
             int index = c - 'a';
 
-            key[index] += 1;
+            key[index]++;
         }
 
         return key;

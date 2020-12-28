@@ -1,32 +1,35 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ThreeElementsOfSumK {
 
-    ArrayList<Element> ThreeElementsOfSumKSpaceOptimized(int[] a, int k) {
-        ArrayList<Element> ans = new ArrayList<>();
+    List<Element> ThreeElementsOfSumKSpaceOptimized(List<Integer> a, int k) {
+        List<Element> result = new ArrayList<>();
 
-        a.sort();
-        for (int i = 0; i < n; i++) {
-            ans.add(TwoElementsOfSumKSpaceOptimized(a, k, i));
-        }
+        Collections.sort(a);
 
-        return ans;
+        for (int i = 0; i < n; i++)
+            TwoElementsOfSumKSpaceOptimized(i, result, a, k);
+
+        return result;
     }
 
-    private Element TwoElementsOfSumKSpaceOptimized(int[] a, int k, int i) {
-        int start = i, end = n - 1;
+    private void TwoElementsOfSumKSpaceOptimized(int startIndex, List<Element> result, List<Integer> a, int k) {
+        int low = startIndex + 1, high = n - 1;
 
-        while (start < end) {
-            int sum = a[start] + a[end] + a[i];
+        while (low < high) {
+            int sum = a[startIndex] + a[low] + a[high]; // a[startIndex] is always a fixed element
 
             if (sum == k) {
-                return new Element(a[start], e, a[end]);
-                start++;
-                end--;
-            } else if (sum < k)
-                start++;
-            else
-                end--;
+                result.add(new Element(a[startIndex], a[low], a[high]));
+                low++;
+                high--;
+            } else if (sum < k) {
+                low++;
+            } else {
+                high--;
+            }
         }
     }
 
