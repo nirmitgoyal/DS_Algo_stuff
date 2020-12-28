@@ -5,24 +5,22 @@ import java.util.Stack;
 public class SortedArrayToBST {
 
     Node sortedArrayToBST(int[] a) {
-        int start = 0, end = a.length - 1;
-        return sortedArrayToBSTHelper(a, start, end);
+        return sortedArrayToBSTHelper(0, a.length - 1, a);
     }
 
-    private Node sortedArrayToBSTHelper(int[] a, int start, int end) {
-        if (start < end) {
-            int mid = (start + end) / 2;
-            Node node = new Node(a[mid]);
+    private Node sortedArrayToBSTHelper(int start, int end, int[] a) {
+        if (a == null || a.length == 0 || start > end)
+            return null;
 
-            if (mid != 0)
-                node.L = sortedArrayToBSTHelper(a, start, mid - 1);
-            if (mid != a.length - 1)
-                node.R = sortedArrayToBSTHelper(a, mid + 1, end);
+        int mid = (start + end) / 2;
+        Node node = new Node(a[mid]);
 
-            return node;
-        }
+        if (mid != 0)
+            node.L = sortedArrayToBSTHelper(start, mid - 1, a);
+        if (mid != a.length - 1)
+            node.R = sortedArrayToBSTHelper(mid + 1, end, a);
 
-        return null;
+        return node;
     }
 
     //iterative:
