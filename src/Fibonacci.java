@@ -4,16 +4,15 @@ public class Fibonacci {
         if (n <= 2)
             return n;
 
-        int prevPrev = 1, prev = 2, curr;
+        //declare 3 values
+        int prevPrev = 1, prev = 2, curr = 0;
 
         int i = 3;
-        while (i <= n) {
+        while (i++ <= n) {
             curr = prevPrev + prev;
 
             prevPrev = prev;
             prev = curr;
-
-            i++;
         }
 
         return curr;
