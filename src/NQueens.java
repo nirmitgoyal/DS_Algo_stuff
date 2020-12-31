@@ -1,15 +1,15 @@
 import models.Cell;
-import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Arrays.fill;
+import static utils.Utils.isSafe;
 
 public class NQueens {
 
-    static List<Cell> placeNQueens(int n) {//this code does not works though
+    public static List<Cell> placeNQueens(int n) {//this code does not works though //result for 4 is like: [[(0, 1), (1, 3), (2, 0), (3, 2)]
         List<Cell> result = new ArrayList<>();
 
         Boolean[] allowedRows = new Boolean[n];
@@ -31,12 +31,12 @@ public class NQueens {
         int currRow = result.size();
 
         for (int currCol = 0; currCol < n; currCol++) {
-            if (allowedRows[currCol] && allowedCols[currCol] && (!Utils.isSafe(currRow + currCol, n) || allowedRightDiagonals[currRow + currCol]) && (!Utils.isSafe(currRow - currCol, n) || allowedLeftDiagonals[currRow - currCol])) {
+            if (allowedRows[currCol] && allowedCols[currCol] && (isSafe(currRow + currCol, n) && allowedRightDiagonals[currRow + currCol]) && (isSafe(currRow - currCol, n) && allowedLeftDiagonals[currRow - currCol])) {
                 allowedRows[currRow] = false;
                 allowedCols[currCol] = false;
-                if (Utils.isSafe(currRow + currCol, n))
+                if (isSafe(currRow + currCol, n))
                     allowedRightDiagonals[currRow + currCol] = false;
-                if (Utils.isSafe(currRow - currCol, n))
+                if (isSafe(currRow - currCol, n))
                     allowedLeftDiagonals[currRow - currCol] = false;
 
                 result.add(new Cell(currRow, currCol));
@@ -48,9 +48,9 @@ public class NQueens {
                 //backtrack
                 allowedRows[currRow] = true;
                 allowedCols[currCol] = true;
-                if (Utils.isSafe(currRow + currCol, n))
+                if (isSafe(currRow + currCol, n))
                     allowedRightDiagonals[currRow + currCol] = true;
-                if (Utils.isSafe(currRow - currCol, n))
+                if (isSafe(currRow - currCol, n))
                     allowedLeftDiagonals[currRow - currCol] = true;
                 result.remove(result.size() - 1);
             }
@@ -62,5 +62,4 @@ public class NQueens {
     public static void main(String[] args) {
         System.out.println(Arrays.toString(placeNQueens(5).toArray()));
     }
-
 }

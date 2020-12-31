@@ -96,7 +96,7 @@ map.forEach((key, value) -> {
 
 Deque can be used as both doubly liked list and doubly ended queue. ```Deque<Integer> deque = new LinkedList<>();```
 
-It has functions like ```addFirst(3), pollLast(), peekLast()``` in O(1), ```remove(object: 3)``` in O(n) - (both for LinkedList<>() and ArrayDeque<>()); 
+It has functions like ```addFirst(3), addLast(3), peekFirst(), peekLast(), pollFirst(), pollLast(),``` in O(1), ```remove(object: 3)``` in O(n) - (both for LinkedList<>() and ArrayDeque<>()); 
 
 The diff b/w LinkedList based DQ and ArrayDeque is that Linked one uses LinkedList internally, while Array one uses Array
 

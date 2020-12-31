@@ -1,28 +1,32 @@
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 
 public class MaximumsofallKsizedsubarraysinanarray {
 
-    ArrayList<Integer> FindMaximumsOfAllKSizedSubarraysInAnArray(int[] a, int k) {
-        ArrayList<Integer> ans = new ArrayList<>();
+    List<Integer> FindMaximumsOfAllKSizedSubarraysInAnArray(int[] a, int k) {
+        List<Integer> result = new ArrayList<>();
         Deque<Integer> dq = new LinkedList<>();
 
         for (int i = 0; i < n; i++) {
+            //remove from front, if out of window
             if (!dq.isEmpty()
-                    && dq.peekFirst() == k - 1)
+             && dq.peekFirst() == (i - k))
                 dq.pollFirst();
 
+            //remove from back, if newcomer is >= last element
             if (!dq.isEmpty()
-                    && dq.peekLast() <= a[i])
+             && a[i] >= dq.peekLast())
                 dq.pollLast();
 
-            dq.push(i);
+            //Always insert me in DQ, bcoz you don't know the future elements
+            dq.addLast(i);
 
-            if (i >= k - 1)
-                ans.add(a[dq.peekFirst()]);
+            if (i >= (k - 1)) //if there is a window
+                result.add(a[dq.peekFirst()]);
         }
 
-        return ans;
+        return result;
     }
 }

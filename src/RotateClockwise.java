@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Collections;
+
 public class RotateClockwise {
 
     void rotateClockwise(int[][] m) {
@@ -9,8 +12,7 @@ public class RotateClockwise {
             }
         }
 
-        for (int row = 0; row < rows; row++) {
-            reverse(m[row]);
-        }
+        for (int row = 0; row < rows; row++)
+            Collections.reverse(Arrays.asList(m[row]));
     }
 }

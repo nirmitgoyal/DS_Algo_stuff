@@ -1,18 +1,21 @@
-public class SumOfSquares {
-    int minElementsRequires(int[] list, int n) {//n > 0 //list always contains a 1 //return value of Integer.MAX_VALUE means not possible
-        int[] minElementsRequired = new int[n + 1];
-        //fill with Integer.MAX_VALUE
-        minElementsRequired[0] = 0;
+import static java.lang.Math.min;
+import static utils.Utils.isSafe;
 
-        for (int i = 0; i < minElementsRequired.length; i++) {
+public class SumOfSquares {
+
+    int minElementsRequired(int[] list, int n) {//Assume, list always contains a 1
+        int[] cache = new int[n + 1];
+        for (int i = 0; i < cache.length; i++)
+            cache[i] = i;
+
+        for (int i = 0; i < cache.length; i++) {
             for (int element : list) {
                 int indexToFill = i + element;
-                if (isSafe(indexToFill)) {
-                    int newCount = minElementsRequired[i] + 1;
-                    minElementsRequired[indexToFill] = Math.min(newCount, minElementsRequired[indexToFill]);
-                }
+                if (isSafe(indexToFill, cache.length))
+                    cache[indexToFill] = min((cache[i] + 1), cache[indexToFill]);
             }
         }
-        return minElementsRequired[n];
+
+        return cache[cache.length - 1];
     }
 }

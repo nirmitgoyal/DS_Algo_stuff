@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
+import static utils.Utils.calculate;
+
 public class ReversePolishNotationCalculator {
     public static final List<Character> OPERATORS = Arrays.asList('+', '-', '*', '/');
 
@@ -20,17 +22,6 @@ public class ReversePolishNotationCalculator {
         }
 
         return stack.peek();
-    }
-
-    private int calculate(int former, int latter, char operator) {
-        if (operator == '+')
-            return former + latter;
-        else if (operator == '-')
-            return former - latter;
-        else if (operator == '*')
-            return former * latter;
-        else
-            return former / latter;
     }
 
     private boolean isOperator(char c) {

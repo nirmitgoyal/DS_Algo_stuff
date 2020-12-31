@@ -25,4 +25,15 @@ public class Utils {
 
         return sb.toString();
     }
+
+    public static int calculate(int former, int latter, char operator) {
+        if (operator == '+')
+            return former + latter;
+        else if (operator == '-')
+            return former - latter;
+        else if (operator == '*')
+            return former * latter;
+        else
+            return former / latter;
+    }
 }

@@ -1,51 +1,61 @@
 import models.Return;
 
 import java.util.Arrays;
+import java.util.List;
+
+import static java.lang.Character.isDigit;
+import static utils.Utils.calculate;
+import static utils.Utils.isSafe;
 
 public class BasicCalc {
-    int basicCalcHelper2(char[] s, int i) {
-        int ans = 0;
-        char op = '+';
+    public static final List<Character> OPERATORS = Arrays.asList('+', '-');
 
-        while (i < s.length) {
+    //not working correctly for all cases on LC
+    int basicCalc(String s) {
+        s = s.replaceAll(" ", "");
+
+        return basicCalcHelper(s.toCharArray(), 0);
+//      return basicCalcHelperWrong(s, 0).ans;
+    }
+
+    int basicCalcHelper(char[] s, int index) {
+        int n = s.length;
+        int sum = 0;
+        char op = '+'; //the default op for 1st character of each expression is +
+
+        while (index < n) {
+            char c = s[index];
             int number = 0;
 
-            if (s[i] == '+') {
-                op = '+';
-            } else if (s[i] == '-') {
-                op = '-';
-            } else if (s[i] == ')') {
-                return ans;
-            } else if (s[i] == '(') {
-                number = calculateHelper(s, i++);
-            } else if (isDigit(s[i])) {
-                number = s[i] - '0';
-                while (i != s.length - 1 && isDigit(s[i + 1])) {
-                    number *= 10;
-                    i++;
-                    number += s[i] - '0';
+            if (isOperator(c)) {
+                op = c;
+            } else if (c == ')') {
+                return sum;
+            } else if (c == '(') {
+                index++;
+                number = basicCalcHelper(s, index);
+            } else {
+                number = c - '0';
+                while (isSafe(index + 1, n) && isDigit(s[index + 1])) { //for cases like "23+..."
+                    number = (number * 10) + (s[index] - '0');
+                    index++;
                 }
             }
 
-            if (op == '+') {
-                ans += number;
-            } else {
-                ans -= number;
-            }
+            sum = calculate(sum, number, op);
 
-            i++;
+            index++;
         }
 
-        return ans;
+        return sum;
     }
 
-    int basicCalc(char[] s) {
-        return basicCalcHelper2(s, 0);
-//        return basicCalcHelper(s, 0).ans;
+    private boolean isOperator(char c) {
+        return OPERATORS.contains(c);
     }
 
     //wrong
-    private Return basicCalcHelper(String s, int i) {
+    private Return basicCalcHelperWrong(String s, int i) {
         char op = '+';
         int ans = 0;
 
@@ -58,7 +68,7 @@ public class BasicCalc {
                 if (isDigit(c)) {
                     value = Integer.valueOf(c);
                 } else if (c == '(') {
-                    Return returnValue = basicCalcHelper(s, i + 1);
+                    Return returnValue = basicCalcHelperWrong(s, i + 1);
                     value = returnValue.ans;
                     i = returnValue.index;
                 }

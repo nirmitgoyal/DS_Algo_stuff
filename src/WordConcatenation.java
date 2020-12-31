@@ -11,7 +11,7 @@ public class WordConcatenation {
         List<String> result = new ArrayList<>();
 
         Set<String> set = new HashSet<>(words);
-        Map<String, Boolean> cache = new HashMap<>();//just for caching optimization
+        Map<String, Boolean> cache = new HashMap<>(); //optimization over brute force
 
         for (String word : words)
             if (canForm(word, set, cache))
@@ -21,21 +21,22 @@ public class WordConcatenation {
     }
 
     private boolean canForm(String word, Set<String> set, Map<String, Boolean> cache) {
-        if (cache.containsKey(word))//just for caching optimization
-            return true;//just for caching optimization
+        if (cache.containsKey(word)) //optimization over brute force
+            return true; //optimization over brute force
 
         int n = word.length();
-        for (int i = 1; i <= (n - 1); i++) {
+        for (int i = 1; i < n; i++) {
             String prefix = word.substring(0, i);
             String suffix = word.substring(i, n);
 
-            if (set.contains(prefix) && (set.contains(suffix) || canForm(suffix, set, cache))) {
-                cache.put(word, true);//just for caching optimization
+            if (set.contains(prefix) &&
+               (set.contains(suffix) || canForm(suffix, set, cache))) { //recurse
+                cache.put(word, true); //optimization over brute force
                 return true;
             }
         }
 
-        cache.put(word, false);//just for caching optimization
+        cache.put(word, false); //optimization over brute force
         return false;
     }
 }
