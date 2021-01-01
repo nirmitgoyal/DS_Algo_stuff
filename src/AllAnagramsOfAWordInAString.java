@@ -23,7 +23,7 @@ public class AllAnagramsOfAWordInAString {
 
             //suppress back / add back the character whose count was deceased
             int oldCIndex = i - n1;
-            if (Utils.isSafe(oldCIndex, n2)) {
+            if (Utils.isSafeIndex(oldCIndex, n2)) {
                 char cOld = s2.charAt(oldCIndex);
                 map.put(cOld, (map.getOrDefault(c, 0) + 1));
                 removeKeyIfValueIs0(map, cOld);

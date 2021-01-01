@@ -1,10 +1,14 @@
 package models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Interval {
     public Integer start, end;
-
-    public Interval(Integer start, Integer end) {
-        this.start = start;
-        this.end = end;
-    }
 }

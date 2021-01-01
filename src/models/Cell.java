@@ -1,10 +1,14 @@
 package models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Cell {
     public int row, col;
-
-    public Cell(int row, int col) {
-        this.row = row;
-        this.col = col;
-    }
 }

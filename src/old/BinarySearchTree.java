@@ -1,4 +1,4 @@
-package com.company;
+package old;
 
 public class BinarySearchTree {
     //use: https://www.geeksforgeeks.org/fix-two-swapped-nodes-of-bst/

@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.util.Arrays.fill;
-import static utils.Utils.isSafe;
+import static utils.Utils.isSafeIndex;
 
 public class NQueens {
 
@@ -13,13 +12,16 @@ public class NQueens {
         List<Cell> result = new ArrayList<>();
 
         Boolean[] allowedRows = new Boolean[n];
-        fill(allowedRows, true);
+        Arrays.fill(allowedRows, true);
+
         Boolean[] allowedCols = new Boolean[n];
-        fill(allowedCols, true);
+        Arrays.fill(allowedCols, true);
+
         Boolean[] allowedRightDiagonals = new Boolean[2 * n - 1];
-        fill(allowedRightDiagonals, true);
+        Arrays.fill(allowedRightDiagonals, true);
+
         Boolean[] allowedLeftDiagonals = new Boolean[2 * n - 1];
-        fill(allowedLeftDiagonals, true);
+        Arrays.fill(allowedLeftDiagonals, true);
 
         return placeNQueensHelper(n, allowedCols, allowedRows, allowedRightDiagonals, allowedLeftDiagonals, result);//send allowedCols for rows(to track rows)
     }
@@ -28,18 +30,20 @@ public class NQueens {
         if (result.size() == n)
             return result;
 
+        //try for the next row
         int currRow = result.size();
 
-        for (int currCol = 0; currCol < n; currCol++) {
-            if (allowedRows[currCol] && allowedCols[currCol] && (isSafe(currRow + currCol, n) && allowedRightDiagonals[currRow + currCol]) && (isSafe(currRow - currCol, n) && allowedLeftDiagonals[currRow - currCol])) {
+        for (int currCol = 0; currCol < n; currCol++) { //try placing in every column
+            if (allowedRows[currCol] && allowedCols[currCol] && (isSafeIndex(currRow + currCol, n) && allowedRightDiagonals[currRow + currCol]) && (isSafeIndex(currRow - currCol, n) && allowedLeftDiagonals[currRow - currCol])) {
                 allowedRows[currRow] = false;
                 allowedCols[currCol] = false;
-                if (isSafe(currRow + currCol, n))
+                if (isSafeIndex(currRow + currCol, n))
                     allowedRightDiagonals[currRow + currCol] = false;
-                if (isSafe(currRow - currCol, n))
+                if (isSafeIndex(currRow - currCol, n))
                     allowedLeftDiagonals[currRow - currCol] = false;
 
                 result.add(new Cell(currRow, currCol));
+
                 placeNQueensHelper(n, allowedRows, allowedCols, allowedRightDiagonals, allowedLeftDiagonals, result);
 
                 if (result.size() == n)
@@ -48,11 +52,13 @@ public class NQueens {
                 //backtrack
                 allowedRows[currRow] = true;
                 allowedCols[currCol] = true;
-                if (isSafe(currRow + currCol, n))
+                if (isSafeIndex(currRow + currCol, n))
                     allowedRightDiagonals[currRow + currCol] = true;
-                if (isSafe(currRow - currCol, n))
+                if (isSafeIndex(currRow - currCol, n))
                     allowedLeftDiagonals[currRow - currCol] = true;
+
                 result.remove(result.size() - 1);
+                //end backtrack
             }
         }
 

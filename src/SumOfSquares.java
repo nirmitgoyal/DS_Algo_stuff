@@ -1,5 +1,5 @@
 import static java.lang.Math.min;
-import static utils.Utils.isSafe;
+import static utils.Utils.isSafeIndex;
 
 public class SumOfSquares {
 
@@ -11,7 +11,7 @@ public class SumOfSquares {
         for (int i = 0; i < cache.length; i++) {
             for (int element : list) {
                 int indexToFill = i + element;
-                if (isSafe(indexToFill, cache.length))
+                if (isSafeIndex(indexToFill, cache.length))
                     cache[indexToFill] = min((cache[i] + 1), cache[indexToFill]);
             }
         }

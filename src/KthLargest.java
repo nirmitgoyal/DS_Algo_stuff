@@ -1,12 +1,12 @@
+import java.util.Arrays;
+
 import static java.util.Collections.swap;
 
 public class KthLargest {
 
     int modifiedQuickSort(int[] a, int k) {
-        return modifiedQuickSortHelper(a, k, 0, a.length - 1);
-    }
+        int start = 0, end = a.length;
 
-    int modifiedQuickSortHelper(int[] a, int k, int start, int end) {
         while (start < end) {
             int index = partition(a, start, end);
 
@@ -21,25 +21,29 @@ public class KthLargest {
         return -1;
     }
 
-    int partition(int[] a, int start, int end) {
-        int n = end + 1;
-        int randomIndex = random(start, n);
-        swap(a, randomIndex, n - 1);
+    private int partition(int[] a, int start, int end) {
+        swap(Arrays.asList(a), end, random(start, end));
 
-        int R = n - 2;
+        //now same as of: int Partition.partition(int[]) method
+        int n = end;
         int pivot = a[n - 1];
 
-        int i = start;
-        while (i <= R) {//<= confirmed
+        int i = 0, p1 = 0, p2 = n - 2;
+
+        while (i <= p2) { //<= confirmed
             if (a[i] > pivot) {
-                swap(a, i, R);
-                R--;
+                swap(Arrays.asList(a), i, p2);
+                p2--;
+            } else if (a[i] < pivot) {
+                swap(Arrays.asList(a), i, p1);
+                p1++;
+                i++;
             } else {
                 i++;
             }
         }
-        swap(a, i, n - 1);
 
+        swap(Arrays.asList(a), i, n - 1);
         return i;
     }
 }

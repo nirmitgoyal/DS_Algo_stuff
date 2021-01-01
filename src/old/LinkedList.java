@@ -1,4 +1,4 @@
-package com.company;
+package old;
 
 public class LinkedList {
     private static models.Node head;

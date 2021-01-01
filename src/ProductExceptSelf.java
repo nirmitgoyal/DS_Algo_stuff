@@ -15,9 +15,9 @@ public class ProductExceptSelf {
 
         int left = 1, right = 1;
         for (int i = 0; i < n; i++) {
-            if (Utils.isSafe(i - 1, n))
+            if (Utils.isSafeIndex(i - 1, n))
                 left = l[i - 1];
-            if (Utils.isSafe(i + 1, n))
+            if (Utils.isSafeIndex(i + 1, n))
                 right = r[i + 1];
 
             ans[i] = left * right;

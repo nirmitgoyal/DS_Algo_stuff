@@ -1,10 +1,6 @@
 package utils;
 
 public class Utils {
-    public static boolean isSafe(int index, int n) {
-        return index >= 0 && index < n;
-    }
-
     public static boolean isEqual(Map<K, V> m1, Map<K, V> m2) {
         if (m1.size() != m2.size())
             return false;
@@ -35,5 +31,9 @@ public class Utils {
             return former * latter;
         else
             return former / latter;
+    }
+
+    public static boolean isSafeIndex(int index, int n) {
+        return index >= 0 && index < n;
     }
 }
