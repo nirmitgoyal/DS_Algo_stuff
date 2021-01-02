@@ -1,24 +1,34 @@
 import models.Interval;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class MinNumberOfMeetingRooms {
 
     int minNumberOfMeetingRooms(Interval[] a) {
-        a.sort();//with the comparator sorting by start
-        PriorityQueue<Integer> endIntervals = new PriorityQueue<>();
+        Collections.sort(Arrays.asList(a), new CustomComparator());
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
 
         int max = 0;
 
         for (Interval interval : a) {
-            while (!endIntervals.isEmpty() && endIntervals.peek() <= interval.start) {
-                endIntervals.poll();
-            }
+            //prune the invalid intervals
+            while (!pq.isEmpty() && (pq.peek() <= interval.start))
+                pq.poll();
 
-            endIntervals.add(interval.end);
-            max = Math.max(endIntervals.size(), max);
+            pq.add(interval.end);
+
+            max = Math.max(pq.size(), max);
         }
 
         return max;
+    }
+
+    static class CustomComparator implements Comparator<Interval> {
+        public int compare(Interval first, Interval second) {
+            return first.start.compareTo(second.start);
+        }
     }
 }

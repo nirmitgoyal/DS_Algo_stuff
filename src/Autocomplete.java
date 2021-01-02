@@ -1,3 +1,6 @@
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -6,23 +9,25 @@ import java.util.Stack;
 
 public class Autocomplete {
 
-    private Node root = new Node();
+    private static final Node ROOT = new Node();
 
     List<String> autocomplete(List<String> words, String prefix) {
         List<String> result = new ArrayList<>();
 
         buildTrie(words);
 
-        Node curr = root;
-
+        Node curr = ROOT;
         //Reach till the end of prefix
-        for (char c : prefix) {
+        for (char c : prefix.toCharArray()) {
+            //check even if there is such a prefix in words or not
             if (!curr.childs.containsKey(c))
                 return result;//empty list
+
             curr = curr.childs.get(c);
         }
-        //Now we reached till the end of prefix
+        //Reached till the end of prefix
 
+        //do a DFS passing the node and prefix, and add to result if the node's isEndOfWord is true
         dfs(curr, prefix, result);
 
         return result;
@@ -30,9 +35,10 @@ public class Autocomplete {
 
     private void buildTrie(List<String> words) {
         for (String word : words) {
-            Node curr = root;
+            //assign curr to ROOT, every time
+            Node curr = ROOT;
 
-            for (char c : word) {//though foreach loop not applicable for String
+            for (char c : word.toCharArray()) {
                 if (!curr.childs.containsKey(c))
                     curr.childs.put(c, new Node());
             }
@@ -45,8 +51,18 @@ public class Autocomplete {
         if (node.isEndOfWord)
             result.add(prefix);
 
-        node.childs.forEach((c, e) ->
-                dfs(e, prefix + c, result));//maintaining 2 states: Node and prefix
+        node.childs.forEach((c, currNode) ->
+                dfs(currNode, prefix + c, result));//maintaining 2 states: Node and prefix
+    }
+
+    public static class Node {
+        Map<Character, Node> childs;
+        boolean isEndOfWord;
+
+        Node() {
+            childs = new HashMap<>();
+            isEndOfWord = false;
+        }
     }
 
     private void dfsIterative(Node node, String prefix, List<String> result) {
@@ -66,21 +82,10 @@ public class Autocomplete {
         }
     }
 
-    public static class Node {
-        Map<Character, Node> childs;
-        boolean isEndOfWord;
-
-        Node() {
-            childs = new HashMap<>();
-            isEndOfWord = false;
-        }
-    }
-
+    @NoArgsConstructor
+    @AllArgsConstructor
     private class State {
         Node node;
         String prefix;
-
-        public State(Node node, String prefix) {
-        }
     }
 }

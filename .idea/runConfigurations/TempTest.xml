@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run Scratch file" type="Java Scratch">
+  <configuration default="false" name="TempTest" type="Java Scratch">
     <option name="INCLUDE_PROVIDED_SCOPE" value="true" />
     <option name="MAIN_CLASS_NAME" value="TempTest" />
     <module name="DS Algo stuff" />

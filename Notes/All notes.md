@@ -141,13 +141,22 @@ Stack<Integer> stack = new Stack<>();
 Time complexity of bitwise operators like <<, >> is O(1)
 
 -------------------------------------------------------------------------------------------------------------------------
+If ```o1.compareTo(o2)``` > 0, it means o1 > o2
+
+
 ```
+String s1="9";
+String s2="172";
+s1.compareTo(s2); // = 8 (9 - 7 = 8)
+
 String s1="317";
 String s2="172";
-System.out.println(s1.compareTo(s2)); //2 +ve number shows s1>s2. -ve number shows s1<s2. The result is zero if the strings are equal
+s1.compareTo(s2); // = 2 +ve number shows s1 > s2. -ve number shows s1 < s2. The result is zero if the strings are equal
 ```
 
-Compared lexicographically. Fortunately, for integer strings, the order is normal as of integers 
+Since Strings are compared lexicographically. 
+
+Fortunately, for same length integer strings, the order is normal as of integers. 
 
 
 
@@ -160,7 +169,7 @@ log2(2^n) = n
 -------------------------------------------------------------------------------------------------------------------------
 Limits:
 
-int(32 bits) : 2*10^9 (2 billion)
+int(32 bits) : 2*10^9 (2 billion) (10 digits)
 
 -------------------------------------------------------------------------------------------------------------------------
 To convert string to char array: ```char[] chars = s.toCharArray();```

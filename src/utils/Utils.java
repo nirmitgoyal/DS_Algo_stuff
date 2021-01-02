@@ -1,7 +1,9 @@
 package utils;
 
+import org.checkerframework.checker.units.qual.K;
+
 public class Utils {
-    public static boolean isEqual(Map<K, V> m1, Map<K, V> m2) {
+    public static boolean areMapsEqual(Map<K, V> m1, Map<K, V> m2) {
         if (m1.size() != m2.size())
             return false;
 

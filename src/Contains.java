@@ -1,7 +1,8 @@
-import utils.Utils;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import static utils.Utils.areMapsEqual;
+import static utils.Utils.isSafeIndex;
 
 public class Contains {
 
@@ -10,26 +11,27 @@ public class Contains {
         Map<Character, Integer> textMap = new HashMap<>();
         Map<Character, Integer> patternMap = new HashMap<>();
 
-        for (char c : pattern)
-            textMap.put(c, (textMap.getOrDefault(c, 0) + 1));
+        for (char c : pattern.toCharArray())
+            patternMap.put(c, (patternMap.getOrDefault(c, 0) + 1));
 
         for (int i = 0; i < n; i++) {
             char c = text.charAt(i);
             int indexOld = i - pattern.length();
-            if (Utils.isSafeIndex(indexOld, n)) {
+            if (isSafeIndex(indexOld, n)) {
                 textMap.put(c, (textMap.get(c) - 1));
-                cleanMap(textMap, c);
+                removeKeyIfValueIs0(textMap, c);
             }
 
             textMap.put(c, (textMap.getOrDefault(c, 0) + 1));
 
-            if (Utils.isEqual(textMap, patternMap))//do not override equals method, since we have to implement hashKey too
+            if (areMapsEqual(textMap, patternMap)) //do not override equals method, since we have to implement hashKey too
                 return true;
         }
+
         return false;
     }
 
-    private void cleanMap(Map<Character, Integer> map, char c) {
+    private void removeKeyIfValueIs0(Map<Character, Integer> map, char c) {
         if (map.get(c) == 0)
             map.remove(c);
     }

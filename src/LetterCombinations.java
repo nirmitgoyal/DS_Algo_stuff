@@ -1,12 +1,12 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.Map;
 import java.util.Set;
 
 public class LetterCombinations {
-    //    Map<Integer, List<Character>> map = {
+    public static final Map<Integer, List<Character>> MAP = new HashMap<>();
 //        1: [],
 //        2: ['a', 'b', 'c'],
 //        3: ['d', 'e', 'f'],
@@ -17,26 +17,25 @@ public class LetterCombinations {
 //        8: ['t', 'u', 'v'],
 //        9: ['w', 'x', 'y', 'z'],
 //        0: []
-//    }
-    static List<String> result = new ArrayList<>();
 
-    void LetterCombinations(String s, List<String> a) {
-        Queue<Integer> q = new LinkedList<>(s);
-        Set<String> inputSet = new HashSet<>(a);
+    List<String> presentWords(String digits, List<String> words) { // "346", ["dog", "cat", "doc" ]
+        List<String> result = new ArrayList<>();
+        Set<String> set = new HashSet<>(words); //for O(1) searching
 
-        LetterCombinationsHelper("", q, inputSet);
+        presentWordsHelper("", digits.substring(0), result, set, digits.length());
+
+        return result;
     }
 
-    private String LetterCombinationsHelper(String word, Queue<Integer> q, Set<String> inputSet) {
-        if (q.isEmpty()) {
-            if (inputSet.contains(word))
-                return word;
-            return null;
+    private void presentWordsHelper(String word, String digits, List<String> result, Set<String> set, int n) {
+        if (word.length() == n) {
+            if (set.contains(word))
+                result.add(word);
+
+            return;
         }
 
-        List<Character> charList = map.get(q.poll());
-        for (char c : charList) {
-            result.add(LetterCombinationsHelper(word + c, q, inputSet));
-        }
+        for (char c : MAP.get(Integer.valueOf(digits.charAt(0))))
+            presentWordsHelper(word.concat(String.valueOf(c)), digits.substring(1), result, set, n);
     }
 }
