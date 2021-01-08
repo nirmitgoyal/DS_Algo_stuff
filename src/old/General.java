@@ -467,45 +467,6 @@ class Scratch {
         }
     }
 
-    //    https://www.geeksforgeeks.org/algorithms-gq/pattern-searching/
-//    https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
-//    My own O(n+m) string search algo:
-    int subString(String pattern, String text) {
-        Map<Character, Integer> patternMap = new HashMap<>();
-        Map<Character, Integer> textMap = new HashMap<>();
-        //initialize both maps with count 0 for all chars
-
-        for (int i = 0; i < pattern.length(); i++) {
-            char keyPattern = pattern.charAt(i);
-            patternMap.put(keyPattern, (patternMap.get(keyPattern) + 1));
-
-            char keyText = text.charAt(i);
-            textMap.put(keyText, (textMap.get(keyText) + 1));
-        }
-
-        if (textMap.equals(patternMap))//override equals method
-            return index;
-
-        int startIndex = 0, endIndex = pattern.length();
-
-        while (endIndex < text.length()) {
-            char keyStart = text.charAt(startIndex);
-            char keyEnd = text.charAt(endIndex);
-
-            textMap.put(keyStart, textMap.get(keyStart) - 1);
-            textMap.put(keyEnd, textMap.get(keyEnd) + 1);
-
-            index = compare(textMap, patternMap);
-            if (index != -1)
-                return index;
-
-            startIndex++;
-            endIndex++;
-        }
-
-        return -1;
-    }
-
     public void push(int x) {
         if (stack.isEmpty()) {
             stack.push(0);
@@ -735,7 +696,7 @@ class Scratch {
 
     //take 'pivotElement' as last element and an index as 'partitionIndex' as starting index.
     //Loop and compare the array element with 'pivotElement', if the current element is smaller than 'pivotElement', then swap the current element with the element at partitionIndex
-    private Integer partition(Integer start, Integer end) {
+    private Integer partitionpartition(Integer start, Integer end) {
         Integer pivotElement = a.get(end);
         Integer partitionIndex = start;
 
