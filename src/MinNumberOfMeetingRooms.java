@@ -1,14 +1,13 @@
 import models.Interval;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class MinNumberOfMeetingRooms {
 
     int minNumberOfMeetingRooms(Interval[] a) {
-        Collections.sort(Arrays.asList(a), new CustomComparator());
+        Arrays.sort(a, new CustomComparator());
         PriorityQueue<Integer> pq = new PriorityQueue<>();
 
         int max = 0;

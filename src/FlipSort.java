@@ -27,7 +27,7 @@ public class FlipSort {
         return maxIndex;
     }
 
-    private static void reverse(int[] A, int index) { //this fun will be provided
+    private static void reverse(int[] A, int index) { //flip or reverse fun
         int len = index + 1;
         int left = 0, right = len - 1;
         while (left < right) {
