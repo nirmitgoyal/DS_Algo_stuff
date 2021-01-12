@@ -28,14 +28,14 @@ public class LCA {
             return rightSearchResult;
     }
 
-    List<Node> searchResult = new ArrayList<>();
-    Node LCA_NAryTree(Node me, Node node1, Node node2) {
+    Node LCA_NAryTree(Node me, Node node1, Node node2) { //Time: O(n) Space is also: O(n)
         if (me == null)
             return null;
 
         if (me == node1 || me == node2)
             return me;
 
+        List<Node> searchResult = new ArrayList<>();
         for (Node child : me.childs)
             searchResult.add(LCA_NAryTree(child, node1, node2));
 
