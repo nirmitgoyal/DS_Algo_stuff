@@ -92,13 +92,15 @@ map.forEach((key, value) -> {
         
 
 -------------------------------------------------------------------------------------------------------------------------
-* LinkedList is doubly liked list
+* LinkedList is doubly liked list(DLL)
 
 Deque can be used as both doubly liked list and doubly ended queue. ```Deque<Integer> deque = new LinkedList<>();```
 
 It has functions like ```addFirst(3), addLast(3), peekFirst(), peekLast(), pollFirst(), pollLast(),``` in O(1), ```remove(object: 3)``` in O(n) - (both for LinkedList<>() and ArrayDeque<>()); 
 
-The diff b/w LinkedList based DQ and ArrayDeque is that Linked one uses LinkedList internally, while Array one uses Array
+1. The diff b/w LinkedList based DQ and ArrayDeque is that Linked one uses LinkedList internally, while Array one uses Array.
+
+2. If you want to keep track of each node in DLL, create your custom DLL, so that you can use map to store each node. (Apart from this usecase even, it's better to create custom DLL, otherwise you will have to remember methods lik: ```dll.listIterator().previous()```)
 
 -------------------------------------------------------------------------------------------------------------------------
 * total number of sub-arrays in an array: O(n^2) = O(n*n)

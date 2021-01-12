@@ -261,7 +261,8 @@ class BinaryTree {
         if ((n1.data <= node.data && n2.data >= node.data) || (n1.data >= node.data && n2.data <= node.data))
             return node;
 
-        if (n1.data < node.data && n2.data < node.data)
+        if (n1.data < node.data
+                && n2.data < node.data)
             return lcaBST(node.L);
         else
             return lcaBST(node.R);
