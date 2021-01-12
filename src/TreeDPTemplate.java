@@ -1,6 +1,7 @@
 import models.Node;
 
-//only <> & base conditions need to change
+//Note: only <> & base conditions need to change
+//Note: it's not necessary to follow everything concretely
 public class TreeDPTemplate {
     int RESULT = INIT; //this will be the result
 
