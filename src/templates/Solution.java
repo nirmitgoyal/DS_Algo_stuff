@@ -16,8 +16,8 @@ public class Solution {
         MyScanner scanner = new MyScanner();
         out = new PrintWriter(new BufferedOutputStream(System.out));
 
-        final int cases = scanner.nextInt();
-        for (int i = 0; i < cases; i++) {
+        final int tests = scanner.nextInt();
+        for (int test = 0; test < tests; test++) {
 //            double d = scanner.nextDouble();
 //            String str = scanner.next();           // read input as String
 //            String s = scanner.nextLine();       // read whole line as String
