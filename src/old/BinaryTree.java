@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 
-import static java.lang.Integer.MIN_VALUE;
 import static java.lang.Math.max;
 
 class BinaryTree {
@@ -57,11 +56,11 @@ class BinaryTree {
     //    https://leetcode.com/problems/binary-tree-maximum-path-sum/
     //    see: https://www.youtube.com/watch?v=mOdetMWwtoI
     //    O(n)
-    int maxPathSum = MIN_VALUE;
+    int maxPathSum = 0;
     //    https://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/
     //    https://www.youtube.com/watch?v=sa7p6jTW2FQ
     //    O(n)
-    int maxPathSum = MIN_VALUE;
+    int maxPathSum = 0;
     // https://www.geeksforgeeks.org/diameter-of-a-binary-tree/
     // https://www.geeksforgeeks.org/diameter-of-a-binary-tree-in-on-a-new-method/
     //height of a tree is maximum value of (leftSubTreeHeight + rightSubTreeHeight + 1) for each node.
