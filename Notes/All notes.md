@@ -15,7 +15,7 @@ https://stackoverflow.com/questions/14165325/is-there-a-heap-in-java
 
 Max heap using pq:
 
-```PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());```
+```PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());```
 
 * Height of a heap = log(n)
 * LOT of heap does NOT gives a sorted array
@@ -178,3 +178,16 @@ To convert string to char array: ```char[] chars = s.toCharArray();```
 
 -------------------------------------------------------------------------------------------------------------------------
 Sub-set != Sub-array != Sub-sequence
+
+-------------------------------------------------------------------------------------------------------------------------
+In String, we cannot set a character at a given index directly. We have to use substring method.
+
+But, we can set it directly in StringBuilder: ```sb.setCharAt(index, '.')```
+
+-------------------------------------------------------------------------------------------------------------------------
+To find if num is prime or not:
+
+Iterate from 0 to sqrt(num) and check if it is divisible
+
+-------------------------------------------------------------------------------------------------------------------------
+Java Streams are sequential by default. If we want parallel execution(it will automatically decide # of threads on the basis of # of cores), we can call ```.parallel()``` method on the stream

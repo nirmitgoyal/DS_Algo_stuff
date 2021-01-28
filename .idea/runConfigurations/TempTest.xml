@@ -4,6 +4,12 @@
     <option name="MAIN_CLASS_NAME" value="TempTest" />
     <module name="DS Algo stuff" />
     <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/TempTest.java" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="mycodes.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
     <method v="2">
       <option name="MakeNoErrorCheck" enabled="true" />
     </method>
