@@ -143,7 +143,7 @@ Stack<Integer> stack = new Stack<>();
 Time complexity of bitwise operators like <<, >> is O(1)
 
 -------------------------------------------------------------------------------------------------------------------------
-If ```o1.compareTo(o2)``` > 0, it means o1 > o2
+If ```o1.compareTo(o2)``` >  0, it means o1 > o2
 
 
 ```
