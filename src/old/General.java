@@ -761,15 +761,15 @@ class Scratch {
 
     //divide of merge sort
     //    3 Steps:
-    //    1. Find mid
-    //    2. Call this divide function again
-    //    3. call merge function
-    void divide(Integer l, Integer r) {
-        if (l > r) {
+    //    1. If l == r, then only 1 element is present
+    //    2. Find mid
+    //    3. Call this divide function again
+    //    4. call merge function
+    void divide(int l, int r) {
+        if (l == r)
             return;
-        }
 
-        Integer mid = (l + r) / 2;
+        int mid = (l + r) >> 1;
 
         divide(l, mid);
         divide(mid + 1, r);

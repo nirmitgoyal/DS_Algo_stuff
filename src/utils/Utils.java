@@ -1,19 +1,10 @@
 package utils;
 
-import org.checkerframework.checker.units.qual.K;
+
+import java.util.Arrays;
+import java.util.Map;
 
 public class Utils {
-    public static boolean areMapsEqual(Map<K, V> m1, Map<K, V> m2) {
-        if (m1.size() != m2.size())
-            return false;
-
-        m1.forEach((key, value) -> {
-            if (!m1.get(key).equals(m2.get(key)))
-                return false;
-        });
-
-        return true;
-    }
 
     public static String swap(String s, int i, int j) {
         StringBuilder sb = new StringBuilder(s);
@@ -48,5 +39,21 @@ public class Utils {
                 return false;
 
         return true;
+    }
+
+    static public boolean areEqual(Map<Character, Integer> m1, Map<Character, Integer> m2) {
+        if (m1.size() != m2.size())
+            return false;
+
+        return m1.entrySet().stream()
+                .allMatch(e -> e.getValue().equals(m2.get(e.getKey())));
+    }
+
+    static public boolean areEqualWithArrayValue(Map<String, String[]> m1, Map<String, String[]> m2) {
+        if (m1.size() != m2.size())
+            return false;
+
+        return m1.entrySet().stream()
+                .allMatch(e -> Arrays.equals(e.getValue(), m2.get(e.getKey())));
     }
 }
