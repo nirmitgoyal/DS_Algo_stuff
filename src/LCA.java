@@ -41,7 +41,6 @@ public class LCA {
             if (LCA != null) searchResult.add(LCA);
         }
 
-        //atleast 2 null elements should be there in searchResult, otherwise the given tree is a linkedList or a BTree
         if (searchResult.size() == 0)
             return null;
         if (searchResult.size() == 2)
