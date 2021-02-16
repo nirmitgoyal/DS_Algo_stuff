@@ -35,7 +35,7 @@ public class LCA {
         if (me == node1 || me == node2)
             return me;
 
-        List<Node> searchResult = new ArrayList<>(); //2 can be the max size //should be a local list only
+        List<Node> searchResult = new ArrayList<>(2); //2 can be the max size //should be a local list only
         for (Node child : me.childs) {
             Node LCA = LCA_NAryTree(child, node1, node2);
             if (LCA != null) searchResult.add(LCA);
