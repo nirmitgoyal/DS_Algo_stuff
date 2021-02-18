@@ -1,71 +1,31 @@
-import models.Cell;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static utils.Utils.isSafeIndex;
-
 public class NQueens {
 
-    public static List<Cell> placeNQueens(int n) {//this code does not works though //result for 4 is like: [[(0, 1), (1, 3), (2, 0), (3, 2)]
-        List<Cell> result = new ArrayList<>();
+    private boolean check(int r, int[] column, int c) { //can I place queen at column = c for row = r
+        for (int row = 0; row < r; row++) {
+            int r1 = row, c1 = column[row];
+            int r2 = r, c2 = c;
+            if (column[row] == c || (r2 - r1 == c2 - c1) || (r1 - r2 == c2 - c1)) // last 2 ORs for the 2 diganols, can also be written as abs(r1-r2)==abs(c1-c2)
+                return false;
+        }
 
-        Boolean[] allowedRows = new Boolean[n];
-        Arrays.fill(allowedRows, true);
-
-        Boolean[] allowedCols = new Boolean[n];
-        Arrays.fill(allowedCols, true);
-
-        Boolean[] allowedRightDiagonals = new Boolean[2 * n - 1];
-        Arrays.fill(allowedRightDiagonals, true);
-
-        Boolean[] allowedLeftDiagonals = new Boolean[2 * n - 1];
-        Arrays.fill(allowedLeftDiagonals, true);
-
-        return placeNQueensHelper(n, allowedCols, allowedRows, allowedRightDiagonals, allowedLeftDiagonals, result);//send allowedCols for rows(to track rows)
+        return true;
     }
 
-    private static List<Cell> placeNQueensHelper(int n, Boolean[] allowedRows, Boolean[] allowedCols, Boolean[] allowedRightDiagonals, Boolean[] allowedLeftDiagonals, List<Cell> result) {
-        if (result.size() == n)
-            return result;
+    //working
+    boolean nQueen(int r, int[] column) { //queen is at (i, column[i])
+        if (r == n)
+            return true; //1. Complete
 
-        //try for the next row
-        int currRow = result.size();
+        for (int c = 0; c < n; c++) { //2. Check for all possibilities
+            if (check(r, column, c)) { //3. Check for validity
+                column[r] = c; //4. Do
 
-        for (int currCol = 0; currCol < n; currCol++) { //try placing in every column
-            if (allowedRows[currCol] && allowedCols[currCol] && (isSafeIndex(currRow + currCol, n) && allowedRightDiagonals[currRow + currCol]) && (isSafeIndex(currRow - currCol, n) && allowedLeftDiagonals[currRow - currCol])) {
-                allowedRows[currRow] = false;
-                allowedCols[currCol] = false;
-                if (isSafeIndex(currRow + currCol, n))
-                    allowedRightDiagonals[currRow + currCol] = false;
-                if (isSafeIndex(currRow - currCol, n))
-                    allowedLeftDiagonals[currRow - currCol] = false;
-
-                result.add(new Cell(currRow, currCol));
-
-                placeNQueensHelper(n, allowedRows, allowedCols, allowedRightDiagonals, allowedLeftDiagonals, result);
-
-                if (result.size() == n)
-                    return result;
-
-                //backtrack
-                allowedRows[currRow] = true;
-                allowedCols[currCol] = true;
-                if (isSafeIndex(currRow + currCol, n))
-                    allowedRightDiagonals[currRow + currCol] = true;
-                if (isSafeIndex(currRow - currCol, n))
-                    allowedLeftDiagonals[currRow - currCol] = true;
-
-                result.remove(result.size() - 1);
-                //end backtrack
+                if (nQueen(r + 1, column))  //5. Recurse to solve
+                    return true;
+                //6. Undo not needed
             }
         }
 
-        return result;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(placeNQueens(5).toArray()));
+        return false;
     }
 }

@@ -14,25 +14,27 @@ public class Sudoku { //4*4
         return true;
     }
 
-    boolean solve(int[][] a, int r, int c) {
-        if (c >= 4) {
+    boolean sudoku(int[][] a, int r, int c) {
+        if (c == 4) {
             c = 0;
             r++;
         }
-        if (r >= 4)
-            return true; //1. complete
+        if (r == 4)
+            return true; //1. Complete
         //base conditions finished
 
         if (a[r][c] > 0)
-            return solve(a, r, c + 1);
+            return sudoku(a, r, c + 1);
 
         // now we have empty cells(filled with -1)
-        for (int i = 1; i <= 4; i++) { //2. check for all possibilities
-            if (check(a, r, c, i)) { //3. check for validity
-                a[r][c] = i;//4. do
-                if (solve(a, r, c + 1)) //5. recurse
+        for (int i = 1; i <= 4; i++) { //2. Check for all possibilities
+            if (check(a, r, c, i)) { //3. Check for validity
+                a[r][c] = i; //4. Do
+
+                if (sudoku(a, r, c + 1)) //5. Recurse to solve
                     return true;
-                a[r][c] = -1; //6. undo: if current state can affect the prev state, then backtracking/undo is necessary
+
+                a[r][c] = -1; //6. Undo: if current state can affect the prev state, then backtracking/undo is necessary
             }
         }
 
