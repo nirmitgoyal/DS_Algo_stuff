@@ -8,18 +8,16 @@ public class JumpToTheEnd {
         int n = a.length;
 
         int[] minJumps = new int[n]; //min jumps required for i
-
         minJumps[0] = 0;
 
-        //fill other values by Integer.MAX_VALUE
-        for (int i = 1; i < n; i++)
-            a[i] = Integer.MAX_VALUE;
+        for (int i = 1; i < n; i++)//fill other values by Integer.MAX_VALUE
+            minJumps[i] = Integer.MAX_VALUE;
 
         for (int i = 0; i < n; i++)
             for (int count = 1; count <= a[i]; count++)
                 if (isSafe(i + count, n))
                     minJumps[i + count] = min(minJumps[i + count], minJumps[i] + MIN_COUNT_REQUIRED_FOR_A_HOP);
-        isNonDecreasingArrayGreedy
+
         return minJumps[n - 1];
     }
 

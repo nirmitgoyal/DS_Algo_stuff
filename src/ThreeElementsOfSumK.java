@@ -3,20 +3,19 @@ import java.util.Collections;
 import java.util.List;
 
 public class ThreeElementsOfSumK {
+    List<Element> result = new ArrayList<>();
 
-    List<Element> ThreeElementsOfSumKSpaceOptimized(List<Integer> a, int k) {
-        List<Element> result = new ArrayList<>();
-
+    void ThreeElementsOfSumKSpaceOptimized(List<Integer> a, int k) {
         Collections.sort(a);
 
         for (int i = 0; i < n; i++)
-            TwoElementsOfSumKSpaceOptimized(i, result, a, k);
-
-        return result;
+            TwoElementsOfSumKSpaceOptimized(a, k, i);
     }
 
-    private void TwoElementsOfSumKSpaceOptimized(int startIndex, List<Element> result, List<Integer> a, int k) {
-        int low = startIndex + 1, high = n - 1;
+    private void TwoElementsOfSumKSpaceOptimized(List<Integer> a, int k, int startIndex) {
+        int
+                low = startIndex + 1,
+                high = n - 1;
 
         while (low < high) {
             int sum = a[startIndex] + a[low] + a[high]; // a[startIndex] is always a fixed element

@@ -1,8 +1,11 @@
 package models;
 
+import lombok.NoArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 public class Node {
     public Integer data;
     public Node L, R,
