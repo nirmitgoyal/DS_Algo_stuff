@@ -31,7 +31,7 @@ public class TwoSum {
             int sum = a[l] + a[r];
 
             if (sum == targetSum) {
-                result.add(new Element(a[l],a[r]));
+                result.add(new Element(a[l], a[r]));
                 l++;
                 r--;
             } else if (sum < targetSum) {
