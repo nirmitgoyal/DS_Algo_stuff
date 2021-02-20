@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1df2a394-280b-4396-8075-b94c0c4a895d" name="Default Changelist" comment="" />
+    <list id="ffabb00c-59c8-4bec-a7f0-8da270885e2f" name="waste Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="KotlinCodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ProjectId" id="1m105BpPyxoen8q2cczvix7pCeq" />
+  <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JAVA" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Java Scratch.TempTest">
+    <configuration name="NQueens" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="NQueens" />
+      <module name="DS Algo stuff" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpiralTraverse" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SpiralTraverse" />
+      <module name="DS Algo stuff" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="/Users/nirgoyal/code/DS_Algo_stuff" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.NQueens" />
+      <item itemvalue="Application.SpiralTraverse" />
+      <item itemvalue="Gradle./Users/nirgoyal/code/DS_Algo_stuff" />
+      <item itemvalue="Java Scratch.Try" />
+      <item itemvalue="Java Scratch.TempTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.SpiralTraverse" />
+        <item itemvalue="Gradle./Users/nirgoyal/code/DS_Algo_stuff" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1df2a394-280b-4396-8075-b94c0c4a895d" name="Default Changelist" comment="" />
+      <changelist id="ffabb00c-59c8-4bec-a7f0-8da270885e2f" name="waste Changelist" comment="" />
+      <created>1608645604392</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608645604392</updated>
+      <workItem from="1608645605709" duration="3507000" />
+      <workItem from="1608704173444" duration="45460000" />
+      <workItem from="1609338414297" duration="16924000" />
+      <workItem from="1609439485328" duration="297000" />
+      <workItem from="1609439815797" duration="364000" />
+      <workItem from="1609440202409" duration="3232000" />
+      <workItem from="1609479665284" duration="24738000" />
+      <workItem from="1609594568071" duration="1559000" />
+      <workItem from="1609669504949" duration="357000" />
+      <workItem from="1609996303394" duration="4578000" />
+      <workItem from="1610089955432" duration="866000" />
+      <workItem from="1610091113215" duration="1846000" />
+      <workItem from="1610107381064" duration="1903000" />
+      <workItem from="1610199483243" duration="14320000" />
+      <workItem from="1610273615794" duration="6686000" />
+      <workItem from="1610365752051" duration="5379000" />
+      <workItem from="1610385871885" duration="727000" />
+      <workItem from="1610436532493" duration="2740000" />
+      <workItem from="1610628816157" duration="789000" />
+      <workItem from="1610722183964" duration="607000" />
+      <workItem from="1610728919518" duration="70000" />
+      <workItem from="1610729019828" duration="174000" />
+      <workItem from="1610797077049" duration="666000" />
+      <workItem from="1610884511171" duration="12181000" />
+      <workItem from="1610994714982" duration="5507000" />
+      <workItem from="1611066754136" duration="1258000" />
+      <workItem from="1611166629583" duration="548000" />
+      <workItem from="1611480052338" duration="2476000" />
+      <workItem from="1611834292127" duration="2704000" />
+      <workItem from="1612015178918" duration="708000" />
+      <workItem from="1612422400527" duration="2483000" />
+      <workItem from="1612800148540" duration="345000" />
+    </task>
+    <task id="LOCAL-00001" summary="next">
+      <created>1608710518588</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1608710518588</updated>
+    </task>
+    <task id="LOCAL-00002" summary="next">
+      <created>1608727950859</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608727950859</updated>
+    </task>
+    <task id="LOCAL-00003" summary="next">
+      <created>1609063610444</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1609063610444</updated>
+    </task>
+    <task id="LOCAL-00004" summary="next">
+      <created>1609160427118</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1609160427118</updated>
+    </task>
+    <task id="LOCAL-00005" summary="next">
+      <created>1609180727990</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1609180727990</updated>
+    </task>
+    <task id="LOCAL-00006" summary="next">
+      <created>1609252385715</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1609252385715</updated>
+    </task>
+    <task id="LOCAL-00007" summary="next">
+      <created>1609260136087</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1609260136087</updated>
+    </task>
+    <task id="LOCAL-00008" summary="next">
+      <created>1609419529683</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1609419529683</updated>
+    </task>
+    <task id="LOCAL-00009" summary="next">
+      <created>1609488729113</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1609488729113</updated>
+    </task>
+    <task id="LOCAL-00010" summary="next">
+      <created>1609595939649</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1609595939649</updated>
+    </task>
+    <task id="LOCAL-00011" summary="next">
+      <created>1610117884707</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1610117884707</updated>
+    </task>
+    <task id="LOCAL-00012" summary="next">
+      <created>1610300802429</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1610300802430</updated>
+    </task>
+    <task id="LOCAL-00013" summary="n">
+      <created>1610432081812</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1610432081812</updated>
+    </task>
+    <task id="LOCAL-00014" summary="n">
+      <created>1610885655995</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1610885655995</updated>
+    </task>
+    <task id="LOCAL-00015" summary="next">
+      <created>1610892331273</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1610892331273</updated>
+    </task>
+    <task id="LOCAL-00016" summary="next">
+      <created>1610895709304</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1610895709304</updated>
+    </task>
+    <task id="LOCAL-00017" summary="next">
+      <created>1610905481731</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1610905481731</updated>
+    </task>
+    <task id="LOCAL-00018" summary="next">
+      <created>1610907608522</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1610907608522</updated>
+    </task>
+    <task id="LOCAL-00019" summary="next">
+      <created>1610998527808</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1610998527808</updated>
+    </task>
+    <task id="LOCAL-00020" summary="n">
+      <created>1611836608590</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1611836608590</updated>
+    </task>
+    <task id="LOCAL-00021" summary="n">
+      <created>1612015610530</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1612015610530</updated>
+    </task>
+    <task id="LOCAL-00022" summary="n">
+      <created>1612423963710</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1612423963710</updated>
+    </task>
+    <task id="LOCAL-00023" summary="n">
+      <created>1612800386647</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1612800386647</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <MESSAGE value="next" />
+    <MESSAGE value="n" />
+    <option name="LAST_COMMIT_MESSAGE" value="n" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties>
+            <option name="class-filters-enabled" value="true" />
+            <class-filters>
+              <class-filter pattern="TempTest" />
+            </class-filters>
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

@@ -23,9 +23,9 @@ class NumberOfPaths {
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                if (Utils.isSafeIndex(row - 1,rows) && a[row - 1][col] == VALID)
+                if (Utils.isSafe(row - 1,rows) && a[row - 1][col] == VALID)
                     numOfPaths[row][col] += numOfPaths[row - 1][col];
-                if (Utils.isSafeIndex(col - 1,cols) && a[row][col - 1] == VALID)
+                if (Utils.isSafe(col - 1,cols) && a[row][col - 1] == VALID)
                     numOfPaths[row][col] += numOfPaths[row][col - 1];
             }
         }

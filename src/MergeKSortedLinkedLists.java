@@ -6,10 +6,13 @@ import java.util.PriorityQueue;
 public class MergeKSortedLinkedLists {
 
     Node mergeKSortedLinkedLists(ArrayList<Node> a) {
-        Node head = null, curr = null;
+        Node
+                head = null,
+                curr = null;
 
         PriorityQueue<Element> pq = new PriorityQueue<>();
-        for (int i = 0; i < a.size(); i++)
+        int k = a.size();
+        for (int i = 0; i < k; i++)
             pq.add(new Element(a.get(i).data, i, 0));
 
         while (!pq.isEmpty()) {
@@ -23,18 +26,15 @@ public class MergeKSortedLinkedLists {
                 curr = curr.next;
             }
 
-            int arrayListIndex = smallest.arrayListIndex;
-            int indexOfCurrList = smallest.indexOfCurrList;
-
-            if (a.get(arrayListIndex).next != null)
-                pq.add(new Element(a.get(arrayListIndex).next.data, arrayListIndex, indexOfCurrList + 1));
+            if (a.get(smallest.linkedListIndex).next != null)
+                pq.add(new Element(a.get(smallest.linkedListIndex).next.data, smallest.linkedListIndex, smallest.currNodeIndex + 1));
         }
 
         return head;
     }
 
     class Element {
-        int data, arrayListIndex, indexOfCurrList;
+        int data, linkedListIndex, currNodeIndex;
 
         public Element(int data, int i, int i1) {
         }

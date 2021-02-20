@@ -2,26 +2,25 @@ import models.Node;
 
 public class InorderSuccessor {
 
-    //TODO: validations
     Node InorderSuccessor(Node root, int value) {
         Node node = search(root, value); //log n
 
         return nextGreater(node);
     }
 
-    private Node nextGreater(Node node) {
+    private Node nextGreater(Node me) {
         Node curr;
 
-        if (node.R != null) {
-            curr = node.R;
+        if (me.R != null) {
+            curr = me.R;
 
             while (curr.L != null)
                 curr = curr.L;
 
             return curr;
         } else {
-            curr = node;
-            Node parentNode = node.parent;
+            curr = me;
+            Node parentNode = me.parent;
 
             while (parentNode != null && parentNode.L != curr) {
                 curr = parentNode;

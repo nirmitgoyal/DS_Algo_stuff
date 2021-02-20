@@ -1,7 +1,7 @@
 import models.Node;
 
 public class HeightBalancedBT {
-    boolean IS_BALANCED = true;
+    boolean result = true;
 
     int height1(Node node) {
         if (node == null)
@@ -10,8 +10,8 @@ public class HeightBalancedBT {
         int LSTH = height1(node.L);
         int RSTH = height1(node.R);
 
-        if (Math.abs(LSTH - RSTH) > 1)
-            IS_BALANCED = false;
+        if (Math.abs(LSTH - RSTH) > 1) //extra
+            result = false;
 
         return (Math.max(LSTH, RSTH) + 1);
     }

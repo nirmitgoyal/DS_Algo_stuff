@@ -16,8 +16,8 @@ public class TreeDPTemplate {
 
         //induction
         int temp = <>; //relation if i am NOT the root node for the result
-        int ans = max / min / etc(<>, temp); //relation if i am the root node for the result
-        RESULT = max / min / etc(ans, RESULT);
+        int ans = max / min / etc(temp, <>); //relation if i am the root node for the result
+        RESULT = max / min / etc(RESULT, ans);
 
         return temp;
     }

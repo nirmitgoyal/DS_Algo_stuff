@@ -1,3 +1,4 @@
+
 **Heap:**
 
 Min Heap: A complete BT, where the value of each node is >= the value of its parent node.
@@ -191,3 +192,6 @@ Iterate from 0 to sqrt(num) and check if it is divisible
 
 -------------------------------------------------------------------------------------------------------------------------
 Java Streams are sequential by default. If we want parallel execution(it will automatically decide # of threads on the basis of # of cores), we can call ```.parallel()``` method on the stream
+
+-------------------------------------------------------------------------------------------------------------------------
+Iterating over stack using enhanced for loop is O(n) and does not pops from the stack

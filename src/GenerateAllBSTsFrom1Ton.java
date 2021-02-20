@@ -3,18 +3,13 @@ import models.Node;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class GenerateAllBSTsFrom1Ton {
 
     List<Node> generateAllBSTsFrom1ToN(int n) {
-        List<Integer> numbers = new ArrayList<>();
-
-        //fill from 1 to n
-        int value = 1;
-        for (int i = 0; i < n; i++)
-            numbers.add(value++);
-
-        return generateAllBSTsFrom1ToNHelper(numbers);
+        return generateAllBSTsFrom1ToNHelper(IntStream.rangeClosed(1, n).boxed().collect(Collectors.toList()));//fill from 1 to n
     }
 
     private List<Node> generateAllBSTsFrom1ToNHelper(List<Integer> numbers) {
@@ -27,10 +22,10 @@ public class GenerateAllBSTsFrom1Ton {
 
         for (int n : numbers) {
             List<Integer> lefts = new ArrayList<>();
+            List<Integer> rights = new ArrayList<>();
+
             for (int i = 0; i <= n; i++)
                 lefts.add(numbers.get(i));
-
-            List<Integer> rights = new ArrayList<>();
             for (int i = n + 1; i < numbers.size(); i++)
                 rights.add(numbers.get(i));
 

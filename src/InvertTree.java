@@ -6,10 +6,9 @@ public class InvertTree {
         if (node == null)
             return null;
 
-        Node left = invert(node.L);
-        Node right = invert(node.R);
-        node.L = right;
-        node.R = left;
+        Node temp = invert(node.L);
+        node.L = invert(node.R);
+        node.R = temp;
 
         return node;
     }

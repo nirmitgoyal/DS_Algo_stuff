@@ -9,17 +9,17 @@ public class Permutations {
     List<int[]> result = new ArrayList<>();
 
     void permutations(int[] a) {
-        permutationsHelper(0, a);
+        permutationsHelper(a, 0);
     }
 
-    void permutationsHelper(int index, int[] a) {
+    void permutationsHelper(int[] a, int index) {
         int n = a.length;
         if (index == n - 1)
             result.add(a);
 
         for (int i = index; i < n; i++) {
             swap(Arrays.asList(a), i, index);
-            permutationsHelper((i + 1), a); //i+1 coz we are fixing i now
+            permutationsHelper(a, i + 1); //i+1 coz we are fixing i now
             swap(Arrays.asList(a), i, index); //backtrack
         }
     }

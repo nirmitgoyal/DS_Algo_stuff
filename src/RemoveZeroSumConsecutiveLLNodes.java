@@ -1,6 +1,6 @@
 import models.Node;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class RemoveZeroSumConsecutiveLLNodes {
@@ -10,7 +10,7 @@ public class RemoveZeroSumConsecutiveLLNodes {
         dummy.next = head;
 
         Node curr = head;
-        Map<Integer, Node> map = new HashMap<>();
+        Map<Integer, Node> map = new LinkedHashMap<>();
         int sum = 0;
 
         while (curr != null) {
@@ -20,7 +20,7 @@ public class RemoveZeroSumConsecutiveLLNodes {
                 Node prev = map.get(sum);
                 Node next = curr.next;
 
-                //we need to remove all nodes from the map after prev(to not have the stale data, inserting the bugs in future)
+                //remove all nodes from the map after prev, to not have the stale data
                 Node curr2 = prev.next;
                 while (curr2 != next) {
                     int sumToRemove = prev.data + curr2.data;
@@ -28,10 +28,10 @@ public class RemoveZeroSumConsecutiveLLNodes {
                     curr2 = curr2.next;
                 }
 
+                //manipulate LL pointer
                 prev.next = next;
-            } else {
+            } else
                 map.put(sum, curr);
-            }
 
             curr = curr.next;
         }

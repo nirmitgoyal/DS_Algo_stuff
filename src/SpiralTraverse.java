@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static utils.Utils.isSafeIndex;
+import static utils.Utils.isSafe;
 
 class TempTest {
     public static final String RIGHT = "RIGHT";
@@ -58,25 +58,25 @@ class TempTest {
         int row = currentCell.row, col = currentCell.col;
 
         if (currentDir == RIGHT) {
-            if (isSafeIndex(col + 1, cols) && m[row][col + 1] != null)
+            if (isSafe(col + 1, cols) && m[row][col + 1] != null)
                 return new CellWithNextDir(new Cell(row, col + 1), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
         if (currentDir == DOWN) {
-            if (isSafeIndex(row + 1, rows) && m[row + 1][col] != null)
+            if (isSafe(row + 1, rows) && m[row + 1][col] != null)
                 return new CellWithNextDir(new Cell(row + 1, col), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
         if (currentDir == LEFT) {
-            if (isSafeIndex(col - 1, cols) && m[row][col - 1] != null)
+            if (isSafe(col - 1, cols) && m[row][col - 1] != null)
                 return new CellWithNextDir(new Cell(row, col - 1), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
         if (currentDir == UP) {
-            if (isSafeIndex(row - 1, rows) && m[row - 1][col] != null)
+            if (isSafe(row - 1, rows) && m[row - 1][col] != null)
                 return new CellWithNextDir(new Cell(row - 1, col), currentDir);
         }
 

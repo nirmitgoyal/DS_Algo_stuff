@@ -3,7 +3,11 @@ import static java.lang.Integer.MAX_VALUE;
 public class MinimumSubarrayLength {
 
     int minimumSubarrayLength(int[] a, int k) {
-        int l = 0, r = 0, sum = 0, minLength = MAX_VALUE;
+        int
+                l = 0,
+                r = 0,
+                sum = 0,
+                minLength = MAX_VALUE;
 
         while (r < n) {
             sum += a[l];

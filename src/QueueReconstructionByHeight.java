@@ -3,7 +3,7 @@ import java.util.Comparator;
 import java.util.List;
 
 class Element {
-    public Integer h, c;
+    Integer h, c;
 }
 
 class CustomComparator implements Comparator<Element> {
@@ -11,7 +11,7 @@ class CustomComparator implements Comparator<Element> {
     public int compare(Element first, Element second) {
         if (first.h.equals(second.h))
             return first.c.compareTo(second.c);
-        return second.h.compareTo(first.h);
+        return -first.h.compareTo(second.h);
     }
 }
 

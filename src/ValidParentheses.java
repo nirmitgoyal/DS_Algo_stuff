@@ -3,24 +3,26 @@ import java.util.Map;
 import java.util.Stack;
 
 public class ValidParentheses {
+    Map<Character, Character> map = new HashMap<>();
+
+    private void init() {
+        map.put(')', '(');
+        map.put('}', '{');
+        map.put(']', '[');
+    }
 
     boolean validParentheses(String s) {
-        Map<Character, Character> m = new HashMap<>();
+        init();
         Stack<Character> stack = new Stack<>();
-
-        m.put(')', '(');
-        m.put('}', '{');
-        m.put(']', '[');
 
         for (int i = 0; i < n; i++) {
             char ch = s.charAt(i);
 
-            if (m.containsKey(ch)) {
-                if (stack.isEmpty() || stack.pop() != m.get(ch))
-                    return false;
-            } else {
-                stack.push(ch);
-            }
+            if (map.containsKey(ch)
+                    && (stack.isEmpty() || stack.pop() != map.get(ch)))
+                return false;
+
+            stack.push(ch);
         }
 
         return stack.isEmpty();

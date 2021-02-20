@@ -1,5 +1,5 @@
-import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Math.min;
+import static utils.Utils.isSafe;
 
 public class JumpToTheEnd {
     private static final int MIN_COUNT_REQUIRED_FOR_A_HOP = 1;
@@ -10,17 +10,16 @@ public class JumpToTheEnd {
         int[] minJumps = new int[n]; //min jumps required for i
 
         minJumps[0] = 0;
-        //fill other values by MAX_VALUE
+
+        //fill other values by Integer.MAX_VALUE
         for (int i = 1; i < n; i++)
-            a[i] = MAX_VALUE;
+            a[i] = Integer.MAX_VALUE;
 
-        for (int i = 0; i < n; i++) {
-            for (int j = (i + 1); j < n; j++) {
-                if (i + j < n)
-                    minJumps[i + j] = min((minJumps[i] + MIN_COUNT_REQUIRED_FOR_A_HOP), minJumps[i + j]);
-            }
-        }
-
+        for (int i = 0; i < n; i++)
+            for (int count = 1; count <= a[i]; count++)
+                if (isSafe(i + count, n))
+                    minJumps[i + count] = min(minJumps[i + count], minJumps[i] + MIN_COUNT_REQUIRED_FOR_A_HOP);
+        isNonDecreasingArrayGreedy
         return minJumps[n - 1];
     }
 

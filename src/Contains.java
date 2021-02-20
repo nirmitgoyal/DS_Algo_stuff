@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static utils.Utils.areEqual;
-import static utils.Utils.isSafeIndex;
+import static utils.Utils.isSafe;
 
 public class Contains {
 
@@ -18,7 +18,7 @@ public class Contains {
             char c = text.charAt(i);
             int indexOld = i - pattern.length();
 
-            if (isSafeIndex(indexOld, n)) {
+            if (isSafe(indexOld, n)) {
                 textMap.put(c, (textMap.get(c) - 1));
                 removeKeyIfValueIs0(textMap, c);
             }

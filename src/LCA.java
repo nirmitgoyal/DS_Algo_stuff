@@ -17,7 +17,7 @@ public class LCA {
         Node leftSearchResult = LCA_BTree(me.L, node1, node2);
         Node rightSearchResult = LCA_BTree(me.R, node1, node2);
 
-        //in these 4 cases too, i'm pushing myself up
+        //I got the answer, after the base cases were hit, so now I have to think on what to do with these results
         if (leftSearchResult == null && rightSearchResult == null)
             return null;
         if (leftSearchResult != null && rightSearchResult != null)
@@ -38,7 +38,8 @@ public class LCA {
         List<Node> searchResult = new ArrayList<>(2); //2 can be the max size //should be a local list only
         for (Node child : me.childs) {
             Node LCA = LCA_NAryTree(child, node1, node2);
-            if (LCA != null) searchResult.add(LCA);
+            if (LCA != null)
+                searchResult.add(LCA);
         }
 
         if (searchResult.size() == 0)

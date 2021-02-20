@@ -13,16 +13,16 @@ public class MaxSumPath {
         int rightResult = maxSumPath(me.R);
 
         //induction
-        int temp = max(
+        int temp = <max(
                 max(leftResult, rightResult) + me.data, // max of left & right, coz we'll either take left path or right path
                 me.data, //if max(leftResult, rightResult) was -ve
                 0 //if contributing me makes us -ve
-        );
+        );>
         int ans = max(
-                leftResult + rightResult + me.data,
-                temp
+                temp,
+                <leftResult + rightResult + me.data>
         );
-        RESULT = max(ans, RESULT);
+        RESULT = max(RESULT, ans);
 
         return temp;
     }

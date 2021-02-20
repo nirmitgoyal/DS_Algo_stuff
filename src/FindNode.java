@@ -24,12 +24,12 @@ public class FindNode {
             if (curr1.L != null)
                 q1.add(curr1.L);
             if (curr2.L != null)
-                q1.add(curr2.L);
+                q2.add(curr2.L);
 
             if (curr1.R != null)
                 q1.add(curr1.R);
             if (curr2.R != null)
-                q1.add(curr2.R);
+                q2.add(curr2.R);
         }
 
         return null;

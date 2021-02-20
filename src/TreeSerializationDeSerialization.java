@@ -7,18 +7,18 @@ import java.util.Queue;
 public class TreeSerializationDeSerialization {
 //    static String s = "";
 
-    String treeSerialization(Node node) {//or take a static variable and keep appending
-        if (node == null)
+    String treeSerialization(Node me) {//or take a static variable and keep appending
+        if (me == null)
             return "#";
 
-        return String.valueOf(node.data) + " " + treeSerialization(node.L) + " " + treeSerialization(node.R) + " ";
+        //NodeLR
+        return me.data + " " + treeSerialization(me.L) + " " + treeSerialization(me.R) + " ";
     }
 
 
     Node treeDeSerialization(String s) {
-        Queue<String> q = new LinkedList<>();
+        Queue<String> q = new LinkedList<>(Arrays.asList(s.split(" ")));
 
-        q.addAll(Arrays.asList(s.split(" ")));
         return treeDeSerializationHelper(q);
     }
 
@@ -28,10 +28,10 @@ public class TreeSerializationDeSerialization {
         if (data == null || data == "#")
             return null;
 
-        Node node = new Node(Integer.valueOf(data));
-        node.L = treeDeSerializationHelper(q);
-        node.R = treeDeSerializationHelper(q);
+        Node me = new Node(Integer.valueOf(data));
+        me.L = treeDeSerializationHelper(q);
+        me.R = treeDeSerializationHelper(q);
 
-        return node;
+        return me;
     }
 }

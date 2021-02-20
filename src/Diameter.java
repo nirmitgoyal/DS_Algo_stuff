@@ -13,9 +13,9 @@ public class Diameter {
         int rightResult = diameter(me.R);
 
         //induction
-        int temp = max(leftResult, rightResult) + 1; //relation if i am NOT the root node for the result
-        int ans = max(leftResult + rightResult + 1, temp); //relation if i am the root node for the result
-        RESULT = max(ans, RESULT);
+        int temp = <max(leftResult, rightResult) + 1>; //relation if i am NOT the root node for the result
+        int ans = max(temp, <leftResult + rightResult + 1>); //relation if i am the root node for the result
+        RESULT = max(RESULT, ans);
 
         return temp;
     }

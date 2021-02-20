@@ -26,7 +26,7 @@ public class Utils {
             return former / latter;
     }
 
-    public static boolean isSafeIndex(int index, int n) {
+    public static boolean isSafe(int index, int n) {
         return index >= 0 && index < n;
     }
 

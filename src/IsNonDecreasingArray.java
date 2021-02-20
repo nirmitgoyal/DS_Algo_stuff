@@ -4,13 +4,16 @@ public class IsNonDecreasingArray {
         int count = 0; //the number of changes
 
         for (int i = 1; i < n; i++) {
-            if (a[i] < a[i - 1]) {
+            int prevIndex = i - 1;
+            int prevPrevIndex = i - 2;
+
+            if (a[i] < a[prevIndex]) {
                 count++;
 
-                if ((i - 2 < 0) || a[i - 2] <= a[i]) //modify a[i-1] on priority
-                    a[i - 1] = a[i];
+                if ((prevPrevIndex < 0) || a[prevPrevIndex] <= a[i]) //modify a[prevIndex] on priority
+                    a[prevIndex] = a[i];
                 else
-                    a[i] = a[i - 1]; //have to modify a[i]
+                    a[i] = a[prevIndex]; //have to modify a[i]
             }
         }
 
