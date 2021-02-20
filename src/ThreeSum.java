@@ -11,12 +11,12 @@ public class ThreeSum {
         Arrays.sort(a);
 
         for (int i = 0; i < n; i++)
-            twoSumSortedModified(a, targetSum, i); //without passing the index, we'll have to check if it was not the same index
+            twoSumSortedModified(a, targetSum, i + 1); //without passing the index, we'll have to check if it was not the same index
     }
 
     private void twoSumSortedModified(int[] a, int targetSum, int startIndex) {
         int
-                l = startIndex + 1,
+                l = startIndex,
                 r = n - 1;
 
         while (l < r) {
@@ -35,6 +35,7 @@ public class ThreeSum {
     }
 
     @AllArgsConstructor
+    static
     class Element {
         int e1, e2, e3;
     }
