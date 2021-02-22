@@ -1,3 +1,4 @@
+import lombok.AllArgsConstructor;
 import models.Cell;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.Map;
 
 import static utils.Utils.isSafe;
 
-class TempTest {
+class SpiralTraverse {
     public static final String RIGHT = "RIGHT";
     public static final String DOWN = "DOWN";
     public static final String LEFT = "LEFT";
@@ -23,18 +24,21 @@ class TempTest {
     }
 
     static List<Cell> spiralTraverse(Integer[][] m) {
+        init();
         List<Cell> result = new ArrayList<>();
 
-        if (m == null || m.length == 0)
+        if (m == null || m.length == 0) {
             return result;
+        }
 
-        String currentDir = RIGHT;
-        init();
+        int
+                rows = m.length,
+                cols = m[0].length;
 
-        int rows = m.length, cols = m[0].length;
-
+        //main starting:
         int visitsRemaining = rows * cols;
         Cell currentCell = new Cell(0, 0);
+        String currentDir = RIGHT;
 
         while (visitsRemaining > 0) {
             result.add(currentCell);
@@ -42,7 +46,7 @@ class TempTest {
             //mark as visited
             m[currentCell.row][currentCell.col] = null;
 
-            CellWithNextDir cellWithNextDir = getNextCellAndDir(currentCell, currentDir, m);
+            CellWithNextDir cellWithNextDir = getNextCellAndDir(m, currentCell, currentDir);
 
             currentCell = cellWithNextDir.cell;
             currentDir = cellWithNextDir.dir;
@@ -53,44 +57,49 @@ class TempTest {
         return result;
     }
 
-    private static CellWithNextDir getNextCellAndDir(Cell currentCell, String currentDir, Integer[][] m) {
-        int rows = m.length, cols = m[0].length;
-        int row = currentCell.row, col = currentCell.col;
+    private static CellWithNextDir getNextCellAndDir(Integer[][] m, Cell currentCell, String currentDir) {
+        int
+                rows = m.length,
+                cols = m[0].length;
+        int
+                r = currentCell.row,
+                c = currentCell.col;
 
         if (currentDir == RIGHT) {
-            if (isSafe(col + 1, cols) && m[row][col + 1] != null)
-                return new CellWithNextDir(new Cell(row, col + 1), currentDir);
+            int nextC = c + 1;
+
+            if (isSafe(nextC, cols) && m[r][nextC] != null)
+                return new CellWithNextDir(new Cell(r, nextC), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
         if (currentDir == DOWN) {
-            if (isSafe(row + 1, rows) && m[row + 1][col] != null)
-                return new CellWithNextDir(new Cell(row + 1, col), currentDir);
+            int nextR = r + 1;
+            if (isSafe(nextR, rows) && m[nextR][c] != null)
+                return new CellWithNextDir(new Cell(nextR, c), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
         if (currentDir == LEFT) {
-            if (isSafe(col - 1, cols) && m[row][col - 1] != null)
-                return new CellWithNextDir(new Cell(row, col - 1), currentDir);
+            int nextC = c - 1;
+            if (isSafe(nextC, cols) && m[r][nextC] != null)
+                return new CellWithNextDir(new Cell(r, nextC), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
         if (currentDir == UP) {
-            if (isSafe(row - 1, rows) && m[row - 1][col] != null)
-                return new CellWithNextDir(new Cell(row - 1, col), currentDir);
+            int nextR = r - 1;
+            if (isSafe(nextR, rows) && m[nextR][c] != null)
+                return new CellWithNextDir(new Cell(nextR, c), currentDir);
         }
 
-        return new CellWithNextDir(new Cell(row, col + 1), NEXT_DIR.get(currentDir));
+        return new CellWithNextDir(new Cell(r, c + 1), NEXT_DIR.get(currentDir));
     }
 
+    @AllArgsConstructor
     private static class CellWithNextDir {
         Cell cell;
         String dir;
-
-        public CellWithNextDir(Cell cell, String dir) {
-            this.cell = cell;
-            this.dir = dir;
-        }
     }
 
     public static void main(String[] args) {

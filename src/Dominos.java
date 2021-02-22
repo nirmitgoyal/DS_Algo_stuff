@@ -1,48 +1,43 @@
-import static java.lang.Integer.MAX_VALUE;
-import static java.lang.Integer.MIN_VALUE;
-
 public class Dominos {
 
-    String fallDominos(String s) {
-        int right = MAX_VALUE, left = MIN_VALUE;
+    String fallDominos(String string) {
+        int n = string.length();
+        char[] s = string.toCharArray();
 
-        int[] a = new int[n];
-        boolean rightFlag = false, leftFlag = false;
+        int[] forces = new int[n]; //0s
+        int force = 0;
 
         for (int i = 0; i < n; i++) {
-            char c = s.charAt(i);
+            if (s[i] == 'R')
+                force = n;
+            else if (s[i] == 'L')
+                force = 0;
+            else
+                force = Math.max(force - 1, 0);
 
-            if (c == 'R') {
-                a[i] += right--;
-                rightFlag = true;
-            } else if (c == 'L') {
-                rightFlag = false;
-                right = MAX_VALUE;
-            } else if (rightFlag)
-                a[i] += right--;
+            forces[i] += force;
         }
 
+        force = 0;
         for (int i = n - 1; i >= 0; i--) {
-            char c = s.charAt(i);
+            if (s[i] == 'L')
+                force = n;
+            else if (s[i] == 'R')
+                force = 0;
+            else
+                force = Math.max(force - 1, 0);
 
-            if (c == 'L') {
-                a[i] += left++;
-                leftFlag = true;
-            }else if (c == 'R') {
-                leftFlag = false;
-                left = MIN_VALUE;
-            } else if (leftFlag)
-                a[i] += left++;
+            forces[i] -= force;
         }
 
         String result = "";
         for (int i = 0; i < n; i++) {
-            if (a[i] == 0)
-                s += '|';
-            else if (a[i] > 0)
-                s += 'R';
+            if (forces[i] < 0)
+                result += 'L';
+            else if (forces[i] > 0)
+                result += 'R';
             else
-                s += 'L';
+                result += '|';
         }
 
         return result;

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -7,7 +8,7 @@ public class RunningMedian {
     List<Integer> runningMedians(int[] a) {
         List<Integer> result = new ArrayList<>();
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>();//pass the custom comparator
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());
 
         for (int e : a) {
             addElements(e, minHeap, maxHeap);

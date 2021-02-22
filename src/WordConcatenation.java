@@ -5,38 +5,51 @@ import java.util.Set;
 import static java.lang.Integer.MAX_VALUE;
 
 public class WordConcatenation {
-    public static Map<String, Integer> cache2 = new HashMap<>(); //extension over brute force
-    public static Map<String, Boolean> cache = new HashMap<>(); //extension over brute force
+    Set<String> set; //set of words //input
 
-    boolean wordConcatenation(String s, Set<String> words) {
-        return canForm(s, words); //helper fun, just to keep consistency with the extended problem
-    }
+    Map<String, Boolean> cache = new HashMap<>();
 
-    private boolean canForm(String word, Set<String> set) {
-        if (cache.containsKey(word)) //extension over brute force
-            return true; //extension over brute force
-
+    boolean canForm(String word) {
         int n = word.length();
         for (int i = 1; i < n; i++) { //since i is non-inclusive in substring()
             String prefix = word.substring(0, i);
             String suffix = word.substring(i, n);
 
             if (set.contains(prefix)
-                    && (set.contains(suffix) || canForm(suffix, set))) { //recurse
-                cache.put(word, true); //extension over brute force
+                    && (set.contains(suffix) || canForm(suffix))) //recurse
+                return true;
+        }
+
+        return false;
+    }
+
+    boolean canForm2(String word) {
+        if (cache.containsKey(word))
+            return true;
+
+        int n = word.length();
+        for (int i = 1; i < n; i++) {
+            String prefix = word.substring(0, i);
+            String suffix = word.substring(i, n);
+
+            if (set.contains(prefix)
+                    && (set.contains(suffix) || canForm2(suffix))) {
+                cache.put(word, true);
                 return true;
             }
         }
 
-        cache.put(word, false); //extension over brute force
+        cache.put(word, false);
         return false;
     }
 
+    Map<String, Integer> cache2 = new HashMap<>();
+
     int minBreaks(String word, Set<String> set) {
-        return canForm2(word, set, 1);
+        return minBreaksHelper(word, 1);
     }
 
-    private int canForm2(String word, Set<String> set, int count) {
+    private int minBreaksHelper(String word, int count) {
         if (set.contains(word))
             return 0;
 
@@ -55,7 +68,7 @@ public class WordConcatenation {
 //                System.out.println();
                 result = count;
             } else {
-                int suffixCount = canForm2(suffix, set, count + 1);
+                int suffixCount = minBreaksHelper(suffix, count + 1);
                 if (set.contains(prefix) && suffixCount != MAX_VALUE) {
 //                    System.out.println("prefix = " + prefix);
 //                    System.out.println("suffix = " + suffix);

@@ -1,9 +1,7 @@
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class LetterCombinations {
     public static final Map<Integer, List<Character>> MAP = new HashMap<>();
@@ -18,24 +16,21 @@ public class LetterCombinations {
 //        9: ['w', 'x', 'y', 'z'],
 //        0: []
 
-    List<String> presentWords(String digits, List<String> words) { // "346", ["dog", "cat", "doc" ]
-        List<String> result = new ArrayList<>();
-        Set<String> set = new HashSet<>(words); //for O(1) searching
+    List<String> result; // "adgj", "adgk", "adg", "adhj", "adhk", "adhl", "adij", ...
+    int n;
 
-        presentWordsHelper("", digits.substring(0), result, set, digits.length());
-
-        return result;
+    void generateWords(int[] digits) { // [2, 3, 4, 5]
+        n = digits.length;
+        generateWordsHelper(digits, "");
     }
 
-    private void presentWordsHelper(String word, String digits, List<String> result, Set<String> set, int n) {
+    private void generateWordsHelper(int[] digits, String word) {
         if (word.length() == n) {
-            if (set.contains(word))
-                result.add(word);
-
+            result.add(word);
             return;
         }
 
-        for (char c : MAP.get(Integer.valueOf(digits.charAt(0))))
-            presentWordsHelper(word.concat(String.valueOf(c)), digits.substring(1), result, set, n);
+        for (char c : MAP.get(digits[0])) //all the chars in this number
+            generateWordsHelper(Arrays.copyOfRange(digits, 1, digits.length), word + c);
     }
 }

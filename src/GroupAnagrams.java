@@ -7,13 +7,13 @@ public class GroupAnagrams {
 
     List<List<String>> groupAnagrams(List<String> words) {
         List<List<String>> result = new ArrayList<>();
-        Map<int[], List<String>> map = new HashMap<>(); //Key contains array repr. of the freq. of chars
+        Map<int[], List<String>> map = new HashMap<>(); //Key contains array repr. of the freq. of chars //array->list of anagrams
 
         for (String s : words)
-            map
-                .getOrDefault(getHaskKey(s), new ArrayList<>())
-                .add(s);
+            map.getOrDefault(getHashKey(s), new ArrayList<>())
+                    .add(s);
 
+        //all the values in the map is the answer
         map.forEach((key, anagrams) -> {
             result.add(anagrams);
         });
@@ -21,15 +21,11 @@ public class GroupAnagrams {
         return result;
     }
 
-    private int[] getHaskKey(String s) {
+    private int[] getHashKey(String s) {
         int[] key = new int[26];
 
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            int index = c - 'a';
-
-            key[index]++;
-        }
+        for (char c : s.toCharArray())
+            key[c - 'a']++;
 
         return key;
     }

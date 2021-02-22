@@ -5,10 +5,12 @@ public class Fibonacci {
             return n;
 
         //declare 3 values
-        int prevPrev = 1, prev = 2, curr = 0;
+        int
+                curr = 0,
+                prev = 2,
+                prevPrev = 1;
 
-        int i = 3;
-        while (i++ <= n) {
+        for (int i = 3; i <= n; i++) {
             curr = prevPrev + prev;
 
             prevPrev = prev;

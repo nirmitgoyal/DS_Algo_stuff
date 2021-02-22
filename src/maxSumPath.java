@@ -20,7 +20,7 @@ public class MaxSumPath {
         );>
         int ans = max(
                 temp,
-                <leftResult + rightResult + me.data>
+                < leftResult + rightResult + me.data >
         );
         RESULT = max(RESULT, ans);
 

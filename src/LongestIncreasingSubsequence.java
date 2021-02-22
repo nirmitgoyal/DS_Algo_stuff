@@ -1,15 +1,29 @@
+import java.util.Map;
+
 public class LongestIncreasingSubsequence {
+    int[] a;
+    Map<Integer, Integer> cache;
 
-    int lengthOfLongestIncreasingSubsequence(int[] a) {
-        int[] cache = new int[n];
+    int longestIncreasingSubsequenceLength(int index) {
+        //no base needed
+        int ans = 1;
+        for (int i = 0; i < index; i++)
+            if (a[index] > a[i])
+                ans = Math.max(ans, longestIncreasingSubsequenceLength(i - 1));
 
-        //fill cache with 1
+        return ans;
+    }
 
-        for (int i = 1; i < n; i++)
-            for (int j = 0; j < i; j++)
-                if (a[i] > a[j])
-                    cache[i] = Math.max(cache[i] + 1, cache[i]);
+    int longestIncreasingSubsequenceLength2(int index) {
+        if (cache.containsKey(index))
+            return cache.get(index);
 
-        //return the max value in cache
+        int ans = 1;
+        for (int i = 0; i < index; i++)
+            if (a[index] > a[i])
+                ans = Math.max(ans, longestIncreasingSubsequenceLength(i - 1));
+
+        cache.put(index, ans);
+        return ans;
     }
 }

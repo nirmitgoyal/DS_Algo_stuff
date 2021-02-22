@@ -1,27 +1,37 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateAllStringsWithNMatchedParentheses {
-    public static final String LEFT_PAREN = "(";
-    public static final String RIGHT_PAREN = ")";
+    List<String> result;
 
-    List<String> generateParen(int n) {
-        List<String> result = new ArrayList<>();
-
-        generateParenHelper(0, 0, "", n, result);
-
-        return result;
+    void generateParen(int n) {
+        generateParenHelper(n, "");
     }
 
-    private void generateParenHelper(int leftCount, int rightCount, String s, int n, List<String> result) {
-        if (s.length() == (2 * n)) {
-            result.add(s);
+    private void generateParenHelper(int n, String paren) {
+        if (paren.length() == 2 * n) {
+            result.add(paren);
             return;
         }
 
-        if (leftCount < n)
-            generateParenHelper(leftCount + 1, rightCount, (s + LEFT_PAREN), n, result);
-        if (rightCount < leftCount)
-            generateParenHelper(leftCount, rightCount + 1, (s + RIGHT_PAREN), n, result);
+        generateParenHelper(n, paren + '(');
+        generateParenHelper(n, paren + ')');
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    void generateParenWithPruning(int n) {
+        generateParenHelper(n, "", 0, 0);
+    }
+
+    private void generateParenHelper(int n, String paren, int rCount, int lCount) {
+        if (paren.length() == 2 * n) {//1. Complete
+            result.add(paren);
+            return;
+        }
+
+        //2. Check for all possibilities(here 2)
+        if (lCount < n)//3. Check for validity
+            generateParenHelper(n, paren + "(", rCount, lCount + 1);//4. Do //5. Recurse to solve
+        if (rCount < lCount)
+            generateParenHelper(n, paren + ")", rCount + 1, lCount);
     }
 }

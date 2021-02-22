@@ -6,28 +6,34 @@ import java.util.PriorityQueue;
 
 public class MinNumberOfMeetingRooms {
 
-    int minNumberOfMeetingRooms(Interval[] a) {
-        Arrays.sort(a, new CustomComparator());
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
+    int minNumberOfMeetingRooms(Interval[] intervals) {
+        Arrays.sort(intervals, new CustomComparator_Start());
+        PriorityQueue<Interval> pq = new PriorityQueue<>(new CustomComparator_End());
 
-        int max = 0;
+        int ans = 0;
 
-        for (Interval interval : a) {
+        for (Interval interval : intervals) {
             //prune the invalid intervals
-            while (!pq.isEmpty() && (pq.peek() <= interval.start))
+            while (!pq.isEmpty() && (pq.peek().end <= interval.start))
                 pq.poll();
 
-            pq.add(interval.end);
+            pq.add(interval);
 
-            max = Math.max(pq.size(), max);
+            ans = Math.max(ans, pq.size());
         }
 
-        return max;
+        return ans;
     }
 
-    static class CustomComparator implements Comparator<Interval> {
-        public int compare(Interval first, Interval second) {
-            return first.start.compareTo(second.start);
+    public static class CustomComparator_Start implements Comparator<Interval> {
+        public int compare(Interval e1, Interval e2) {
+            return e1.start.compareTo(e2.start);
+        }
+    }
+
+    public static class CustomComparator_End implements Comparator<Interval> {
+        public int compare(Interval e1, Interval e2) {
+            return e1.end.compareTo(e2.end);
         }
     }
 }

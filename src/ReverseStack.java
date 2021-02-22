@@ -2,22 +2,20 @@ import java.util.Stack;
 
 public class ReverseStack {
 
-    static Stack<Object> stack = new Stack<>();
-
-    void reverse(Stack stack) {
+    void reverse(Stack<Integer> stack) {
         if (!stack.isEmpty()) {
-            Object e = stack.pop();
+            int e = stack.pop();
             reverse(stack);
-            insertAtBottom(e);
+            insertAtBottom(stack, e);
         }
     }
 
-    private void insertAtBottom(Object e) {
+    private void insertAtBottom(Stack<Integer> stack, int e) {
         if (stack.size() == 0) {
             stack.push(e);
         } else {
-            Object popped = stack.pop();
-            insertAtBottom(e);
+            int popped = stack.pop();
+            insertAtBottom(stack, e);
             stack.push(popped);
         }
     }

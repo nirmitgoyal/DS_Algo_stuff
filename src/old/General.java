@@ -769,7 +769,7 @@ class Scratch {
         if (l == r)
             return;
 
-        int mid = (l + r) >> 1;
+        int mid = (l + r) / 2;
 
         divide(l, mid);
         divide(mid + 1, r);

@@ -27,16 +27,15 @@ public class Sudoku { //4*4
             return sudoku(a, r, c + 1);
 
         // now we have empty cells(filled with -1)
-        for (int i = 1; i <= 4; i++) { //2. Check for all possibilities
-            if (check(a, r, c, i)) { //3. Check for validity
-                a[r][c] = i; //4. Do
+        for (int num = 1; num <= 4; num++)  //2. Check for all possibilities
+            if (check(a, r, c, num)) { //3. Check for validity
+                a[r][c] = num; //4. Do
 
                 if (sudoku(a, r, c + 1)) //5. Recurse to solve
                     return true;
 
                 a[r][c] = -1; //6. Undo: if current state can affect the prev state, then backtracking/undo is necessary
             }
-        }
 
         return false;
     }

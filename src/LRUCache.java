@@ -1,3 +1,5 @@
+import lombok.NoArgsConstructor;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,8 +13,8 @@ public class LRUCache {
         map = new HashMap<>();
 
         //2 dummy nodes
-        head = new Node(-1, -1);
-        tail = new Node(-1, -1);
+        head = new Node();
+        tail = new Node();
         head.next = tail;
         tail.prev = head;
     }
@@ -24,9 +26,8 @@ public class LRUCache {
             update(node);
 
             return node.value;
-        } else {
+        } else
             return -1;
-        }
     }
 
     void put(int key, int value) {
@@ -41,6 +42,7 @@ public class LRUCache {
                 remove(LRU);
                 map.remove(LRU.key);
             }
+
             Node node = new Node(key, value);
             map.put(key, node);
             add(node);
@@ -49,7 +51,7 @@ public class LRUCache {
 
     //////////////////////////////////////////////////////////////
     //make these methods first:
-    private void add(Node node) { //adds just after head
+    private void add(Node node) { //adds this node just after head
         Node next = head.next;
 
         head.next = node;
@@ -70,8 +72,9 @@ public class LRUCache {
         add(node);
     }
 
+    @NoArgsConstructor
     private class Node {
-        int key, value;
+        Integer key, value;
         Node prev, next;
 
         Node(int key, int value) {

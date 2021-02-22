@@ -1,21 +1,43 @@
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import static java.lang.Math.min;
-import static utils.Utils.isSafe;
 
 public class SumOfSquares {
 
-    int minElementsRequired(int[] list, int n) {//Assume, list always contains a 1
-        int[] cache = new int[n + 1];
-        for (int i = 0; i < cache.length; i++)
-            cache[i] = i;
+    Set<Integer> set = new HashSet<>(); //input
 
-        for (int i = 0; i < cache.length; i++) {
-            for (int element : list) {
-                int indexToFill = i + element;
-                if (isSafe(indexToFill, cache.length))
-                    cache[indexToFill] = min((cache[i] + 1), cache[indexToFill]);
-            }
-        }
+    int minElementsRequired(int number) {
+        if (number <= 0)
+            return 0;
+        if (set.contains(number))
+            return 1;
 
-        return cache[cache.length - 1];
+        int ans = 1;
+        for (int e : set)
+            ans = min(ans, minElementsRequired(number - e) + 1);
+
+        return ans;
     }
+
+    Map<Integer, Integer> cache;
+
+    int minElementsRequired2(int number) {
+        if (cache.containsKey(number))
+            return cache.get(number);
+
+        if (number <= 0)
+            return 0;
+        if (set.contains(number))
+            return 1;
+
+        int ans = 1;
+        for (int e : set)
+            ans = min(ans, minElementsRequired(number - e) + 1);
+
+        cache.put(number, ans);
+        return ans;
+    }
+
 }

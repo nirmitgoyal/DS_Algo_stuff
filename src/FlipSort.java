@@ -6,9 +6,7 @@ public class FlipSort {
         int n = a.length; //n will change
 
         while (n > 1) {
-            int maxIndex = maxIndex(a, n);
-
-            reverse(a, maxIndex);
+            reverse(a, maxIndex(a, n));
             reverse(a, n - 1);
 
             n--;
@@ -16,12 +14,14 @@ public class FlipSort {
     }
 
     private static int maxIndex(final int[] a, int n) {
-        int maxIndex = 0, max = a[0];
+        int
+                maxIndex = 0,
+                max = a[maxIndex];
 
         for (int i = 0; i < n; i++)
             if (a[i] > max) {
-                max = a[i];
                 maxIndex = i;
+                max = a[maxIndex];
             }
 
         return maxIndex;

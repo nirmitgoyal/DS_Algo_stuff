@@ -8,31 +8,30 @@ public class Mountain {
         String direction = "NONE";
 
         for (int i = 1; i < n; i++) {
-            if (direction == "NONE") {
+            if (direction == "NONE")
                 if (a[i] > a[i - 1]) {
                     direction = "UP";
                     continue;
+                } else {
+                    return false;
                 }
-            }
 
-            if (direction == "UP") {
+            if (direction == "UP")
                 if (a[i] > a[i - 1]) {
-                    direction = "UP";
                     continue;
-                }
-                if (a[i] < a[i - 1]) {
+                } else if (a[i] < a[i - 1]) {
                     direction = "DOWN";
                     continue;
+                } else {
+                    return false;
                 }
-            }
 
-            if (direction == "DOWN") {
+            if (direction == "DOWN")
                 if (a[i] < a[i - 1]) {
                     continue;
+                } else {
+                    return false;
                 }
-            }
-
-            return false;
         }
 
         return direction == "DOWN";
