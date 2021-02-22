@@ -83,16 +83,6 @@ endIndex :    exclusive.
 Do not care to use .indexOf() for checking if a string(text) contains another string(pattern)
 
 -------------------------------------------------------------------------------------------------------------------------
-* Iterate map:
-
-```
-map.forEach((key, value) -> {
-    sout(key + " " + value);
-});
-```
-        
-
--------------------------------------------------------------------------------------------------------------------------
 * LinkedList is doubly liked list(DLL)
 
 Deque can be used as both doubly liked list and doubly ended queue. ```Deque<Integer> deque = new LinkedList<>();```
@@ -150,14 +140,14 @@ If ```o1.compareTo(o2)``` >  0, it means o1 > o2
 ```
 String s1="9";
 String s2="172";
-s1.compareTo(s2); // = 8 (9 - 7 = 8)
+s1.compareTo(s2); // = 8 (9 - 1 = 8)
 
 String s1="317";
 String s2="172";
 s1.compareTo(s2); // = 2 +ve number shows s1 > s2. -ve number shows s1 < s2. The result is zero if the strings are equal
 ```
 
-Since Strings are compared lexicographically. 
+Since Strings are compared lexicographically **character-wise** 
 
 Fortunately, for same length integer strings, the order is normal as of integers. 
 

@@ -1,28 +1,16 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.Arrays;
 
 public class MakeTheLargestNumber {
 
-    String largestNumber(List<Integer> a) {
-        String result = "";
-        List<String> listOfDigits = new ArrayList<>();
-
+    String largestNumber(int[] a) {
+        String temp = "";
         for (int e : a)
-            listOfDigits.add(String.valueOf(e));
+            temp += e;
 
-        Collections.sort(listOfDigits, new CustomComparator());
+        char[] chars = temp.toCharArray();
 
-        for (String e : listOfDigits)
-            result += e;
+        Arrays.sort(chars);
 
-        return result;
-    }
-
-    static class CustomComparator implements Comparator<String> {
-        public int compare(String first, String second) {
-            return -first.compareTo(second);
-        }
+        return new StringBuilder(new String(chars)).reverse().toString();
     }
 }
