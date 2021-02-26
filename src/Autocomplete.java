@@ -8,15 +8,14 @@ import java.util.Map;
 import java.util.Stack;
 
 public class Autocomplete {
-
-    private static final Node ROOT = new Node();
+    static final Node ROOT = new Node();
+    List<String> result = new ArrayList<>();
 
     List<String> autocomplete(List<String> words, String prefix) {
-        List<String> result = new ArrayList<>();
-
         buildTrie(words);
 
         Node curr = ROOT;
+
         //Reach till the end of prefix
         for (char c : prefix.toCharArray()) {
             //check even if there is such a prefix in words or not
@@ -28,7 +27,7 @@ public class Autocomplete {
         //Reached till the end of prefix
 
         //do a DFS passing the node and prefix, and add to result if the node's isEndOfWord is true
-        dfs(curr, prefix, result);
+        dfs(curr, prefix);
 
         return result;
     }
@@ -41,28 +40,19 @@ public class Autocomplete {
             for (char c : word.toCharArray()) {
                 if (!curr.childs.containsKey(c))
                     curr.childs.put(c, new Node());
+
+                curr = curr.childs.get(c);
             }
 
             curr.isEndOfWord = true;
         }
     }
 
-    private void dfs(Node node, String prefix, List<String> result) {
+    private void dfs(Node node, String prefix) {
         if (node.isEndOfWord)
             result.add(prefix);
 
-        node.childs.forEach((c, currNode) ->
-                dfs(currNode, prefix + c, result));//maintaining 2 states: Node and prefix
-    }
-
-    public static class Node {
-        Map<Character, Node> childs;
-        boolean isEndOfWord;
-
-        Node() {
-            childs = new HashMap<>();
-            isEndOfWord = false;
-        }
+        node.childs.forEach((c, currNode) -> dfs(currNode, prefix + c));//maintaining 2 states: Node and prefix
     }
 
     private void dfsIterative(Node node, String prefix, List<String> result) {
@@ -79,6 +69,16 @@ public class Autocomplete {
 
             curr.childs.forEach((c, e) ->
                     stack.push(new State(e, currPrefix + c)));
+        }
+    }
+
+    public static class Node { //each Node of a trie is just a map of (char it contains)->Node
+        Map<Character, Node> childs;
+        boolean isEndOfWord;
+
+        Node() {
+            childs = new HashMap<>();
+            isEndOfWord = false;
         }
     }
 

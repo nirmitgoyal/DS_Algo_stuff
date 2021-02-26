@@ -14,16 +14,15 @@ public class GeneratePalindrome {
             map.put(c, (map.getOrDefault(c, 0) + 1));
 
         map.forEach((c, count) -> {
-            if (isEven(count)) {
+            if (isEven(count))
                 ans = append(ans, c, count / 2);//passed String does got change
-            } else {
+            else
                 if (oddChar != null) {
                     return "NOT_POSSIBLE";
                 } else {
                     oddChar = c;
                     ans = append(ans, c, count / 2);
                 }
-            }
         });
 
         return ans + oddChar + new StringBuilder(ans).reverse();

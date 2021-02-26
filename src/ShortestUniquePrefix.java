@@ -1,5 +1,3 @@
-import lombok.AllArgsConstructor;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,11 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 public class ShortestUniquePrefix {
-    static final Node ROOT = new Node(new HashMap<>(), 0);
+    static final Node ROOT = new Node();
+    static List<String> result = new ArrayList<>();
 
     static List<String> shortestUniquePrefixes(List<String> words) {
-        List<String> result = new ArrayList<>();
-
         buildTrie(words);
 
         for (String word : words)
@@ -27,9 +24,10 @@ public class ShortestUniquePrefix {
 
             for (char c : word.toCharArray()) {
                 if (!curr.childs.containsKey(c))
-                    curr.childs.put(c, new Node(new HashMap<>(), 1));
-                else
-                    curr.count++;
+                    curr.childs.put(c, new Node());
+
+                curr = curr.childs.get(c);
+                curr.count++;
             }
         }
     }
@@ -40,24 +38,27 @@ public class ShortestUniquePrefix {
 
         for (char c : word.toCharArray()) {
             shortestUniquePrefix += c;
+
             if (curr.count == 1)
-                return shortestUniquePrefix;
+                break;
 
             curr = curr.childs.get(c);
         }
 
-        //will never reach here
-        return null;
-    }
-
-    @AllArgsConstructor
-    static
-    class Node {
-        Map<Character, Node> childs;
-        int count;
+        return shortestUniquePrefix;
     }
 
     public static void main(String[] args) {
         System.out.println(shortestUniquePrefixes(Arrays.asList("zebra", "dog", "duck", "dove")));
+    }
+
+    static class Node {
+        Map<Character, Node> childs;
+        int count;
+
+        public Node() {
+            childs = new HashMap<>();
+            count = 0;
+        }
     }
 }

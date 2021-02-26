@@ -9,12 +9,9 @@ import java.util.Map;
 import static utils.Utils.isSafe;
 
 class SpiralTraverse {
-    public static final String RIGHT = "RIGHT";
-    public static final String DOWN = "DOWN";
-    public static final String LEFT = "LEFT";
-    public static final String UP = "UP";
+    static final String RIGHT = "RIGHT", DOWN = "DOWN",LEFT = "LEFT",UP = "UP";
 
-    public static final Map<String, String> NEXT_DIR = new HashMap<>();
+    static final Map<String, String> NEXT_DIR = new HashMap<>();
 
     private static void init() {
         NEXT_DIR.put(RIGHT, DOWN);
