@@ -2,8 +2,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static java.lang.Math.min;
-
 public class SumOfSquares {
 
     Set<Integer> set = new HashSet<>(); //input
@@ -16,14 +14,14 @@ public class SumOfSquares {
 
         int ans = 1;
         for (int e : set)
-            ans = min(ans, minElementsRequired(number - e) + 1);
+            ans = Math.min(ans, minElementsRequired(number - e) + 1);
 
         return ans;
     }
 
     Map<Integer, Integer> cache;
 
-    int minElementsRequired2(int number) {
+    int minElementsRequiredMemo(int number) {
         if (cache.containsKey(number))
             return cache.get(number);
 
@@ -34,7 +32,7 @@ public class SumOfSquares {
 
         int ans = 1;
         for (int e : set)
-            ans = min(ans, minElementsRequired(number - e) + 1);
+            ans = Math.min(ans, minElementsRequired(number - e) + 1);
 
         cache.put(number, ans);
         return ans;
