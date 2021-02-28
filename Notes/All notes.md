@@ -185,3 +185,6 @@ Java Streams are sequential by default. If we want parallel execution(it will au
 
 -------------------------------------------------------------------------------------------------------------------------
 Iterating over stack using enhanced for loop is O(n) and does not pops from the stack
+
+-------------------------------------------------------------------------------------------------------------------------
+map.clear(), list.clear() is T: n
