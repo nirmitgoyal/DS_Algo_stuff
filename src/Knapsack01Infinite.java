@@ -23,10 +23,10 @@ public class Knapsack01Infinite {
     Map<Integer, Integer> cache;
 
     int maxValueMemo(int W) {
-        if (cache.containsKey(W))
-            return cache.get(W);
         if (W == 0)
             return 0;
+        if (cache.containsKey(W))
+            return cache.get(W);
 
         int ans = 0;
         for (int i = 0; i < n; i++) {
