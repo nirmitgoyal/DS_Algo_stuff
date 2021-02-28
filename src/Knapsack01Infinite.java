@@ -1,6 +1,6 @@
 import java.util.Map;
 
-public class Knapsack01 {
+public class Knapsack01Infinite {
     int[] w, v;
     int n = w.length;
 
