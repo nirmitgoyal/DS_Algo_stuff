@@ -1,38 +1,55 @@
+import java.util.Map;
+
 public class Knapsack01Limited {
     int[] w, v;
 
     int maxValue(int W) {
         return maxValueHelper(W, w.length);
+//      return maxValueHelperMemo(W, w.length);
     }
 
     private int maxValueHelper(int W, int size) {
         if (W == 0 || size == 0)
             return 0;
 
-        int index = size - 1;
-        int weightPicked = w[index];
+        int
+                index = size - 1,
+                weightPicked = w[index],
+                ans;
+
         if (weightPicked <= W)
-            return Math.max(maxValueHelper(W - weightPicked, index) + v[index],
+            ans = Math.max(maxValueHelper(W - weightPicked, index) + v[index],
                     maxValueHelper(W, index));
         else
-            return maxValueHelper(W, index);
+            ans = maxValueHelper(W, index);
+
+        return ans;
     }
 
-    Integer[][] t = new Integer[10001][10001];//n+1, W+1
-
+    Map<String, Integer> cache;
     private int maxValueHelperMemo(int W, int size) {
         if (W == 0 || size == 0)
             return 0;
-        if (t[size][W] != null)
-            return t[size][W];
+        if (cache.containsKey(getKey(W,size)))
+            return cache.get(getKey(W,size));
 
-        int index = size - 1;
-        int weightPicked = w[index];
+        int
+                index = size - 1,
+                weightPicked = w[index],
+                ans;
+
         if (weightPicked <= W)
-            return t[size][W] = Math.max(maxValueHelper(W - weightPicked, index) + v[index],
+            ans = Math.max(maxValueHelper(W - weightPicked, index) + v[index],
                     maxValueHelper(W, index));
         else
-            return t[size][W] = maxValueHelper(W, index);
+            ans = maxValueHelper(W, index);
+
+        cache.put(getKey(W, size), ans);
+        return ans;
+    }
+
+    private String getKey(int W, int size) {
+        return W + " " + size;
     }
 
 }
