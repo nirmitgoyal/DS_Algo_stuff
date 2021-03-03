@@ -9,9 +9,6 @@ import static utils.Utils.isSafe;
 public class MaxIslandSizeWithMaxSameColors {
 
     int[][] m;
-    int[] newRows = new int[]{0, 1, 0, -1};
-    int[] newCols = new int[]{1, 0, -1, 0};
-
 
     int maxIslandSizeWithMaxSameColors() {
         if (m == null || m.length == 0)
@@ -39,6 +36,8 @@ public class MaxIslandSizeWithMaxSameColors {
         return ans;
     }
 
+    int[] newRows = new int[]{0, 1, 0, -1};
+    int[] newCols = new int[]{1, 0, -1, 0};
     private List<Cell> getNeighbours(Cell cell) {
         List<Cell> neighbours = new ArrayList<>();
 
