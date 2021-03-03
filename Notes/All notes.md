@@ -188,3 +188,8 @@ Iterating over stack using enhanced for loop is O(n) and does not pops from the 
 
 -------------------------------------------------------------------------------------------------------------------------
 map.clear(), list.clear() is T: n
+
+-------------------------------------------------------------------------------------------------------------------------
+Map can have array, list as key directly, since both of them have deep equals() method.
+
+Most of java's wrapper classes and array have deep equals()
