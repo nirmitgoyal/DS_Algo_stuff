@@ -11,17 +11,17 @@ public class ListOfSubarraysWithTargetSumK {
         List<Interval> result = new ArrayList<>();
 
         Map<Integer, Integer> map = new HashMap<>(); //prefixSum -> index
-        map.put(0, -1); // sum 0 found till index: -1
+        map.put(0, -1); // prefixSum 0 found till index: -1
 
-        int sum = 0;
+        int prefixSum = 0;
         for (int i = 0; i < n; i++) {
-            sum += a[i];
+            prefixSum += a[i];
 
-            int sumToFind = sum - targetSum;
+            int sumToFind = prefixSum - targetSum;
             if (map.containsKey(sumToFind))
-                result.add(new Interval((map.get(sumToFind) + 1), i));
+                result.add(new Interval((map.get(sumToFind) + 1), i)); //inclusive interval
 
-            map.put(sum, i);
+            map.put(prefixSum, i);
         }
 
         return result;

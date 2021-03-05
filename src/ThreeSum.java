@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ThreeSum {
-    List<Element> result = new ArrayList<>();
+    List<Indexes> result = new ArrayList<>();
 
     void threeSum(int[] a, int targetSum) {
         Arrays.sort(a);
@@ -23,7 +23,7 @@ public class ThreeSum {
             int sum = a[startIndex] + a[l] + a[r]; // a[startIndex] is always a fixed element
 
             if (sum == targetSum) {
-                result.add(new Element(a[startIndex], a[l], a[r]));
+                result.add(new Indexes(startIndex, l, r));
                 l++;
                 r--;
             } else if (sum < targetSum) {
@@ -36,7 +36,7 @@ public class ThreeSum {
 
     @AllArgsConstructor
     static
-    class Element {
-        int e1, e2, e3;
+    class Indexes {
+        int i1, i2, i3;
     }
 }
