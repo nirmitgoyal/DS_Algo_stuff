@@ -17,7 +17,7 @@ public class MaxIslandSizeWithMaxSameColors {
         int max = 0;
         for (int row = 0; row < rows; row++)
             for (int col = 0; col < cols; col++)
-                if (m[row][col] != -1) //if !visited
+                if (m[row][col] != -1) //if !visited (3 places at which visited is checked)
                     max = Math.max(max, DFS(new Cell(row, col)));
 
         return max;
@@ -28,8 +28,8 @@ public class MaxIslandSizeWithMaxSameColors {
             return 0;
 
         m[cell.row][cell.col] = -1; //visit
-
         int ans = 1;
+
         for (Cell neighbour : getNeighbours(cell))
             ans += DFS(neighbour);
 
@@ -46,6 +46,7 @@ public class MaxIslandSizeWithMaxSameColors {
             int newCol = cell.col + newCols[i];
 
             if (isSafe(newRow, rows) && isSafe(newCol, cols)
+                    && m[newRow][newCol] != -1 //if !visited //keep this code
                     && m[newRow][newCol] == m[cell.row][cell.col]) //logic
                 neighbours.add(new Cell(newRow, newCol));
         }
