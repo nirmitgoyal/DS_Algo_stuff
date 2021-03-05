@@ -1,8 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
 
-import static java.lang.Math.max;
-
 public class LongestSubStringWith0RepeatingChar {
 
     int longestSubStringWith0RepeatingChar(String s) {
@@ -18,10 +16,12 @@ public class LongestSubStringWith0RepeatingChar {
         for (int i = 0; i < n; i++) {
             char c = s.charAt(i);
 
-            if (map.containsKey(c) && (map.get(c) >= nextStartIndex)) //map.get(c) >= nextStartIndex, since we are not cleaning the map
+            if (map.containsKey(c)) {
                 nextStartIndex = map.get(c) + 1;
+                map.remove(c);
+            }
 
-            maxLength = max(maxLength, i - nextStartIndex + 1);
+            maxLength = Math.max(maxLength, (i - nextStartIndex) + 1);
 
             map.put(c, i);
         }
