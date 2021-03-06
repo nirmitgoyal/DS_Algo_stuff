@@ -41,7 +41,7 @@ class SpiralTraverse {
             result.add(currentCell);
 
             //mark as visited
-            m[currentCell.row][currentCell.col] = null;
+            m[currentCell.r][currentCell.c] = null;
 
             CellWithNextDir cellWithNextDir = getNextCellAndDir(m, currentCell, currentDir);
 
@@ -59,8 +59,8 @@ class SpiralTraverse {
                 rows = m.length,
                 cols = m[0].length;
         int
-                r = currentCell.row,
-                c = currentCell.col;
+                r = currentCell.r,
+                c = currentCell.c;
 
         if (currentDir == RIGHT) {
             int nextC = c + 1;

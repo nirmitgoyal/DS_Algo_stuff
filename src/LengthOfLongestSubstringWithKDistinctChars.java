@@ -4,7 +4,7 @@ import java.util.Map;
 public class LengthOfLongestSubstringWithKDistinctChars {
 
     public int lengthOfLongestSubstringKDistinct(char[] s, int k) {
-        Map<Character, Integer> map = new LinkedHashMap<>();//char->rightMostIndex
+        Map<Character, Integer> map = new LinkedHashMap<>();//char->latestIndex
         int
                 nextStartIndex = 0,
                 maxLength = 1;

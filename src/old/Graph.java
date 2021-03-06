@@ -174,7 +174,7 @@ public class Graph {
     int minCostPath(Node node) {
         int min = MAX_VALUE;
 //        Use a LinkedHashMap to keep the order intact.
-        Map<String, Node> map = new LinkedHashMap<>();//"row"+"-"+"col"
+        Map<String, Node> map = new LinkedHashMap<>();//"r"+"-"+"c"
         map.put(String.valueOf(node.row) + "-" + String.valueOf(node.col), node);
 
         while (!map.isEmpty()) {

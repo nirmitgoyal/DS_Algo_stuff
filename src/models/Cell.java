@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Cell {
-    public int row, col;
+    public int r, c;
 }

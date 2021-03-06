@@ -24,10 +24,10 @@ public class MaxIslandSizeWithMaxSameColors {
     }
 
     private int DFS(Cell cell) {
-        if (m[cell.row][cell.col] == -1) //if visited
+        if (m[cell.r][cell.c] == -1) //if visited
             return 0;
 
-        m[cell.row][cell.col] = -1; //visit
+        m[cell.r][cell.c] = -1; //visit
         int ans = 1;
 
         for (Cell neighbour : getNeighbours(cell))
@@ -42,12 +42,12 @@ public class MaxIslandSizeWithMaxSameColors {
         List<Cell> neighbours = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
-            int newRow = cell.row + newRows[i];
-            int newCol = cell.col + newCols[i];
+            int newRow = cell.r + newRows[i];
+            int newCol = cell.c + newCols[i];
 
             if (isSafe(newRow, rows) && isSafe(newCol, cols)
-                    && m[newRow][newCol] != -1 //if !visited //keep this code
-                    && m[newRow][newCol] == m[cell.row][cell.col]) //logic
+                    //&& m[newRow][newCol] != -1 //if !visited //do NOT keep this code
+                    && m[newRow][newCol] == m[cell.r][cell.c]) //logic
                 neighbours.add(new Cell(newRow, newCol));
         }
 
@@ -56,16 +56,16 @@ public class MaxIslandSizeWithMaxSameColors {
 
     int DFSIterative(Cell cell) {
         Stack<Cell> stack = new Stack<>();
-        stack.push(new Cell(cell.row, cell.col));//1. Push 1st element
+        stack.push(new Cell(cell.r, cell.c));//1. Push 1st element
 
         int ans = 0;
         while (!stack.isEmpty()) { //2. Iterate till stack is not empty
             Cell curr = stack.pop();
 
-            if (m[curr.row][curr.col] == -1) //if visited
+            if (m[curr.r][curr.c] == -1) //if visited
                 continue;
 
-            m[curr.row][curr.col] = -1; //visit
+            m[curr.r][curr.c] = -1; //visit
             ans++;
 
             for (Cell neighbour : getNeighbours(curr))

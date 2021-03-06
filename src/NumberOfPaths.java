@@ -22,7 +22,7 @@ class NumberOfPaths {
         //initial index
         numOfPaths[0][0] = 1;
 
-        //1st row
+        //1st r
         for (int c = 1; c < cols; c++) {
             if (a[0][c] == VALID)
                 numOfPaths[0][c] += numOfPaths[0][c - 1];
@@ -30,7 +30,7 @@ class NumberOfPaths {
                 break;
         }
 
-        //1st col
+        //1st c
         for (int r = 1; r < rows; r++) {
             if (a[r][0] == VALID)
                 numOfPaths[r][0] += numOfPaths[r - 1][0];
@@ -38,7 +38,7 @@ class NumberOfPaths {
                 break;
         }
 
-        //from 2nd row, 2nd col
+        //from 2nd r, 2nd c
         for (int r = 1; r < rows; r++)
             for (int c = 1; c < cols; c++)
                 if (a[r][c] == VALID)
@@ -82,24 +82,24 @@ class NumberOfPaths {
         List<Cell> neighbours = new ArrayList<>();
 
         //right
-        Cell right = new Cell(node.row, node.col + 1);
-        if (isSafe(right) && a[right.row][right.col] == VALID)
+        Cell right = new Cell(node.r, node.c + 1);
+        if (isSafe(right) && a[right.r][right.c] == VALID)
             neighbours.add(right);
 
         //down
-        Cell down = new Cell(node.row + 1, node.col);
-        if (isSafe(down) && a[down.row][down.col] == VALID)
+        Cell down = new Cell(node.r + 1, node.c);
+        if (isSafe(down) && a[down.r][down.c] == VALID)
             neighbours.add(down);
 
         return neighbours;
     }
 
     private static boolean isDestination(Cell cell) {
-        return cell.row == rows - 1 && cell.col == cols - 1;
+        return cell.r == rows - 1 && cell.c == cols - 1;
     }
 
     private static boolean isSafe(Cell cell) {
-        return cell.col >= 0 && cell.col < cols && cell.row >= 0 && cell.row < rows;
+        return cell.c >= 0 && cell.c < cols && cell.r >= 0 && cell.r < rows;
     }
 
     public static void main(String[] args) {
