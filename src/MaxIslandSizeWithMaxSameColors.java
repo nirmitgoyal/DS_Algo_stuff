@@ -9,15 +9,18 @@ import static utils.Utils.isSafe;
 public class MaxIslandSizeWithMaxSameColors {
 
     int[][] m;
+    int rows=m.length;
+    int cols=m[0].length;
 
     int maxIslandSizeWithMaxSameColors() {
         if (m == null || m.length == 0)
             return 0;
 
+        //
         int max = 0;
         for (int row = 0; row < rows; row++)
             for (int col = 0; col < cols; col++)
-                if (m[row][col] != -1) //if !visited (3 places at which visited is checked)
+                if (m[row][col] != -1) //if !visited 2 places at which visited is checked)
                     max = Math.max(max, DFS(new Cell(row, col)));
 
         return max;
@@ -42,13 +45,13 @@ public class MaxIslandSizeWithMaxSameColors {
         List<Cell> neighbours = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
-            int newRow = cell.r + newRows[i];
-            int newCol = cell.c + newCols[i];
+            int newR = cell.r + newRows[i];
+            int newC = cell.c + newCols[i];
 
-            if (isSafe(newRow, rows) && isSafe(newCol, cols)
-                    //&& m[newRow][newCol] != -1 //if !visited //do NOT keep this code
-                    && m[newRow][newCol] == m[cell.r][cell.c]) //logic
-                neighbours.add(new Cell(newRow, newCol));
+            if (isSafe(newR, rows) && isSafe(newC, cols)
+                    //&& m[newR][newC] != -1 //if !visited //do NOT keep this code
+                    && m[newR][newC] == m[cell.r][cell.c]) //logic
+                neighbours.add(new Cell(newR, newC));
         }
 
         return neighbours;
@@ -59,7 +62,7 @@ public class MaxIslandSizeWithMaxSameColors {
         stack.push(new Cell(cell.r, cell.c));//1. Push 1st element
 
         int ans = 0;
-        while (!stack.isEmpty()) { //2. Iterate till stack is not empty
+            while (!stack.isEmpty()) { //2. Iterate till stack is not empty
             Cell curr = stack.pop();
 
             if (m[curr.r][curr.c] == -1) //if visited

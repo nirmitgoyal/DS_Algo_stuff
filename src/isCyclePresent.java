@@ -8,7 +8,7 @@ public class isCyclePresent {
     Map<Integer, List<Integer>> g;
 
     Set<Integer> visited = new HashSet<>();
-    Map<Integer,Boolean> cache = new HashMap<>();
+    Map<Integer, Boolean> cache = new HashMap<>();
 
     boolean isCyclePresent(int[] nodes) {
         int n = nodes.length;
@@ -20,15 +20,17 @@ public class isCyclePresent {
     }
 
     private boolean DFS(int node) {//become overall O(n^2) with this old approach
-        if (visited.contains(node))
+        if (visited.contains(node)) //if visited
             return true;
-        visited.add(node);
+
+        visited.add(node); //visit
 
         for (int neighbour : getNeighbours(node))
             if (DFS(neighbour))
                 return true;
-        
-        visited.remove(node);
+
+        visited.remove(node); //unvisit
+
         return false;
     }
 
@@ -46,7 +48,7 @@ public class isCyclePresent {
                 hasCycle = true;
                 break;
             }
-        
+
         visited.remove(node);
         cache.put(node, hasCycle);//for optimization
         return hasCycle;
