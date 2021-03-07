@@ -32,6 +32,35 @@ public class NestedListWeightSum {
         return sum;
     }
 
+    //    https://leetcode.com/problems/nested-list-weight-sum-ii
+    int nestedListWeightSumReverse(List<NestedInteger> nestedList) {
+        int sum = 0;
+        int prevSum = 0;
+
+        Queue<NestedInteger> q = new LinkedList<>();
+        q.addAll(nestedList);
+
+        while (true) {
+            int count = q.size();
+
+            if (count == 0)
+                break;
+
+            int levelSum = 0;
+            for (int times = 0; times < count; times++) {
+                NestedInteger e = q.poll();
+                if (e.isInteger())
+                    levelSum += e.getInteger() * d;
+                else
+                    q.addAll(e.getList());
+            }
+
+            prevSum += levelSum;
+            sum += prevSum;
+        }
+
+        return sum;
+    }
 
     // This is the interface that allows for creating nested lists.
     // You should not implement it, or speculate about its implementation
