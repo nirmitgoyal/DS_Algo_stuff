@@ -49,7 +49,7 @@ public class Knapsack01Limited {
     }
 
     private String getKey(int W, int size) {
-        return W + " " + size;
+        return W + "_" + size;
     }
 
 }
