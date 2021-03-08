@@ -12,11 +12,11 @@ https://www.youtube.com/watch?v=t0Cq6tVNRBA
 https://stackoverflow.com/questions/14165325/is-there-a-heap-in-java
 
 
-```PriorityQueue<Integer> minHeap = new PriorityQueue<>(); //internally it's an array for java too```
+```Queue<Integer> minHeap = new PriorityQueue<>(); //internally it's an array for java too```
 
 Max heap using pq:
 
-```PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());```
+```Queue<Integer> maxHeap = new PriorityQueue<>(Comparator.reverseOrder());```
 
 * Height of a heap = log(n)
 * LOT of heap does NOT gives a sorted array
@@ -40,6 +40,14 @@ O(n) //in the 2nd case n is the new size
 
 This complexity is bcoz inserting every node takes O(h) time and h increases very slowly and due to analysis,
 this comes to be the asymptomatic Top K Frequent Elements complexity
+
+* Heapify manually
+
+```
+if(!q.isEmpty()) {
+    q.add(q.remove());
+}
+```
 
 -------------------------------------------------------------------------------------------------------------------------
 * log A + log B = log AB
@@ -93,6 +101,8 @@ It has functions like ```addFirst(3), addLast(3), peekFirst(), peekLast(), pollF
 
 2. If you want to keep track of each node in DLL, create your custom DLL, so that you can use map to store each node. (Apart from this usecase even, it's better to create custom DLL, otherwise you will have to remember methods lik: ```dll.listIterator().previous()```)
 
+3. https://stackoverflow.com/questions/46817180/dequeue-an-element-from-a-specific-index
+
 -------------------------------------------------------------------------------------------------------------------------
 * total number of sub-arrays in an array: O(n^2) = O(n*n)
 * total number of sub-sets in an array: O(2^n)
@@ -117,7 +127,7 @@ LinkedList<Integer> linkedList = new LinkedList<>();
 Queue<Integer> q = new LinkedList<>();
 Deque<Integer> dq = new LinkedList<>();
 
-PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+Queue<Integer> minHeap = new PriorityQueue<>();
 Stack<Integer> stack = new Stack<>();
 ```
 
@@ -193,3 +203,25 @@ map.clear(), list.clear() is T: n
 Map can have array, list as key directly, since both of them have deep equals() method.
 
 Most of java's wrapper classes and array have deep equals()
+
+-------------------------------------------------------------------------------------------------------------------------
+Enhanced for oop can be used to iterate:
+
+Stack
+
+Set
+
+Queue
+
+!HashMap
+
+etc
+
+-------------------------------------------------------------------------------------------------------------------------
+TreeMap, TreeSet is as BBST(balanced-BST)
+
+Complexities: containsKey, get, put, remove, firstKey, lastEntry: logn
+keySet() returns a Set in sorted order
+
+-------------------------------------------------------------------------------------------------------------------------
+RBT = BBST

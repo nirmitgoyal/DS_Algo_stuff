@@ -8,9 +8,14 @@ import java.util.Map;
 
 import static utils.Utils.isSafe;
 
-class SpiralTraverse {
-    static final String RIGHT = "RIGHT", DOWN = "DOWN",LEFT = "LEFT",UP = "UP";
+@AllArgsConstructor
+class MovingCell {
+    Cell cell;
+    String dir;
+}
 
+class SpiralTraverse {
+    static final String RIGHT = "RIGHT", DOWN = "DOWN", LEFT = "LEFT", UP = "UP";
     static final Map<String, String> NEXT_DIR = new HashMap<>();
 
     private static void init() {
@@ -20,13 +25,12 @@ class SpiralTraverse {
         NEXT_DIR.put(UP, RIGHT);
     }
 
-    static List<Cell> spiralTraverse(Integer[][] m) {
+    public static List<Cell> spiralTraverse(Integer[][] m) {
         init();
         List<Cell> result = new ArrayList<>();
 
-        if (m == null || m.length == 0) {
+        if (m == null || m.length == 0)
             return result;
-        }
 
         int
                 rows = m.length,
@@ -34,19 +38,15 @@ class SpiralTraverse {
 
         //main starting:
         int visitsRemaining = rows * cols;
-        Cell currentCell = new Cell(0, 0);
-        String currentDir = RIGHT;
+        MovingCell currentMovingCell=new MovingCell(new Cell(0, 0),RIGHT);
 
         while (visitsRemaining > 0) {
-            result.add(currentCell);
+            result.add(currentMovingCell.cell);
 
             //mark as visited
-            m[currentCell.r][currentCell.c] = null;
+            m[currentMovingCell.cell.r][currentMovingCell.cell.c] = null;
 
-            CellWithNextDir cellWithNextDir = getNextCellAndDir(m, currentCell, currentDir);
-
-            currentCell = cellWithNextDir.cell;
-            currentDir = cellWithNextDir.dir;
+            currentMovingCell = getNextCellAndDir(m, currentMovingCell);
 
             visitsRemaining--;
         }
@@ -54,49 +54,46 @@ class SpiralTraverse {
         return result;
     }
 
-    private static CellWithNextDir getNextCellAndDir(Integer[][] m, Cell currentCell, String currentDir) {
+    private static MovingCell getNextCellAndDir(Integer[][] m, MovingCell currentMovingCell) {
         int
                 rows = m.length,
                 cols = m[0].length;
+
+        //
         int
-                r = currentCell.r,
-                c = currentCell.c;
+                currR = currentMovingCell.cell.r,
+                currC = currentMovingCell.cell.c;
+        String currentDir= currentMovingCell.dir;
 
         if (currentDir == RIGHT) {
-            int nextC = c + 1;
+            int nextC = currC + 1;
 
-            if (isSafe(nextC, cols) && m[r][nextC] != null)
-                return new CellWithNextDir(new Cell(r, nextC), currentDir);
+            if (isSafe(nextC, cols) && m[currR][nextC] != null)
+                return new MovingCell(new Cell(currR, nextC), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
         if (currentDir == DOWN) {
-            int nextR = r + 1;
-            if (isSafe(nextR, rows) && m[nextR][c] != null)
-                return new CellWithNextDir(new Cell(nextR, c), currentDir);
+            int nextR = currR + 1;
+            if (isSafe(nextR, rows) && m[nextR][currC] != null)
+                return new MovingCell(new Cell(nextR, currC), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
         if (currentDir == LEFT) {
-            int nextC = c - 1;
-            if (isSafe(nextC, cols) && m[r][nextC] != null)
-                return new CellWithNextDir(new Cell(r, nextC), currentDir);
+            int nextC = currC - 1;
+            if (isSafe(nextC, cols) && m[currR][nextC] != null)
+                return new MovingCell(new Cell(currR, nextC), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
         if (currentDir == UP) {
-            int nextR = r - 1;
-            if (isSafe(nextR, rows) && m[nextR][c] != null)
-                return new CellWithNextDir(new Cell(nextR, c), currentDir);
+            int nextR = currR - 1;
+            if (isSafe(nextR, rows) && m[nextR][currC] != null)
+                return new MovingCell(new Cell(nextR, currC), currentDir);
         }
 
-        return new CellWithNextDir(new Cell(r, c + 1), NEXT_DIR.get(currentDir));
-    }
-
-    @AllArgsConstructor
-    private static class CellWithNextDir {
-        Cell cell;
-        String dir;
+        return new MovingCell(new Cell(currR, currC + 1), NEXT_DIR.get(currentDir));
     }
 
     public static void main(String[] args) {
