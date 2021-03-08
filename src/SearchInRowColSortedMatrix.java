@@ -3,18 +3,22 @@ import models.Cell;
 public class SearchInRowColSortedMatrix {
 
     Cell searchInRowColSortedMatrix(int[][] a, int target) {
-        int row = 0, col = cols - 1;
+        int r = 0, c = cols - 1;
 
-        while (row < rows && col >= 0) {
-            if (target == a[row][col])
-                return new Cell(row, col);
+        while (r < rows && c >= 0) {
+            int curr = a[r][c];
 
-            if (target > a[row][col])
-                row++;
+            if (target == curr)
+                return new Cell(r, c);
+
+            if (target > curr)
+                r++;
             else
-                col--;
+                c--;
         }
 
         return new Cell(-1, -1);
     }
+
+
 }
