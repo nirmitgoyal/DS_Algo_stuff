@@ -62,17 +62,18 @@ public class MaxIslandSizeWithMaxSameColors {
         stack.push(new Cell(cell.r, cell.c));//1. Push 1st element
 
         int ans = 0;
-            while (!stack.isEmpty()) { //2. Iterate till stack is not empty
+        while (!stack.isEmpty()) { //2. Iterate till stack is not empty
             Cell curr = stack.pop();
 
             if (m[curr.r][curr.c] == -1) //if visited
                 continue;
 
             m[curr.r][curr.c] = -1; //visit
+
             ans++;
 
             for (Cell neighbour : getNeighbours(curr))
-                stack.push(neighbour);//3. Push in stack if a neighbour
+                stack.push(neighbour); //3. Push all the neighbours in the stack
         }
 
         return ans;
