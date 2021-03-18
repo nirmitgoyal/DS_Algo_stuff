@@ -5,15 +5,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class isCyclePresent {
-    Map<Integer, List<Integer>> g;
+    Map<Integer, List<Integer>> g=new HashMap<>();
 
     Set<Integer> visited = new HashSet<>();
 
     boolean isCyclePresent(int[] nodes) {
-        int n = nodes.length;
-
-        for (int i = 0; i < n; i++)
-            if (DFS(i))
+        for (int node: nodes)
+            if (DFS(node))
                 return true;
 
         return false;
@@ -51,32 +49,38 @@ public class isCyclePresent {
             }
 
         visited.remove(node);
+
         cache.put(node, hasCycle);//for optimization
         return hasCycle;
     }
 
-    private boolean DFSUnDirected(int node, int parentNode) {
+    private boolean DFSUnDirectedWithCache(int node, int parentNode) {
         if (cache.containsKey(node))
             return cache.get(node);
 
-        if (visited.contains(node))
+        if (visited.contains(node)&& node != parentNode)
             return true;
         visited.add(node);
 
         boolean hasCycle = false;
         for (int currNode : getNeighbours(node)) {
-            if (DFSUnDirected(currNode, node) && currNode != parentNode) {
+            if (DFSUnDirectedWithCache(currNode, node) && currNode != parentNode) {
                 hasCycle = true;
                 break;
             }
         }
+
+        visited.remove(node);
+
         cache.put(node, hasCycle);
         return hasCycle;
     }
 
-
     private Integer[] getNeighbours(int node) {
         List<Integer> list = g.get(node);
+
+        if (list == null || list.isEmpty())
+            return new Integer[0];
 
         Integer[] a = new Integer[list.size()];
         return list.toArray(a);
