@@ -1,9 +1,9 @@
 import models.Node;
 
-import static java.lang.Integer.MIN_VALUE;
+import static java.lang.Math.max;
 
 public class MaxSumPathWithLeaves {
-    int RESULT = MIN_VALUE; //this will be the result
+    int RESULT = 0; //this will be the result
 
     int maxSumPathWithLeaves(Node me) {
         //base(can be multiple)
@@ -15,9 +15,9 @@ public class MaxSumPathWithLeaves {
         int rightResult = maxSumPathWithLeaves(me.R);
 
         //induction
-        int temp = < Math.max(leftResult, rightResult) + me.data > // max of left & right, coz we'll either take left path or right path;
+        int temp = < max(leftResult, rightResult) + me.data > // max of left & right, coz we'll either take left path or right path;
         int ans = leftResult + rightResult + me.data; //not max / min / etc(<>, temp)
-        RESULT = Math.max(RESULT, ans);
+        RESULT = max(RESULT, ans);
 
         return temp;
     }

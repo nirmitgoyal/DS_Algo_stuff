@@ -21,8 +21,9 @@ public class GenerateAllBSTsFrom1Ton {
         List<Node> bsts = new ArrayList<>();
 
         for (int n : numbers) {
-            List<Integer> lefts = new ArrayList<>();
-            List<Integer> rights = new ArrayList<>();
+            List<Integer>
+                    lefts = new ArrayList<>(),
+                    rights = new ArrayList<>();
 
             for (int i = 0; i <= n; i++)
                 lefts.add(numbers.get(i));

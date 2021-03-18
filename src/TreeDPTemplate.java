@@ -11,12 +11,12 @@ public class TreeDPTemplate {
             return 0;
 
         //hypothesis
-        int leftResult = fun(me.L);
-        int rightResult = fun(me.R);
+        int lResult = fun(me.L);
+        int rResult = fun(me.R);
 
         //induction
         int temp = <>; //relation if i am NOT the root node for the result
-        int ans = max / min / etc(temp, <>); //relation if i am the root node for the result
+        int ans = max / min / etc(temp, <>); //relation if i am the root node for the result && including left & right result
         RESULT = max / min / etc(RESULT, ans);
 
         return temp;

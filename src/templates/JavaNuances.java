@@ -43,4 +43,8 @@ public class JavaNuances {
         String first = map.keySet().iterator().next();
         String last = String.valueOf(map.keySet().toArray()[map.size() - 1]);
     }
+
+    void reverseArray(){
+        //create a new array and copy elements from the end
+    }
 }

@@ -8,12 +8,12 @@ public class isCyclePresent {
     Map<Integer, List<Integer>> g;
 
     Set<Integer> visited = new HashSet<>();
-    Map<Integer, Boolean> cache = new HashMap<>();
 
     boolean isCyclePresent(int[] nodes) {
         int n = nodes.length;
+
         for (int i = 0; i < n; i++)
-            if (DFSWithCache(i))
+            if (DFS(i))
                 return true;
 
         return false;
@@ -29,11 +29,12 @@ public class isCyclePresent {
             if (DFS(neighbour))
                 return true;
 
-        visited.remove(node); //unvisit
+        visited.remove(node); //UNVISIT
 
         return false;
     }
 
+    Map<Integer, Boolean> cache = new HashMap<>();
     private boolean DFSWithCache(int node) {//overall O(n) with this approach
         if (cache.containsKey(node))//for optimization
             return cache.get(node);
@@ -58,9 +59,9 @@ public class isCyclePresent {
         if (cache.containsKey(node))
             return cache.get(node);
 
-        if (visited.containsKey(node) && visited.get(node))
+        if (visited.contains(node))
             return true;
-        visited.put(node, true);
+        visited.add(node);
 
         boolean hasCycle = false;
         for (int currNode : getNeighbours(node)) {

@@ -55,7 +55,7 @@ public class Autocomplete {
         node.childs.forEach((c, currNode) -> dfs(currNode, prefix + c));//maintaining 2 states: Node and prefix
     }
 
-    private void dfsIterative(Node node, String prefix, List<String> result) {
+    private void dfsIterative(Node node, String prefix) {
         Stack<State> stack = new Stack<>();
         stack.push(new State(node, prefix));
 
@@ -67,8 +67,7 @@ public class Autocomplete {
             if (curr.isEndOfWord)
                 result.add(currPrefix);
 
-            curr.childs.forEach((c, e) ->
-                    stack.push(new State(e, currPrefix + c)));
+            curr.childs.forEach((c, e) -> stack.push(new State(e, currPrefix + c)));
         }
     }
 
