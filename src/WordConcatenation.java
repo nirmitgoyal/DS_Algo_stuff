@@ -60,7 +60,7 @@ public class WordConcatenation {
 
         int
                 n = word.length(),
-                result = MAX_VALUE;
+                result = MAX_VALUE; //
         for (int i = 1; i < n; i++) {
             String prefix = word.substring(0, i);
             String suffix = word.substring(i, n);
@@ -71,16 +71,13 @@ public class WordConcatenation {
 //                System.out.println("count = " + count);
 //                System.out.println();
                 result = count;
-            } else {
-                int suffixCount = minBreaksHelper(suffix, count + 1);
-                if (set.contains(prefix) && suffixCount != MAX_VALUE) {
+            } else if (set.contains(prefix) && minBreaksHelper(suffix, count + 1) != MAX_VALUE) {
 //                    System.out.println("prefix = " + prefix);
 //                    System.out.println("suffix = " + suffix);
 //                    System.out.println("count = " + count);
 //                    System.out.println("suffixCount = " + suffixCount);
 //                    System.out.println();
-                    result = Math.min(result, count + suffixCount);
-                }
+                result = Math.min(result, count + minBreaksHelper(suffix, count + 1));
             }
         }
 
