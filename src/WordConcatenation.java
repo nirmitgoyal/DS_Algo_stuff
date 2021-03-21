@@ -1,22 +1,23 @@
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import static java.lang.Integer.MAX_VALUE;
 
 public class WordConcatenation {
-    Set<String> set; //set of words //input
+    Set<String> set=new HashSet<>(); //set of words //input
 
     Map<String, Boolean> cache = new HashMap<>();
 
     boolean canForm(String word) {
         int n = word.length();
-        for (int i = 1; i < n; i++) { //since i is non-inclusive in substring()
+        for (int i = 1; i < n; i++) { //from 1, since i is non-inclusive in substring()
             String prefix = word.substring(0, i);
             String suffix = word.substring(i, n);
 
             if (set.contains(prefix)
-                    && (set.contains(suffix) || canForm(suffix))) //recurse
+            && (set.contains(suffix) || canForm(suffix))) //recurse
                 return true;
         }
 
@@ -33,7 +34,7 @@ public class WordConcatenation {
             String suffix = word.substring(i, n);
 
             if (set.contains(prefix)
-                    && (set.contains(suffix) || canForm2(suffix))) {
+            && (set.contains(suffix) || canForm2(suffix))) {
                 cache.put(word, true);
                 return true;
             }
@@ -56,12 +57,14 @@ public class WordConcatenation {
         if (cache2.containsKey(word))
             return cache2.get(word);
 
-        int n = word.length(), result = MAX_VALUE;
-        for (int i = 1; i < n; i++) { //since i is non-inclusive in substring()
+        int
+                n = word.length(),
+                result = MAX_VALUE;
+        for (int i = 1; i < n; i++) {
             String prefix = word.substring(0, i);
             String suffix = word.substring(i, n);
 
-            if (set.contains(prefix) && (set.contains(suffix))) {
+            if (set.contains(prefix) && set.contains(suffix)) {
 //                System.out.println("prefix = " + prefix);
 //                System.out.println("suffix = " + suffix);
 //                System.out.println("count = " + count);
@@ -75,7 +78,7 @@ public class WordConcatenation {
 //                    System.out.println("count = " + count);
 //                    System.out.println("suffixCount = " + suffixCount);
 //                    System.out.println();
-                    result = Math.min(count + suffixCount, result);
+                    result = Math.min(result, count + suffixCount);
                 }
             }
         }

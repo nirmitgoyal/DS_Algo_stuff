@@ -26,7 +26,7 @@ public class GraphBFS_or_TreeIterativeLevel {
             level++;
 
             for (int times = 0; times < count; times++) {
-                Node node = q.poll();
+                Node node = q.poll(); //poll here
 
                 if (node.L != null)
                     q.add(node.L);

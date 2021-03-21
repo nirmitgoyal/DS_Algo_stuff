@@ -11,6 +11,7 @@ public class Knapsack01Infinite {
         int ans = 0;
         for (int i = 0; i < n; i++) {
             int weightPicked = w[i];
+
             if (weightPicked <= W) {
                 int _1PossibleAns = maxValue(W - weightPicked) + v[i];
                 ans = Math.max(ans, _1PossibleAns);
@@ -31,6 +32,7 @@ public class Knapsack01Infinite {
         int ans = 0;
         for (int i = 0; i < n; i++) {
             int weightPicked = w[i];
+
             if (weightPicked <= W) {
                 int _1PossibleAns = maxValue(W - weightPicked) + v[i];
                 ans = Math.max(ans, _1PossibleAns);

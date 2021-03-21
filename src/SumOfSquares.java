@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class SumOfSquares {
 
-    Set<Integer> set = new HashSet<>(); //input
+    Set<Integer> set = new HashSet<>(); //input:: elements from which we can make number
 
     int minElementsRequired(int number) {
         if (number <= 0)

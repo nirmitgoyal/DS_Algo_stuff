@@ -1,6 +1,6 @@
 public class IsNonDecreasingArray {
 
-    boolean isNonDecreasingArrayGreedy(int[] a) {
+    boolean isNonDecreasingArrayGreedy(int[] a,int k) {
         int count = 0; //the number of changes
 
         for (int i = 1; i < n; i++) {
@@ -10,14 +10,14 @@ public class IsNonDecreasingArray {
             if (a[i] < a[prevIndex]) {
                 count++;
 
-                if ((prevPrevIndex < 0) || a[prevPrevIndex] <= a[i]) //modify a[prevIndex] on priority
+                if (!isSafe(prevPrevIndex) || a[i] >= a[prevPrevIndex]) //modify a[prevIndex] on priority
                     a[prevIndex] = a[i];
                 else
                     a[i] = a[prevIndex]; //have to modify a[i]
             }
         }
 
-        return count <= 1;
+        return count <= k;
     }
 
     /**
