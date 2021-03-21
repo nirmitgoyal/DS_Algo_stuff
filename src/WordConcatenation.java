@@ -8,7 +8,7 @@ import static java.lang.Integer.MAX_VALUE;
 public class WordConcatenation {
     Set<String> set=new HashSet<>(); //set of words //input
 
-    Map<String, Boolean> cache = new HashMap<>();
+    Set<String> cache = new HashSet<>();
 
     boolean canForm(String word) {
         int n = word.length();
@@ -16,8 +16,8 @@ public class WordConcatenation {
             String prefix = word.substring(0, i);
             String suffix = word.substring(i, n);
 
-            if (set.contains(prefix)
-            && (set.contains(suffix) || canForm(suffix))) //recurse
+            if ((set.contains(prefix) && set.contains(suffix))
+             || (set.contains(prefix) || canForm(suffix))) //recurse
                 return true;
         }
 
@@ -25,7 +25,7 @@ public class WordConcatenation {
     }
 
     boolean canForm2(String word) {
-        if (cache.containsKey(word))
+        if (cache.contains(word))
             return true;
 
         int n = word.length();
@@ -33,20 +33,21 @@ public class WordConcatenation {
             String prefix = word.substring(0, i);
             String suffix = word.substring(i, n);
 
-            if (set.contains(prefix)
-            && (set.contains(suffix) || canForm2(suffix))) {
-                cache.put(word, true);
+            if ((set.contains(prefix) && set.contains(suffix))
+             || (set.contains(prefix) || canForm2(suffix))) {
+                cache.add(word);
                 return true;
             }
         }
 
-        cache.put(word, false);
+        cache.add(word);
         return false;
     }
 
+
     Map<String, Integer> cache2 = new HashMap<>();
 
-    int minBreaks(String word, Set<String> set) {
+    int minBreaks(String word) {
         return minBreaksHelper(word, 1);
     }
 
