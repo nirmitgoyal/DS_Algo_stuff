@@ -80,7 +80,7 @@ Get int from a char(string of size 1) int like '5':
 https://youtu.be/NLKQEOgBAnw?list=WL&t=414
 
 -------------------------------------------------------------------------------------------------------------------------
-* Time and space complexity of ```String.substring(beginIndex, endIndex)``` is O(n) //even for ```StringBuilder.substring()```
+* Time and space complexity of ```String.substring(beginIndex, endIndex)``` is O(n) //even for ```StringBuilder.substring(), .subSequence()```
 
 beginIndex :  inclusive.
 <br>
@@ -104,7 +104,7 @@ It has functions like ```addFirst(3), addLast(3), peekFirst(), peekLast(), pollF
 3. https://stackoverflow.com/questions/46817180/dequeue-an-element-from-a-specific-index
 
 -------------------------------------------------------------------------------------------------------------------------
-* total number of sub-arrays in an array: O(n^2) = O(n*n)
+* total number of sub-arrays in an array: n * (n + 1)/2
 * total number of sub-sets in an array: O(2^n)
 
 -------------------------------------------------------------------------------------------------------------------------
