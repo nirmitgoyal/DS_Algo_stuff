@@ -12,12 +12,8 @@ public class NestedListWeightSum {
         Queue<NestedInteger> q = new LinkedList<>();
         q.addAll(nestedList);
 
-        while (true) {
+        while (!q.isEmpty()) {
             int count = q.size();
-
-            if (count == 0)
-                break;
-
             for (int times = 0; times < count; times++) {
                 NestedInteger e = q.poll();
                 if (e.isInteger())
@@ -40,13 +36,10 @@ public class NestedListWeightSum {
         Queue<NestedInteger> q = new LinkedList<>();
         q.addAll(nestedList);
 
-        while (true) {
-            int count = q.size();
-
-            if (count == 0)
-                break;
-
+        while (!q.isEmpty()) {
             int levelSum = 0;
+
+            int count = q.size();
             for (int times = 0; times < count; times++) {
                 NestedInteger e = q.poll();
                 if (e.isInteger())

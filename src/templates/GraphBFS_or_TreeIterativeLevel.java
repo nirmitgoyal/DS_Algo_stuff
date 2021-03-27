@@ -16,15 +16,10 @@ public class GraphBFS_or_TreeIterativeLevel {
 
         int level = 0;
 
-        while (true) {
+        while (!q.isEmpty()) {
+            level++; //every level
+
             int count = q.size();
-
-            if (count == 0)
-                break;
-
-            //every level
-            level++;
-
             for (int times = 0; times < count; times++) {
                 Node node = q.poll(); //poll here
 
