@@ -6,7 +6,7 @@ public class MCMTemplate {
 
         int result;
         for (int k = i; k < j; k++) {
-            oneOfThePossibleAns = solve(a, i, k) + solve(a, k + 1, j) + cost;
+            int oneOfThePossibleAns = solve(a, i, k) + solve(a, k + 1, j) + cost;
             result = fun(result, oneOfThePossibleAns);
         }
 
