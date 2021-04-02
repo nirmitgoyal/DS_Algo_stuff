@@ -47,7 +47,7 @@ class NumberOfPaths {
         return numOfPaths[rows - 1][cols - 1];
     }
 
-    public static int numberOfPaths(int[][] a) {//O(rows*cols) space: O(rows*cols + 2*rows*cols)
+    public static int numberOfPathsBFS(int[][] a) {//O(rows*cols) space: O(rows*cols + 2*rows*cols)
         //just to keep the code clean
         rows = a.length;
         cols = a[0].length;
@@ -105,6 +105,6 @@ class NumberOfPaths {
     public static void main(String[] args) {
 //        int[][] a=new int[3][3]{[[0,0,0],[0,1,0],[0,0,0]]};
         System.out.println(numberOfPathsDP(new int[][]{{0, 0, 0}, {0, 1, 0}, {0, 0, 0}}));
-        System.out.println(numberOfPaths(new int[][]{{0, 0, 0}, {0, 1, 0}, {0, 0, 0}}));
+        System.out.println(numberOfPathsBFS(new int[][]{{0, 0, 0}, {0, 1, 0}, {0, 0, 0}}));
     }
 }

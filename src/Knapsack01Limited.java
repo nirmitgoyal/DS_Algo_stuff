@@ -5,7 +5,6 @@ public class Knapsack01Limited {
 
     int maxValue(int W) {
         return maxValueHelper(W, w.length);
-//      return maxValueHelperMemo(W, w.length);
     }
 
     private int maxValueHelper(int W, int size) {
@@ -15,10 +14,11 @@ public class Knapsack01Limited {
         int
                 index = size - 1,
                 weightPicked = w[index],
-                ans;
+                ans = 0;
 
         if (weightPicked <= W)
-            ans = Math.max(maxValueHelper(W - weightPicked, index) + v[index],
+            ans = Math.max(
+                    maxValueHelper(W - weightPicked, index) + v[index],
                     maxValueHelper(W, index));
         else
             ans = maxValueHelper(W, index);
@@ -36,7 +36,7 @@ public class Knapsack01Limited {
         int
                 index = size - 1,
                 weightPicked = w[index],
-                ans;
+                ans = 0;
 
         if (weightPicked <= W)
             ans = Math.max(maxValueHelper(W - weightPicked, index) + v[index],

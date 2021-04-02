@@ -1,6 +1,7 @@
 import java.util.Map;
 
-public class LongestIncreasingSubsequence {
+public class
+LongestIncreasingSubsequence {
     int[] a;
     Map<Integer, Integer> cache;
 

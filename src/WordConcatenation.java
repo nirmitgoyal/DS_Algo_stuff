@@ -6,7 +6,7 @@ import java.util.Set;
 import static java.lang.Integer.MAX_VALUE;
 
 public class WordConcatenation {
-    Set<String> set=new HashSet<>(); //set of words //input
+    Set<String> set = new HashSet<>(); //set of words //input
 
     Set<String> cache = new HashSet<>();
 
@@ -55,6 +55,26 @@ public class WordConcatenation {
         if (set.contains(word))
             return 0;
 
+        int
+                n = word.length(),
+                result = MAX_VALUE; //
+        for (int i = 1; i < n; i++) {
+            String prefix = word.substring(0, i);
+            String suffix = word.substring(i, n);
+
+            if (set.contains(prefix) && set.contains(suffix))
+                result = count;
+            else if (set.contains(prefix) && minBreaksHelper(suffix, count + 1) != MAX_VALUE)
+                result = Math.min(result, count + minBreaksHelper(suffix, count + 1));
+        }
+
+        return result;
+    }
+
+    private int minBreaksHelper2(String word, int count) {
+        if (set.contains(word))
+            return 0;
+
         if (cache2.containsKey(word))
             return cache2.get(word);
 
@@ -71,13 +91,13 @@ public class WordConcatenation {
 //                System.out.println("count = " + count);
 //                System.out.println();
                 result = count;
-            } else if (set.contains(prefix) && minBreaksHelper(suffix, count + 1) != MAX_VALUE) {
+            } else if (set.contains(prefix) && minBreaksHelper2(suffix, count + 1) != MAX_VALUE) {
 //                    System.out.println("prefix = " + prefix);
 //                    System.out.println("suffix = " + suffix);
 //                    System.out.println("count = " + count);
 //                    System.out.println("suffixCount = " + suffixCount);
 //                    System.out.println();
-                result = Math.min(result, count + minBreaksHelper(suffix, count + 1));
+                result = Math.min(result, count + minBreaksHelper2(suffix, count + 1));
             }
         }
 

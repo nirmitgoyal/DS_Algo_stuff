@@ -8,16 +8,16 @@ import models.Node;
  *       2         1
  * */
 public class FilterLeavesBT {
-    int deleteValue;
+    int target;
 
-    Node toBeDeletedElegantCode(Node me) {
+    Node deleteLeafWithValueK_Elegant(Node me) {
         if (me == null)
             return null;
 
-        me.L = toBeDeletedElegantCode(me.L);
-        me.R = toBeDeletedElegantCode(me.R);
+        me.L = deleteLeafWithValueK_Elegant(me.L);
+        me.R = deleteLeafWithValueK_Elegant(me.R);
 
-        if (isLeaf(me) && me.data == deleteValue)
+        if (isLeaf(me) && me.data == target)
             return null;
         return me;
     }
@@ -34,6 +34,6 @@ public class FilterLeavesBT {
         if (deleteR)
             node.R = null;
 
-        return isLeaf(node) && node.data == deleteValue;
+        return isLeaf(node) && node.data == target;
     }
 }
