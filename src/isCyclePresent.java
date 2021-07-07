@@ -5,9 +5,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class isCyclePresent {
-    Map<Integer, List<Integer>> g=new HashMap<>();
+    Map<Integer, List<Integer>> g = new HashMap<>();
 
-    Set<Integer> visited = new HashSet<>();
+    Set<Integer> visited = new HashSet<>(); // this visited set is just for one node, during its DFS
 
     boolean isCyclePresent(int[] nodes) {
         for (int node: nodes)
@@ -23,18 +23,21 @@ public class isCyclePresent {
 
         visited.add(node); //visit
 
+        boolean hasCycle = false;
         for (int neighbour : getNeighbours(node))
-            if (DFS(neighbour))
-                return true;
+            if (DFS(neighbour)) {
+                hasCycle = true;
+                break;
+            }
 
         visited.remove(node); //UNVISIT
 
-        return false;
+        return hasCycle;
     }
 
     Map<Integer, Boolean> cache = new HashMap<>();
-    private boolean DFSWithCache(int node) {//overall O(n) with this approach
-        if (cache.containsKey(node))//for optimization
+    private boolean DFSWithCache(int node) { //overall O(n) with this approach
+        if (cache.containsKey(node)) //for optimization
             return cache.get(node);
 
         if (visited.contains(node))
@@ -50,7 +53,7 @@ public class isCyclePresent {
 
         visited.remove(node);
 
-        cache.put(node, hasCycle);//for optimization
+        cache.put(node, hasCycle); //for optimization
         return hasCycle;
     }
 
