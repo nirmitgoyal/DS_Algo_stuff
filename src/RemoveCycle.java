@@ -42,10 +42,8 @@ public class RemoveCycle {
 
         for (int node : nodes) {
             ans = DFSUnDirectedWithCache(node, -1);
-            if (ans != null) {
+            if (ans != null)
                 return ans;
-            }
-
         }
 
         return null;
@@ -57,11 +55,10 @@ public class RemoveCycle {
 
         visited.add(node);
 
-        for (int currNode : getNeighbours(node)) {
-            if (DFSUnDirectedWithCache(currNode, node) != null && currNode != parentNode) {
+        for (int currNode : getNeighbours(node))
+            if (DFSUnDirectedWithCache(currNode, node) != null
+                    && currNode != parentNode)
                 return new int[]{currNode, node};
-            }
-        }
 
         visited.remove(node);
 

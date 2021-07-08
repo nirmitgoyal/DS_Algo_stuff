@@ -7,12 +7,14 @@ public class NestedListWeightSum {
 
     int nestedListWeightSum(List<NestedInteger> nestedList) {
         int sum = 0;
-        int d = 1;
+        int d = 0;
 
         Queue<NestedInteger> q = new LinkedList<>();
         q.addAll(nestedList);
 
         while (!q.isEmpty()) {
+            d++;
+
             int count = q.size();
             for (int times = 0; times < count; times++) {
                 NestedInteger e = q.poll();
@@ -21,8 +23,6 @@ public class NestedListWeightSum {
                 else
                     q.addAll(e.getList());
             }
-
-            d++;
         }
 
         return sum;
@@ -32,12 +32,14 @@ public class NestedListWeightSum {
     int nestedListWeightSumReverse(List<NestedInteger> nestedList) {
         int sum = 0;
         int prevSum = 0;
+        int d = 0;
 
         Queue<NestedInteger> q = new LinkedList<>();
         q.addAll(nestedList);
 
         while (!q.isEmpty()) {
-            int levelSum = 0;
+            d++;//2
+            int levelSum = 0; // sum of any level
 
             int count = q.size();
             for (int times = 0; times < count; times++) {
