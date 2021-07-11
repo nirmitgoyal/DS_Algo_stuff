@@ -13,6 +13,7 @@ public class Cousins {
         q.add(root);
 
         int h = -1, d = 0;
+        Node parent = null;
 
         while (!q.isEmpty()) {
             d++;
@@ -22,11 +23,14 @@ public class Cousins {
                 Node curr = q.poll();
                 if (curr == node1) {
                     h = d;
-                    break;
+                    parent = curr.parent;
+//                    break;
                 }
 
-                for (Node child : curr.childs)
+                for (Node child : curr.childs) {
+                    child.parent = curr;
                     q.add(child);
+                }
             }
         }
 
@@ -41,7 +45,7 @@ public class Cousins {
             for (int times = 0; times < count; times++) {
                 Node curr = q.poll();
 
-                if (d == h && curr != node1)
+                if (d == h && curr.parent != parent)
                     ans.add(curr);
 
                 for (Node child : curr.childs)
@@ -63,6 +67,7 @@ node1=4
 h 3
 d 3
 q:
+parent 2
 count 4
 curr 7
 ans: 5 6 7

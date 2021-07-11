@@ -9,7 +9,7 @@ public class GraphBFS_or_TreeIterativeLevel {
 
     void BFS(Node root) {
         if (root == null)
-            return ;
+            return;
 
         Queue<Node> q = new LinkedList<>();
         q.add(root);
