@@ -22,16 +22,18 @@ public class RemoveZeroSumConsecutiveLLNodes {
 
                 //remove all nodes from the map after prev, to not have the stale data
                 Node curr2 = prev.next;
+                int sumToRemove = prev.data;
                 while (curr2 != next) {
-                    int sumToRemove = prev.data + curr2.data;
+                    sumToRemove += curr2.data;
                     map.remove(sumToRemove);
                     curr2 = curr2.next;
                 }
 
                 //manipulate LL pointer
                 prev.next = next;
-            } else
+            } else {
                 map.put(sum, curr);
+            }
 
             curr = curr.next;
         }

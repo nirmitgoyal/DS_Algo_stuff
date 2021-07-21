@@ -19,7 +19,7 @@ public class Isomorphic {
 
             if (!map.containsKey(c1))
                 map.put(c1, c2);
-            else if (c2 != map.get(c1))
+            else if (map.get(c1) != c2)
                 return false;
         }
 

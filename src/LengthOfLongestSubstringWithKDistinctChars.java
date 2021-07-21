@@ -12,13 +12,13 @@ public class LengthOfLongestSubstringWithKDistinctChars {
         for (int i = 0; i < n; i++) {
             char c = s[i];
 
-            map.remove(c);
+            map.remove(c); //to maintain sequence of the map
             map.put(c, i);
 
-            if (map.size() > k) {
+            if (map.size() > k) { //k distinct elements already found
                 char leftMostChar = map.keySet().iterator().next();
+                nextStartIndex = map.get(leftMostChar) + 1;
 
-                nextStartIndex = map.get(leftMostChar)+1;
                 map.remove(leftMostChar);
             }
 

@@ -12,7 +12,8 @@ public class FirstAndLastOccurence {
                 end = mid - 1;
         }
 
-        if (target == a[start]) //at the end, start will be the answer, since after finding the target, we are not changing the start
+        //at the end, start will be the answer, since, after the target is less than a[mid], we are not changing the start
+        if (target == a[start])
             return start;
 
         return -1;

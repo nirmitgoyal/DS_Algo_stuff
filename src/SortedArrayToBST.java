@@ -12,7 +12,7 @@ public class SortedArrayToBST {
         if (start > end)
             return null;
 
-        int mid = (start + end) / 2;
+        int mid = (start + end) >>> 2;
 
         Node node = new Node(a[mid]);
         node.L = sortedArrayToBSTHelper(a, start, mid - 1);
@@ -32,7 +32,7 @@ public class SortedArrayToBST {
             Node parent = e.node;
 
             if (e.start < e.end) {
-                int mid = (e.start + e.end) / 2;
+                int mid = (e.start + e.end) >>> 2;
 
                 parent.data = a[mid];
                 stack.push(new Element(e.start, mid - 1, parent.L = new Node()));
@@ -47,7 +47,6 @@ public class SortedArrayToBST {
         int start, end;
         Node node;
 
-        public Element(int start, int end, Node node) {
-        }
+        public Element(int start, int end, Node node) {}
     }
 }

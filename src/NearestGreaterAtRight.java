@@ -16,7 +16,7 @@ public class NearestGreaterAtRight {
             } else if (stack.peek() > a[i]) {
                 ans.add(stack.peek());
             } else {
-                while (!stack.isEmpty() && stack.peek() <= a[i])
+                while (!stack.isEmpty() && a[i] >= stack.peek())
                     stack.pop();
 
                 if (stack.isEmpty())
@@ -28,7 +28,7 @@ public class NearestGreaterAtRight {
             stack.push(a[i]);
         }
 
-        Collections.reverse(ans);
+        Collections.reverse(ans); //since iterating from the end
         return ans;
     }
 }

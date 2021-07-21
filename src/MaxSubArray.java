@@ -2,7 +2,7 @@ import static java.lang.Integer.MIN_VALUE;
 
 public class MaxSubArray {
 
-    public int maxSubArray(int[] a) { //works for -ve number as well
+    public int maxSubArray(int[] a) { //works for all -ve number as well
         int
                 max = MIN_VALUE,
                 runningSum = 0;

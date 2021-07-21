@@ -11,16 +11,16 @@ public class ProductExceptSelf {
         for (int i = 1; i < n; i++)
             l[i] = l[i - 1] * a[i];
         for (int i = (n - 1 - 1); i >= 0; i--)
-            r[i] = r[i + 1] + a[i];
+            r[i] = r[i + 1] * a[i];
 
-        int left = 1, right = 1;
+        int leftProduct = 1, rightProduct = 1;
         for (int i = 0; i < n; i++) {
             if (Utils.isSafe(i - 1, n))
-                left = l[i - 1];
+                leftProduct = l[i - 1];
             if (Utils.isSafe(i + 1, n))
-                right = r[i + 1];
+                rightProduct = r[i + 1];
 
-            ans[i] = left * right;
+            ans[i] = leftProduct * rightProduct;
         }
 
         return ans;

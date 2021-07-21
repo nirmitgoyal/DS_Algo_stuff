@@ -15,6 +15,7 @@ public class MinimumSubarrayLength {
             while (sum >= k) {
                 sum -= a[l];
                 l++;
+
                 minLength = Math.min(r - l + 1, minLength);
             }
 

@@ -11,13 +11,15 @@ public class TwoSum {
     void twoSum(int[] a, int targetSum) {
         Map<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < a.length; i++) {
+        for (int i = 0; i < n; i++) {
+            map.put(a[i], i);
+        }
+
+        for (int i = 0; i < n; i++) {
             int valueToFind = targetSum - a[i];
 
-            if (map.containsKey(valueToFind))
+            if (map.containsKey(valueToFind) && map.get(valueToFind) != i)
                 result.add(new Indexes(i, map.get(valueToFind)));
-
-            map.put(a[i], i);
         }
     }
 

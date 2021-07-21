@@ -14,9 +14,9 @@ public class JumpToTheEnd {
             minJumps[i] = Integer.MAX_VALUE;
 
         for (int i = 0; i < n; i++)
-            for (int count = 1; count <= a[i]; count++)
-                if (isSafe(i + count, n))
-                    minJumps[i + count] = min(minJumps[i + count], minJumps[i] + MIN_COUNT_REQUIRED_FOR_A_HOP);
+            for (int times = 0; times < a[i]; times++)
+                if (isSafe(i + times, n))
+                    minJumps[i + times] = min(minJumps[i + times], minJumps[i] + MIN_COUNT_REQUIRED_FOR_A_HOP);
 
         return minJumps[n - 1];
     }
