@@ -1,7 +1,6 @@
 import java.util.Map;
 
-public class
-LongestIncreasingSubsequence {
+public class LongestIncreasingSubsequence {
     int[] a;
     Map<Integer, Integer> cache;
 
@@ -10,7 +9,7 @@ LongestIncreasingSubsequence {
         int ans = 1;
         for (int i = 0; i < index; i++)
             if (a[index] > a[i])
-                ans = Math.max(ans, longestIncreasingSubsequenceLength(i - 1));
+                ans = Math.max(ans, longestIncreasingSubsequenceLength(i) + 1);
 
         return ans;
     }
@@ -22,7 +21,7 @@ LongestIncreasingSubsequence {
         int ans = 1;
         for (int i = 0; i < index; i++)
             if (a[index] > a[i])
-                ans = Math.max(ans, longestIncreasingSubsequenceLength(i - 1));
+                ans = Math.max(ans, longestIncreasingSubsequenceLength(i) + 1);
 
         cache.put(index, ans);
         return ans;

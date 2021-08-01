@@ -26,8 +26,9 @@ public class LRUCache {
             update(node);
 
             return node.value;
-        } else
+        } else {
             return -1;
+        }
     }
 
     void put(int key, int value) {
