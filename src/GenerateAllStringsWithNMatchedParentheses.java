@@ -29,9 +29,9 @@ public class GenerateAllStringsWithNMatchedParentheses {
         }
 
         //2. Check for all possibilities(here 2)
-        if (lCount < n)//3. Check for validity
+        if (lCount < n)//3. Check for validity //validity
             generateParenHelper(n, paren + "(", rCount, lCount + 1);//4. Do //5. Recurse to solve
-        if (rCount < lCount)
+        if (rCount < lCount) //validity
             generateParenHelper(n, paren + ")", rCount + 1, lCount);
     }
 }

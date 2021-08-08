@@ -16,7 +16,7 @@ public class LetterCombinations {
 //        9: ['w', 'x', 'y', 'z'],
 //        0: []
 
-    List<String> result; // "adgj", "adgk", "adg", "adhj", "adhk", "adhl", "adij", ...
+    List<String> result; // all possible words:  "adgj", "adgk", "adg", "adhj", "adhk", "adhl", "adij", ...
     int n;
 
     void generateWords(int[] digits) { // [2, 3, 4, 5]

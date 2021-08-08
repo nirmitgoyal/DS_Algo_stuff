@@ -10,9 +10,9 @@ public class MaximumsofallKsizedsubarraysinanarray {
             return a;
         int n = a.length;
 
-        int [] left = new int[n];
+        int[] left = new int[n];
         left[0] = a[0];
-        int [] right = new int[n];
+        int[] right = new int[n];
         right[n - 1] = a[n - 1];
 
         for (int i = 1; i < n; i++) {
@@ -23,7 +23,7 @@ public class MaximumsofallKsizedsubarraysinanarray {
                 left[i] = Math.max(left[i - 1], a[i]);
 
             // from right to left
-            int j = n - i - 1;
+            int j = (n - 1) - i;
             if ((j + 1) % k == 0)
                 right[j] = a[j];  // block_end
             else

@@ -1,6 +1,6 @@
 public class Sudoku { //4*4
 
-    private boolean check(int[][] a, int r, int c, int num) {
+    private boolean isValid(int[][] a, int r, int c, int num) { // can i place num @ a[r][c] ?
         for (int i = 0; i < 4; i++)
             if (a[r][i] == num || a[i][c] == num)
                 return false;
@@ -14,7 +14,7 @@ public class Sudoku { //4*4
         return true;
     }
 
-    boolean sudoku(int[][] a, int r, int c) {
+    boolean sudoku(int[][] a, int r, int c) { //call sudoku(a, 0, 0) //Assume empty cells are filled by -1
         if (c == 4) {
             c = 0;
             r++;
@@ -28,7 +28,7 @@ public class Sudoku { //4*4
 
         // now we have empty cells(filled with -1)
         for (int num = 1; num <= 4; num++)  //2. Check for all possibilities
-            if (check(a, r, c, num)) { //3. Check for validity
+            if (isValid(a, r, c, num)) { //3. Check for validity
                 a[r][c] = num; //4. Do
 
                 if (sudoku(a, r, c + 1)) //5. Recurse to solve
