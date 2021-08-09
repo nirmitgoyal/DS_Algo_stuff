@@ -12,7 +12,7 @@ public class Partition {
 
         int
                 p = n - 2,
-                i = 0;
+                i = 0; // total 3 variables: pivot, pointer/p, i/iterator
 
         while (i <= p) { //<= confirmed
             if (a.get(i) <= pivot) {

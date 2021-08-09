@@ -33,9 +33,9 @@ public class KthLargest {
                 i = 0;
 
         while (i <= p) { //<= confirmed
-            if (a.get(i) <= pivot)
+            if (a.get(i) <= pivot) {
                 i++;
-            else {
+            } else {
                 swap(a, i, p);
                 p--;
             }

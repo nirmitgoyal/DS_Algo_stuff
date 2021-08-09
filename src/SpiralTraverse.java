@@ -38,17 +38,15 @@ class SpiralTraverse {
 
         //main starting:
         int visitsRemaining = rows * cols;
-        MovingCell currentMovingCell=new MovingCell(new Cell(0, 0),RIGHT);
+        MovingCell currentMovingCell = new MovingCell(new Cell(0, 0), RIGHT);
 
-        while (visitsRemaining > 0) {
+        while (visitsRemaining-- > 0) {
             result.add(currentMovingCell.cell);
 
             //mark as visited
             m[currentMovingCell.cell.r][currentMovingCell.cell.c] = null;
 
             currentMovingCell = getNextCellAndDir(m, currentMovingCell);
-
-            visitsRemaining--;
         }
 
         return result;
@@ -63,36 +61,43 @@ class SpiralTraverse {
         int
                 currR = currentMovingCell.cell.r,
                 currC = currentMovingCell.cell.c;
-        String currentDir= currentMovingCell.dir;
+        String currentDir = currentMovingCell.dir;
 
         if (currentDir == RIGHT) {
             int nextC = currC + 1;
 
-            if (isSafe(nextC, cols) && m[currR][nextC] != null)
+            if (isSafe(nextC, cols) && m[currR][nextC] != null) // keep going in the same direction
                 return new MovingCell(new Cell(currR, nextC), currentDir);
             else
-                currentDir = NEXT_DIR.get(currentDir);
+                currentDir = NEXT_DIR.get(currentDir); // try next direction
         }
+
         if (currentDir == DOWN) {
             int nextR = currR + 1;
+
             if (isSafe(nextR, rows) && m[nextR][currC] != null)
                 return new MovingCell(new Cell(nextR, currC), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
+
         if (currentDir == LEFT) {
             int nextC = currC - 1;
+
             if (isSafe(nextC, cols) && m[currR][nextC] != null)
                 return new MovingCell(new Cell(currR, nextC), currentDir);
             else
                 currentDir = NEXT_DIR.get(currentDir);
         }
+
         if (currentDir == UP) {
             int nextR = currR - 1;
+
             if (isSafe(nextR, rows) && m[nextR][currC] != null)
                 return new MovingCell(new Cell(nextR, currC), currentDir);
         }
 
+        // go to the RIGHT direction
         return new MovingCell(new Cell(currR, currC + 1), NEXT_DIR.get(currentDir));
     }
 
