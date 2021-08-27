@@ -11,14 +11,14 @@ public class InorderSuccessor {
     private Node nextGreater(Node me) {
         Node curr;
 
-        if (me.R != null) {
+        if (me.R != null) { //1st case
             curr = me.R;
 
             while (curr.L != null)
                 curr = curr.L;
 
             return curr;
-        } else {
+        } else { //2nd case
             curr = me;
             Node parentNode = me.parent;
 

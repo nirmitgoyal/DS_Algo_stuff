@@ -5,8 +5,8 @@ public class isBST {
         if (node == null)
             return true;
 
-        return isBST(node.L, minBound, node.data)
-                && isBST(node.R, node.data, maxBound)
-                && node.data > minBound && node.data < maxBound;
+        return node.data > minBound && node.data < maxBound
+                && isBST(node.L, minBound, node.data)
+                && isBST(node.R, node.data, maxBound);
     }
 }

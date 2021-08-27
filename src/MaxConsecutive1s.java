@@ -9,8 +9,9 @@ public class MaxConsecutive1s {
             if ((num & bitmask) == 1) {
                 currLength++;
                 ans = Math.max(ans, currLength);
-            } else
+            } else {
                 currLength = 0;
+            }
 
             num = num >> 1;
         }

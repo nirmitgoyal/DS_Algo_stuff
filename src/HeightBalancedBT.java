@@ -1,5 +1,8 @@
 import models.Node;
 
+import static java.lang.Math.abs;
+import static java.lang.Math.max;
+
 public class HeightBalancedBT {
 
     boolean RESULT = true;
@@ -10,10 +13,10 @@ public class HeightBalancedBT {
         int LSTH = height1(node.L);
         int RSTH = height1(node.R);
 
-        if (Math.abs(LSTH - RSTH) > 1) //extra
+        if (abs(LSTH - RSTH) > 1) //extra
             RESULT = false;
 
-        return Math.max(LSTH, RSTH) + 1;
+        return max(LSTH, RSTH) + 1;
     }
 
     int height2(Node node) {
@@ -23,12 +26,12 @@ public class HeightBalancedBT {
         int LSTH = height2(node.L);
         int RSTH = height2(node.R);
 
-        if (Math.abs(LSTH - RSTH) > 1
+        if (abs(LSTH - RSTH) > 1
                 || LSTH == -1
                 || RSTH == -1)
             return -1;
 
-        return (Math.max(LSTH, RSTH) + 1);
+        return (max(LSTH, RSTH) + 1);
     }
 
     boolean height3(Node node) {
@@ -42,10 +45,10 @@ public class HeightBalancedBT {
         Return leftReturn = height3Helper(node.L);
         Return rightReturn = height3Helper(node.R);
 
-        return new Return((Math.abs(leftReturn.h - rightReturn.h) <= 1
+        return new Return((abs(leftReturn.h - rightReturn.h) <= 1
                 && leftReturn.isBalanaced
                 && rightReturn.isBalanaced),
-                (Math.max(leftReturn.h, rightReturn.h) + 1));
+                (max(leftReturn.h, rightReturn.h) + 1));
     }
 
     static class Return {

@@ -6,15 +6,13 @@ import java.util.Map;
 
 public class ShortestUniquePrefix {
     static final Node ROOT = new Node();
-    static List<String> result = new ArrayList<>();
+    List<String> result = new ArrayList<>();
 
-    static List<String> shortestUniquePrefixes(List<String> words) {
+    void shortestUniquePrefixes(List<String> words) {
         buildTrie(words);
 
         for (String word : words)
             result.add(shortestUniquePrefix(word));
-
-        return result;
     }
 
     private static void buildTrie(List<String> words) {

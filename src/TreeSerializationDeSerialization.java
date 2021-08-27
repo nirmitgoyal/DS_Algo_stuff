@@ -5,19 +5,21 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class TreeSerializationDeSerialization {
-//    static String s = "";
+    //    static String serialized = "";
+    String NULL = "#";
+    String DELIMITER = " ";
 
     String treeSerialization(Node me) {//or take a static variable and keep appending
         if (me == null)
-            return "#";
+            return NULL;
 
         //NodeLR
-        return me.data + " " + treeSerialization(me.L) + " " + treeSerialization(me.R) + " ";
+        return me.data + DELIMITER + treeSerialization(me.L) + DELIMITER + treeSerialization(me.R) + DELIMITER;
     }
 
 
     Node treeDeSerialization(String s) {
-        Queue<String> q = new LinkedList<>(Arrays.asList(s.split(" ")));
+        Queue<String> q = new LinkedList<>(Arrays.asList(s.split(DELIMITER)));
 
         return treeDeSerializationHelper(q);
     }
@@ -25,7 +27,7 @@ public class TreeSerializationDeSerialization {
     private Node treeDeSerializationHelper(Queue<String> q) {
         String data = q.poll(); //LinkedList returns a null if it is empty
 
-        if (data == null || data == "#")
+        if (data == null || data == NULL)
             return null;
 
         Node me = new Node(Integer.valueOf(data));

@@ -18,13 +18,16 @@ public class Contains {
             char c = text.charAt(i);
             int indexOld = i - pattern.length();
 
+            //1. remove
             if (isSafe(indexOld, n)) {
                 textMap.put(c, (textMap.get(c) - 1));
                 removeKeyIfValueIs0(textMap, c);
             }
 
+            //2. put
             textMap.put(c, (textMap.getOrDefault(c, 0) + 1));
 
+            //3. check
             if (areEqual(textMap, patternMap)) //do not override equals method, since we have to implement hashKey too
                 return true;
         }

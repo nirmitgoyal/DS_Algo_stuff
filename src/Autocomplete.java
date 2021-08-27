@@ -11,7 +11,7 @@ public class Autocomplete {
     static final Node ROOT = new Node();
     List<String> result = new ArrayList<>();
 
-    List<String> autocomplete(List<String> words, String prefix) {
+    void autocomplete(List<String> words, String prefix) {
         buildTrie(words);
 
         Node curr = ROOT;
@@ -28,8 +28,6 @@ public class Autocomplete {
 
         //do a DFS passing the node and prefix, and add to result if the node's isEndOfWord is true
         dfs(curr, prefix);
-
-        return result;
     }
 
     private void buildTrie(List<String> words) {
@@ -52,7 +50,7 @@ public class Autocomplete {
         if (node.isEndOfWord)
             result.add(prefix);
 
-        node.childs.forEach((c, currNode) -> dfs(currNode, prefix + c));//maintaining 2 states: Node and prefix
+        node.childs.forEach((c, currNode) -> dfs(currNode, prefix + c)); //maintaining 2 states: Node and prefix
     }
 
     private void dfsIterative(Node node, String prefix) {
