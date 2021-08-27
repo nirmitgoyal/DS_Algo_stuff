@@ -220,8 +220,8 @@ etc
 -------------------------------------------------------------------------------------------------------------------------
 TreeMap, TreeSet is as BBST(balanced-BST)
 
-Complexities: containsKey, get, put, remove, firstKey, lastEntry: logn
-keySet() returns a Set in sorted order
+Complexities: containsKey, get, put, remove, firstKey, lastEntry, lowerEntry, higherEntry: logn keySet() returns a Set
+in sorted order
 
 -------------------------------------------------------------------------------------------------------------------------
 RBT = BBST
