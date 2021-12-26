@@ -1,16 +1,14 @@
-
 **Heap:**
 
 Min Heap: A complete BT, where the value of each node is >= the value of its parent node.
 
 A complete vs full binary tree:
-https://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/FullvsComplete.html#:~:text=A%20full%20binary%20tree%20(sometimes,as%20far%20left%20as%20possible.
+https://web.cecs.pdx.edu/~sheard/course/Cs163/Doc/FullvsComplete.html#:~:text=A%20full%20binary%20tree%20(sometimes,as%20far%20left%20as%20possible
+.
 
 * Heap add() & pop():
-https://www.youtube.com/watch?v=t0Cq6tVNRBA
-* PriorityQ is implemented as a min-heap in java:
-https://stackoverflow.com/questions/14165325/is-there-a-heap-in-java
-
+  https://www.youtube.com/watch?v=t0Cq6tVNRBA
+* PriorityQ in java:
 
 ```Queue<Integer> minHeap = new PriorityQueue<>(); //internally it's an array for java too```
 
@@ -22,13 +20,14 @@ Max heap using pq:
 * LOT of heap does NOT gives a sorted array
 
 Operations:
+
 * peek
 
 Fetches minimum element of the array O(1)
 
 * poll
 
-Polls  minimum element of the array. takes O(height)=O(log(n))  (since it heapifies)
+Polls minimum element of the array. takes O(height)=O(log(n))  (since it heapifies)
 
 * add
 
@@ -38,8 +37,8 @@ Inserting a new key takes O(height) = O(log(n)) time
 
 O(n) //in the 2nd case n is the new size
 
-This complexity is bcoz inserting every node takes O(h) time and h increases very slowly and due to analysis,
-this comes to be the asymptomatic Top K Frequent Elements complexity
+This complexity is bcoz inserting every node takes O(h) time and h increases very slowly and due to
+analysis, this comes to be the asymptomatic complexity
 
 * Heapify manually
 
@@ -50,37 +49,46 @@ if(!q.isEmpty()) {
 ```
 
 -------------------------------------------------------------------------------------------------------------------------
+
 * log A + log B = log AB
 
 -------------------------------------------------------------------------------------------------------------------------
-* Stack Space complexity for quick sort: Av - logn (since the array is pretty much divided into half each time), Worst - O(n); since there can be case where
-partitionIndex does comes out to be at the ends of the array and we have to divide it n-1 times.
+
+* Stack Space complexity for quick sort: Av - logn (since the array is pretty much divided into half
+  each time), Worst - O(n); since there can be case where partitionIndex does comes out to be at the
+  ends of the array and we have to divide it n-1 times.
 
 Quick sort cannot be done iteratively as we will have to call the quickSort inside
 
 -------------------------------------------------------------------------------------------------------------------------
-Get int from a char(string of size 1) int like '5': 
+Get int from a char(string of size 1) int like '5':
 ```'5' - '0'```
 
 -------------------------------------------------------------------------------------------------------------------------
 **Binary tree(BT):**
 
-* If there are n nodes in binary tree, maximum height of the binary tree is n-1 and minimum height is logn
+* If there are n nodes in binary tree, maximum height of the binary tree is n-1 and minimum height
+  is logn
 * The maximum number of nodes at level ‘l’ of a binary tree is 2^l
 
 --------------------------------------------------------------------------------------------------------------------------
 **Binary search tree(BST):**
-* If there are n nodes in a binary search tree, maximum height of the binary search tree is n-1 and minimum height is logn
+
+* If there are n nodes in a binary search tree, maximum height of the binary search tree is n-1 and
+  minimum height is logn
 * inorder gives sorted elements
 
 ```countBTs(n) = countBSTs(n) * n!```
 
 --------------------------------------------------------------------------------------------------------------------------
+
 * How to get and put(set and clear) a bit in a variable:
-https://youtu.be/NLKQEOgBAnw?list=WL&t=414
+  https://youtu.be/NLKQEOgBAnw?list=WL&t=414
 
 -------------------------------------------------------------------------------------------------------------------------
-* Time and space complexity of ```String.substring(beginIndex, endIndex)``` is O(n) //even for ```StringBuilder.substring(), .subSequence()```
+
+* Time and space complexity of ```String.substring(beginIndex, endIndex)``` is O(n) //even
+  for ```StringBuilder.substring(), .subSequence()```
 
 beginIndex :  inclusive.
 <br>
@@ -91,37 +99,51 @@ endIndex :    exclusive.
 Do not care to use .indexOf() for checking if a string(text) contains another string(pattern)
 
 -------------------------------------------------------------------------------------------------------------------------
+
 * LinkedList is doubly liked list(DLL)
 
-Deque can be used as both doubly liked list and doubly ended queue. ```Deque<Integer> deque = new LinkedList<>();```
+Deque can be used as both doubly liked list and doubly ended
+queue. ```Deque<Integer> deque = new LinkedList<>();```
 
-It has functions like ```addFirst(3), addLast(3), peekFirst(), peekLast(), pollFirst(), pollLast(),``` in O(1), ```remove(object: 3)``` in O(n) - (both for LinkedList<>() and ArrayDeque<>()); 
+It has functions
+like ```addFirst(3), addLast(3), peekFirst(), peekLast(), pollFirst(), pollLast(),``` in O(1)
+, ```remove(object: 3)``` in O(n) - (both for LinkedList<>() and ArrayDeque<>());
 
-1. The diff b/w LinkedList based DQ and ArrayDeque is that Linked one uses LinkedList internally, while Array one uses Array.
+1. The diff b/w LinkedList based DQ and ArrayDeque is that Linked one uses LinkedList internally,
+   while Array one uses Array.
 
-2. If you want to keep track of each node in DLL, create your custom DLL, so that you can use map to store each node. (Apart from this usecase even, it's better to create custom DLL, otherwise you will have to remember methods lik: ```dll.listIterator().previous()```)
+2. If you want to keep track of each node in DLL, create your custom DLL, so that you can use map to
+   store each node. (Apart from this usecase even, it's better to create custom DLL, otherwise you
+   will have to remember methods lik: ```dll.listIterator().previous()```)
 
 3. https://stackoverflow.com/questions/46817180/dequeue-an-element-from-a-specific-index
 
 -------------------------------------------------------------------------------------------------------------------------
+
 * total number of sub-arrays in an array: n * (n + 1)/2
 * total number of sub-sets in an array: O(2^n)
 
 -------------------------------------------------------------------------------------------------------------------------
-* Iteration over the collection-views of a LinkedHashMap requires time proportional to the size of the map, regardless of its capacity. Iteration over a HashMap is likely to be more
-expensive, requiring time proportional to its capacity.
+
+* Iteration over the collection-views of a LinkedHashMap requires time proportional to the size of
+  the map, regardless of its capacity. Iteration over a HashMap is likely to be more expensive,
+  requiring time proportional to its capacity.
 
 -------------------------------------------------------------------------------------------------------------------------
+
 * n! grows faster than an exponential with a constant base like 2^n or e^n
 
 -------------------------------------------------------------------------------------------------------------------------
+
 * gcd:
-https://www.geeksforgeeks.org/c-program-find-gcd-hcf-two-numbers/
+  https://www.geeksforgeeks.org/c-program-find-gcd-hcf-two-numbers/
 
 O(Log min(a, b))
 
 -------------------------------------------------------------------------------------------------------------------------
+
 * Initialize Reference:
+
 ```
 LinkedList<Integer> linkedList = new LinkedList<>();
 Queue<Integer> q = new LinkedList<>();
@@ -131,8 +153,8 @@ Queue<Integer> minHeap = new PriorityQueue<>();
 Stack<Integer> stack = new Stack<>();
 ```
 
-
 -------------------------------------------------------------------------------------------------------------------------
+
 * in, pre, post order tree traversals are DFS
 
 * LOT is BFS
@@ -146,7 +168,6 @@ Time complexity of bitwise operators like <<, >> is O(1)
 -------------------------------------------------------------------------------------------------------------------------
 If ```o1.compareTo(o2)``` >  0, it means o1 > o2
 
-
 ```
 String s1="9";
 String s2="172";
@@ -157,9 +178,9 @@ String s2="172";
 s1.compareTo(s2); // = 2 +ve number shows s1 > s2. -ve number shows s1 < s2. The result is zero if the strings are equal
 ```
 
-Since Strings are compared lexicographically **character-wise** 
+Since Strings are compared lexicographically **character-wise**
 
-Fortunately, for same length integer strings, the order is normal as of integers. 
+Fortunately, for same length integer strings, the order is normal as of integers.
 
 
 
@@ -188,10 +209,11 @@ But, we can set it directly in StringBuilder: ```sb.setCharAt(index, '.')```
 -------------------------------------------------------------------------------------------------------------------------
 To find if num is prime or not:
 
-Iterate from 0 to sqrt(num) and check if it is divisible
+Iterate from 2 to sqrt(num) and check if it is divisible
 
 -------------------------------------------------------------------------------------------------------------------------
-Java Streams are sequential by default. If we want parallel execution(it will automatically decide # of threads on the basis of # of cores), we can call ```.parallel()``` method on the stream
+Java Streams are sequential by default. If we want parallel execution(it will automatically decide #
+of threads on the basis of # of cores), we can call ```.parallel()``` method on the stream
 
 -------------------------------------------------------------------------------------------------------------------------
 Iterating over stack using enhanced for loop is O(n) and does not pops from the stack
@@ -220,8 +242,11 @@ etc
 -------------------------------------------------------------------------------------------------------------------------
 TreeMap, TreeSet is as BBST(balanced-BST)
 
-Complexities: containsKey, get, put, remove, firstKey, lastEntry, lowerEntry, higherEntry: logn keySet() returns a Set
-in sorted order
+Complexities:
+
+**logn:** containsKey, get, put, remove, firstKey, lastEntry, lowerEntry, higherEntry
+
+keySet() returns a TreeSet/Map in sorted order
 
 -------------------------------------------------------------------------------------------------------------------------
 RBT = BBST

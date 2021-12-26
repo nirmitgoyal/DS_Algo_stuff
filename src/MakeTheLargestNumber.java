@@ -1,16 +1,39 @@
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class MakeTheLargestNumber {
 
-    String largestNumber(int[] a) {
-        String temp = "";
-        for (int e : a)
-            temp += e;
+  private class CustomComparator implements Comparator<String> {
 
-        char[] chars = temp.toCharArray();
+    public int compare(String a, String b) {
+      String order1 = a + b;
+      String order2 = b + a;
 
-        Arrays.sort(chars);
-
-        return new StringBuilder(new String(chars)).reverse().toString();
+      return -order1.compareTo(order2);
     }
+  }
+
+  public String largestNumber(int[] nums) {
+    // Get input integers as strings.
+    String[] asStrs = new String[nums.length];
+    for (int i = 0; i < nums.length; i++) {
+      asStrs[i] = String.valueOf(nums[i]);
+    }
+
+    // Sort strings according to custom comparator.
+    Arrays.sort(asStrs, new CustomComparator());
+
+    // If, after being sorted, the largest number is `0`, the entire number is zero.
+    if (asStrs[0].equals("0")) {
+      return "0";
+    }
+
+    // Build largest number from sorted array.
+    String ans = "";
+    for (String s : asStrs) {
+      ans += s;
+    }
+
+    return ans;
+  }
 }

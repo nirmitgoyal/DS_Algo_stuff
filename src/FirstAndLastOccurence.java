@@ -25,7 +25,7 @@ public class FirstAndLastOccurence {
         while (start <= end) {
             int mid = (start + end) >>> 1;
 
-            if (target >= a[mid]) //
+            if (target >= a[mid])
                 start = mid + 1;
             else
                 end = mid - 1;

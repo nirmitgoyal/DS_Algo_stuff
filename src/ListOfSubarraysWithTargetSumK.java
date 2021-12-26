@@ -1,29 +1,28 @@
-import models.Interval;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import models.Interval;
 
 public class ListOfSubarraysWithTargetSumK {
 
-    List<Interval> listOfSubarraysWithTargetSumK(int[] a, int targetSum) {
-        List<Interval> result = new ArrayList<>();
+  List<Interval> listOfSubarraysWithTargetSumK(int[] a, int targetSum) {
+    List<Interval> result = new ArrayList<>();
 
-        Map<Integer, Integer> map = new HashMap<>(); //prefixSum -> index
-        map.put(0, -1); // prefixSum 0 found till index: -1
+    Map<Integer, Integer> map = new HashMap<>(); //sum -> index
+    map.put(0, -1); // sum 0 found till index: -1
 
-        int prefixSum = 0;
-        for (int i = 0; i < n; i++) {
-            prefixSum += a[i];
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+      sum += a[i];
 
-            int sumToFind = prefixSum - targetSum;
-            if (map.containsKey(sumToFind))
-                result.add(new Interval((map.get(sumToFind) + 1), i)); //inclusive interval
-
-            map.put(prefixSum, i);
+        if (map.containsKey(sum - targetSum)) {
+            result.add(new Interval((map.get(sum - targetSum) + 1), i)); //inclusive interval
         }
 
-        return result;
+      map.put(sum, i);
     }
+
+    return result;
+  }
 }
