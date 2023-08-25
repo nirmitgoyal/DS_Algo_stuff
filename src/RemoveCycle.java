@@ -41,7 +41,7 @@ public class RemoveCycle {
         int[] ans = new int[2];
 
         for (int node : nodes) {
-            ans = DFSUnDirectedWithCache(node, -1);
+            ans = DFSUnDirected(node, -1);
             if (ans != null)
                 return ans;
         }
@@ -49,14 +49,14 @@ public class RemoveCycle {
         return null;
     }
 
-    static private int[] DFSUnDirectedWithCache(int node, int parentNode) {
+    static private int[] DFSUnDirected(int node, int parentNode) {
         if (visited.contains(node) && node != parentNode)
             return new int[]{node, parentNode};
 
         visited.add(node);
 
         for (int currNode : getNeighbours(node))
-            if (DFSUnDirectedWithCache(currNode, node) != null
+            if (DFSUnDirected(currNode, node) != null
                     && currNode != parentNode)
                 return new int[]{currNode, node};
 
