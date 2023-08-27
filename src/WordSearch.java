@@ -1,6 +1,170 @@
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+
+class Solution {
+
+  static int rows;
+  static int cols;
+
+  public static void main(String[] args) {
+    char[][] grid1 = {
+//        0    1    2    3    4    5
+        {'c', 'c', 'x', 't', 'i', 'b'},//0
+        {'c', 'c', 'a', 't', 'n', 'i'},//1
+        {'a', 'c', 'n', 'n', 't', 't'},//2
+        {'t', 'c', 's', 'i', 'p', 't'},//3
+        {'a', 'o', 'o', 'o', 'a', 'a'},//4
+        {'o', 'a', 'a', 'a', 'o', 'o'},//5
+        {'k', 'a', 'i', 'c', 'k', 'i'} //6
+    };
+
+    rows = grid1.length;
+    cols = grid1[0].length;
+
+    String word1 = "catnip";
+    String word2 = "cccc";
+    String word3 = "s";
+    String word4 = "bit";
+    String word5 = "aoi";
+    String word6 = "ki";
+    String word7 = "aaa";
+    String word8 = "ooo";
+
+    char[][] grid2 = {{'a'}};
+    String word9 = "a";
+
+    visited = new int[rows][cols];
+    find(grid1, word1);
+    System.out.println(path);
+    System.out.println();
+    path.clear();
+
+    visited = new int[rows][cols];
+    find(grid1, word2);
+    System.out.println(path);
+    System.out.println();
+    path.clear();
+
+    visited = new int[rows][cols];
+    find(grid1, word3);
+    System.out.println(path);
+    System.out.println();
+    path.clear();
+
+    visited = new int[rows][cols];
+    find(grid1, word4);
+    System.out.println(path);
+    System.out.println();
+    path.clear();
+
+    visited = new int[rows][cols];
+    find(grid1, word5);
+    System.out.println(path);
+    System.out.println();
+    path.clear();
+
+    visited = new int[rows][cols];
+    find(grid1, word6);
+    System.out.println(path);
+    System.out.println();
+    path.clear();
+
+    visited = new int[rows][cols];
+    find(grid1, word7);
+    System.out.println(path);
+    System.out.println();
+    path.clear();
+
+    visited = new int[rows][cols];
+    find(grid1, word8);
+    System.out.println(path);
+    System.out.println();
+    path.clear();
+
+    rows = grid2.length;
+    cols = grid2[0].length;
+
+    visited = new int[rows][cols];
+    find(grid2, word9);
+    System.out.println(path);
+    System.out.println();
+    path.clear();
+
+  }
+
+  static void find(char[][] m, String word) {
+    for (int r = 0; r < rows; r++) {
+      for (int c = 0; c < cols; c++) {
+        if (m[r][c] == word.charAt(0)) {
+          dfs(r, c, word.charAt(0), 0, m, word);
+        }
+      }
+    }
+  }
+
+  static List<Pair> path = new ArrayList<>();
+
+  private static void dfs(int r, int c, char ch, int index, char[][] m, String word) {
+    if (visited[r][c] == 0 && ch == m[r][c]) {
+      if (index == word.length() - 1) {
+        path.add(new Pair(r, c));
+        return;
+      }
+
+      visited[r][c] = 1;
+      path.add(new Pair(r, c));
+
+      for (Pair n : getNeighbours(r, c)) {
+        dfs(n.r, n.c, word.charAt(index + 1), index + 1, m, word);//a, 1
+      }
+
+      if (path.size() == word.length()) {
+        return;
+      }
+
+      visited[r][c] = 0;
+      path.remove(path.size() - 1);
+    }
+  }
+
+  static int[][] visited = new int[rows][cols];
+
+
+  private static List<Pair> getNeighbours(int r, int c) {
+    List<Pair> neighbours = new ArrayList<>();
+
+    if (r + 1 < rows) {
+      neighbours.add(new Pair(r + 1, c));
+    }
+    if (r - 1 >= 0) {
+      neighbours.add(new Pair(r - 1, c));
+    }
+    if (c + 1 < cols) {
+      neighbours.add(new Pair(r, c + 1));
+    }
+    if (c - 1 >= 0) {
+      neighbours.add(new Pair(r, c - 1));
+    }
+
+    return neighbours;
+  }
+}
+
+@Data
+@AllArgsConstructor
+class Pair {
+
+  int r;
+  int c;
+}
+
+// _____________________________________________________________________________________________________________________________________________
+// Another old solution:
+import java.util.ArrayList;
+import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
