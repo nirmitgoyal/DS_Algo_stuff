@@ -7,11 +7,7 @@ public class LongestSubStringWith0RepeatingChar {
 
   int longestSubStringWith0RepeatingChar(char[] s) {
     int n = s.length;
-      if (n <= 1) {
-          return n;
-      }
-
-    //
+  
     Map<Character, Integer> map = new HashMap<>();
     int
         nextStartIndex = 0,
