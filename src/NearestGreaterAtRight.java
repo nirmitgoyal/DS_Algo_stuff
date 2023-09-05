@@ -13,11 +13,12 @@ public class NearestGreaterAtRight {
         for (int i = n - 1; i >= 0; i--) {
             if (stack.isEmpty()) {
                 ans.add(-1);
-            } else if (stack.peek() > a[i]) {
+            } else if (!isElementGreaterThanOrEqualToStackTop(s, a[i])) {
                 ans.add(stack.peek());
             } else {
-                while (!stack.isEmpty() && a[i] >= stack.peek())
+                while (!stack.isEmpty() && isElementGreaterThanOrEqualToStackTop(s, a[i])) {
                     stack.pop();
+                }
 
                 if (stack.isEmpty())
                     ans.add(-1);
@@ -30,5 +31,9 @@ public class NearestGreaterAtRight {
 
         Collections.reverse(ans); //since iterating from the end
         return ans;
+    }
+
+    private boolean isElementGreaterThanOrEqualToStackTop(Stack<Integer> s, int value){
+        return value >= s.peek();
     }
 }
