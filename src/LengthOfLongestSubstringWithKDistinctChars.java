@@ -1,30 +1,31 @@
-import java.util.LinkedHashMap;
-import java.util.Map;
+class LengthOfLongestSubstringTwoDistinct {
 
-public class LengthOfLongestSubstringWithKDistinctChars {
+  public int lengthOfLongestSubstringTwoDistinct(String s) {
+    int n = s.length();
 
-    public int lengthOfLongestSubstringKDistinct(char[] s, int k) {
-        Map<Character, Integer> map = new LinkedHashMap<>();//char->latestIndex
-        int
-                nextStartIndex = 0,
-                maxLength = 1;
+    int left = 0;
+    int right = 0;
+    Map<Character, Integer> map = new HashMap<Character, Integer>(); // character -> its rightmost position
 
-        for (int i = 0; i < n; i++) {
-            char c = s[i];
+    int max_len = 2;
 
-            map.remove(c); //to maintain sequence of the map
-            map.put(c, i);
+    while (right < n) {
+      map.put(s.charAt(right), right);
 
-            if (map.size() > k) { //k distinct elements already found
-                char leftMostChar = map.keySet().iterator().next();
-                nextStartIndex = map.get(leftMostChar) + 1;
+      // slidewindow contains k characters
+      if (map.size() == 2) {
+        // delete the leftmost character
+        int index_to_delete = Collections.min(map.values());
+        map.remove(s.charAt(index_to_delete));
 
-                map.remove(leftMostChar);
-            }
+        // move left pointer of the slidewindow
+        left = index_to_delete + 1;
+      }
 
-            maxLength = Math.max(maxLength, (i - nextStartIndex) + 1);
-        }
-
-        return maxLength;
+      max_len = Math.max(max_len, right - left + 1);
+      right++;
     }
+
+    return max_len;
+  }
 }
