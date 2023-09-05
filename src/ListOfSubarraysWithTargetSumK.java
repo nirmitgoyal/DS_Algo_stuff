@@ -16,9 +16,9 @@ public class ListOfSubarraysWithTargetSumK {
     for (int i = 0; i < n; i++) {
       sum += a[i];
 
-        if (map.containsKey(sum - targetSum)) {
-            result.add(new Interval((map.get(sum - targetSum) + 1), i)); //inclusive interval
-        }
+      if (map.containsKey(sum - targetSum)) {
+        result.add(new Interval((map.get(sum - targetSum) + 1), i)); //inclusive interval
+      }
 
       map.put(sum, i);
     }
