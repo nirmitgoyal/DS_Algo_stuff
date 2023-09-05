@@ -9,7 +9,7 @@ public class FirstAndLastOccurence {
             if (target > a[mid])
                 start = mid + 1;
             else
-                end = mid - 1;
+                end = mid - 1; // dragging 'end' till the beginning
         }
 
         //at the end, start will be the answer, since, after the target is less than a[mid], we are not changing the start
@@ -26,12 +26,12 @@ public class FirstAndLastOccurence {
             int mid = (start + end) >>> 1;
 
             if (target >= a[mid])
-                start = mid + 1;
+                start = mid + 1; // dragging start till the tail using >=
             else
                 end = mid - 1;
         }
 
-        if (target == a[end]) //
+        if (target == a[end]) 
             return end;
 
         return -1;
