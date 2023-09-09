@@ -7,21 +7,18 @@ import java.util.Set;
 import java.util.TreeMap;
 
 class Leaderboard {
-    Map<Integer, Integer> map = new HashMap<>();
+    Map<Integer, Integer> scoreMap = new HashMap<>();
     Map<Integer, Integer> tree = new TreeMap<>(Collections.reverseOrder());
 
     public void addScore(int id, int score) {
-        int oldScore = 0;
-
-        //for map:
-        if (map.containsKey(id))
-            oldScore = map.get(id);
-
+        int oldScore = scoreMap.getOrDefault(id, 0);
+        
+        // for scoreMap:
         int newScore = oldScore + score;
-        map.put(id, newScore);
+        scoreMap.put(id, newScore);
 
-        //for treemap:
-        if (map.containsKey(id)) {
+        // for treemap:
+        if (oldScore != 0) {
             int count = tree.get(oldScore);
 
             if (count == 1)
@@ -54,12 +51,12 @@ class Leaderboard {
     }
 
     public void reset(int id) {
-        //for map:
-        map.remove(id);
+        // for scoreMap:
+        scoreMap.remove(id);
 
-        //for treemap:
-        if (map.containsKey(id)) {
-            int oldScore = map.get(id);
+        // for treemap:
+        if (scoreMap.get(id)!=null) {
+            int oldScore = scoreMap.get(id);
 
             int count = tree.get(oldScore);
 
@@ -71,6 +68,8 @@ class Leaderboard {
     }
 
     //Using pq: ____________________________________________________________________________________
+    Map<Integer, Integer> map = new HashMap<>();
+
     public void addScore1(int playerId, int score) {
         map.put(playerId, map.getOrDefault(playerId, 0) + score);
     }
