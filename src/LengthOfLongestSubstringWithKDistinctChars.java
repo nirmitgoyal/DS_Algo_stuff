@@ -1,3 +1,7 @@
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 class LengthOfLongestSubstringTwoDistinct {
 
   public int lengthOfLongestSubstringTwoDistinct(String s) {
@@ -5,7 +9,7 @@ class LengthOfLongestSubstringTwoDistinct {
 
     int left = 0;
     int right = 0;
-    Map<Character, Integer> map = new HashMap<Character, Integer>(); // character -> its rightmost position
+    Map<Character, Integer> map = new HashMap<>(); // character -> its rightmost position
 
     int max_len = 2;
 
