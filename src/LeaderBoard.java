@@ -79,7 +79,7 @@ class Leaderboard {
 
         // A min-heap in java containing entries of a hash map. Note that we have to provide
         // a comparator of our own to make sure we get the ordering right of these objects.
-        PriorityQueue<Map.Entry<Integer, Integer>> heap = new PriorityQueue<>((a, b) -> a.getValue() - b.getValue());
+        PriorityQueue<Map.Entry<Integer, Integer>> heap = new PriorityQueue<>((a, b) -> b.getValue().compareTo(a.getValue()));
 
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             heap.offer(entry);
