@@ -72,12 +72,7 @@ class Leaderboard {
 
     //Using pq: ____________________________________________________________________________________
     public void addScore1(int playerId, int score) {
-
-        if (!map.containsKey(playerId)) {
-            map.put(playerId, 0);
-        }
-
-        map.put(playerId, map.get(playerId) + score);
+        map.put(playerId, map.getOrDefault(playerId, 0) + score);
     }
 
     public int top1(int K) {
