@@ -16,13 +16,13 @@ public class RobHousesOnTrees {
       return 0;
     }
 
-    if (!isParentRobbed) {
+    if (isParentRobbed) {
+      return helper(node.L, false) + helper(node.R, false);
+    } else {
       int robIt = node.data + helper(node.L, true) + helper(node.R, true);
       int doNotRobIt = helper(node.L, false) + helper(node.R, false);
 
       return max(robIt, doNotRobIt);
-    } else {
-      return helper(node.L, false) + helper(node.R, false);
     }
   }
 
@@ -33,22 +33,22 @@ public class RobHousesOnTrees {
       return 0;
     }
 
-    if (cache.containsKey(String.valueOf(node) + String.valueOf(isParentRobbed))) {
-      return cache.get(String.valueOf(node) + String.valueOf(isParentRobbed));
+    String key = String.valueOf(node) + " " + String.valueOf(isParentRobbed);
+    if (cache.containsKey(key)) {
+      return cache.get(key);
     }
 
     int ans;
-    if (!isParentRobbed) {
+    if (isParentRobbed) {
+      ans = helperMemo(node.L, false) + helperMemo(node.R, false);
+    } else {
       int robIt = node.data + helperMemo(node.L, true) + helperMemo(node.R, true);
       int doNotRobIt = helperMemo(node.L, false) + helperMemo(node.R, false);
 
       ans = max(robIt, doNotRobIt);
-    } else {
-      ans = helperMemo(node.L, false) + helperMemo(node.R, false);
     }
 
-    System.out.println(String.valueOf(node) + String.valueOf(isParentRobbed));
-    cache.put(String.valueOf(node) + String.valueOf(isParentRobbed), ans);
+    cache.put(key, ans);
     return ans;
   }
 }
