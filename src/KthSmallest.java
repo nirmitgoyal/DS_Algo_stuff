@@ -22,7 +22,7 @@ public class KthLargest {
     }
 
     private int partition(List<Integer> a, int start, int end) {
-        swap(a, end, random(start, end));
+        // swap(a, end, random(start, end));
 
         //now same as of: int Partition.partition(int[]) method
         int n = end;
