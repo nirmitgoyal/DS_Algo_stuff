@@ -10,12 +10,12 @@ public class KthLargest {
         while (start < end) {
             int index = partition(a, start, end);
 
-            if (index == (k - 1))
+            if (index == k)
                 return a.get(index);
-            if (index > (k - 1))
-                end = index - 1;
+            if (index > k))
+                end = index;
             else
-                start = index + 1;
+                start = index;
         }
 
         return -1;
