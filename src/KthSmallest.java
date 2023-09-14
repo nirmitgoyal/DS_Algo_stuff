@@ -12,7 +12,7 @@ public class KthLargest {
 
             if (index == k)
                 return a.get(index);
-            if (index > k))
+            else if (index > k))
                 end = index;
             else
                 start = index;
