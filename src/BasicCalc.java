@@ -3,7 +3,6 @@ import models.Return;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.Character.isDigit;
 import static utils.Utils.calculate;
 import static utils.Utils.isSafe;
 
@@ -36,7 +35,7 @@ public class BasicCalc {
                 number = basicCalcHelper(s, index);
             } else {
                 number = c - '0';
-                while (isSafe(index + 1, n) && isDigit(s[index + 1])) { //for cases like "23+..."
+                while (isSafe(index + 1, n) && Character.isDigit(s[index + 1])) { //for cases like "23+..."
                     number = (number * 10) + (s[index] - '0');
                     index++;
                 }

@@ -7,14 +7,14 @@ public class GenerateAllStringsWithNMatchedParentheses {
         generateParenHelper(n, "");
     }
 
-    private void generateParenHelper(int n, String paren) {
-        if (paren.length() == 2 * n) {
-            result.add(paren);
+    private void generateParenHelper(int n, String s) {
+        if (s.length() == 2 * n) {
+            result.add(s);
             return;
         }
 
-        generateParenHelper(n, paren + '(');
-        generateParenHelper(n, paren + ')');
+        generateParenHelper(n, s + '(');
+        generateParenHelper(n, s + ')');
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,16 +22,16 @@ public class GenerateAllStringsWithNMatchedParentheses {
         generateParenHelper(n, "", 0, 0);
     }
 
-    private void generateParenHelper(int n, String paren, int rCount, int lCount) {
-        if (paren.length() == 2 * n) {//1. Complete
-            result.add(paren);
+    private void generateParenHelper(int n, String s, int rCount, int lCount) {
+        if (s.length() == 2 * n) {//1. Complete
+            result.add(s);
             return;
         }
 
         //2. Check for all possibilities(here 2)
         if (lCount < n)//3. Check for validity //validity
-            generateParenHelper(n, paren + "(", rCount, lCount + 1);//4. Do //5. Recurse to solve
+            generateParenHelper(n, s + "(", rCount, lCount + 1);//4. Do //5. Recurse to solve
         if (rCount < lCount) //validity
-            generateParenHelper(n, paren + ")", rCount + 1, lCount);
+            generateParenHelper(n, s + ")", rCount + 1, lCount);
     }
 }
