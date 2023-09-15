@@ -3,60 +3,64 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.NoArgsConstructor;
 
 public class ShortestUniquePrefix {
-    static final Node ROOT = new Node();
-    List<String> result = new ArrayList<>();
 
-    void shortestUniquePrefixes(List<String> words) {
-        buildTrie(words);
+  static final List<String> WORDS = Arrays.asList("zebra", "dog", "duck", "dove"); // input
 
-        for (String word : words)
-            result.add(shortestUniquePrefix(word));
+  static final Node ROOT = new Node();
+  static List<String> result = new ArrayList<>();
+
+  static void shortestUniquePrefixes() {
+    buildTrie();
+
+    for (String word : WORDS) {
+      result.add(shortestUniquePrefix(word));
     }
+  }
 
-    private static void buildTrie(List<String> words) {
-        for (String word : words) {
-            //assign curr to ROOT, every time
-            Node curr = ROOT;
+  private static void buildTrie() {
+    for (String word : WORDS) {
+      //assign curr to ROOT, every time
+      Node curr = ROOT;
 
-            for (char c : word.toCharArray()) {
-                if (!curr.childs.containsKey(c))
-                    curr.childs.put(c, new Node());
-
-                curr = curr.childs.get(c);
-                curr.count++;
-            }
-        }
-    }
-
-    private static String shortestUniquePrefix(String word) {
-        String shortestUniquePrefix = "";
-        Node curr = ROOT;
-
-        for (char c : word.toCharArray()) {
-            shortestUniquePrefix += c;
-
-            if (curr.count == 1)
-                break;
-
-            curr = curr.childs.get(c);
+      for (char c : word.toCharArray()) {
+        if (!curr.childs.containsKey(c)) {
+          curr.childs.put(c, new Node());
         }
 
-        return shortestUniquePrefix;
+        curr = curr.childs.get(c);
+        curr.count++;
+      }
+    }
+  }
+
+  private static String shortestUniquePrefix(String word) {
+    String shortestUniquePrefix = "";
+    Node curr = ROOT;
+
+    for (char c : word.toCharArray()) {
+      shortestUniquePrefix += c;
+
+      if (curr.count == 1) {
+        break;
+      }
+
+      curr = curr.childs.get(c);
     }
 
-    public static void main(String[] args) {
-        System.out.println(shortestUniquePrefixes(Arrays.asList("zebra", "dog", "duck", "dove")));
-    }
+    return shortestUniquePrefix;
+  }
 
-    static class Node {
-        Map<Character, Node> childs;
-        int count;
+  public static void main(String[] args) {
+    shortestUniquePrefixes();
+  }
 
-        public Node() {
-            childs = new HashMap<>();
-            count = 0;
-        }
-    }
+  @NoArgsConstructor
+  static class Node {
+
+    Map<Character, Node> childs = new HashMap<>();
+    int count = 0;
+  }
 }
