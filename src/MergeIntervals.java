@@ -11,11 +11,13 @@ public class MergeIntervals {
         List<Interval> result = new ArrayList<>();
         Arrays.sort(intervals, new CustomComparator_Start());
 
-        for (Interval interval : intervals)
-            if (!result.isEmpty() && result.get(result.size() - 1).end >= interval.start)
-                result.get(result.size() - 1).end = Math.max(result.get(result.size() - 1).end, interval.end);
+        for (Interval interval : intervals) {
+            int resultTailEnd = result.get(result.size() - 1).end;
+            if (!result.isEmpty() &&  resultTailEnd >= interval.start)
+                result.get(result.size() - 1).end = Math.max(resultTailEnd, interval.end);
             else
                 result.add(interval);
+        }
 
         return result;
     }
