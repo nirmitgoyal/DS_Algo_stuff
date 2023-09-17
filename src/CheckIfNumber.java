@@ -34,12 +34,13 @@ public class CheckIfNumber {
         for (Character c : s.toCharArray()) {
             boolean foundValidState = false;
 
-            for (String nextState : NEXT_STATES.get(currState))
+            for (String nextState : NEXT_STATES.get(currState)) {
                 if (isValidState(nextState, c)) {
                     foundValidState = true;
                     currState = nextState;
                     break;
                 }
+            }
 
             if (!foundValidState)
                 return false;
