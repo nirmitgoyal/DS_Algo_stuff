@@ -14,58 +14,44 @@ public class GeneratePalindrome {
       map.put(c, map.getOrDefault(c, 0) + 1);
     }
 
-    int[] oddTimes = new int[1];
-    int[] oddTotal = new int[1];
-    char[] oddChar = new char[1];
-    boolean[] f = new boolean[1];
-    String[] ans = {""}; //cannot use: new String[1]
+    int oddTimes = 0;
+    String oddChar = "";
+    boolean f = false;
+    String ans = "";
 
     //in the 1st iteration, just check
-    map.forEach((c, count) -> {
+    for (char c : map.keySet()) {
+      Integer count = map.get(c);
       if (!isEven(count)) {
-        oddTimes[0]++;
-        oddTotal[0] = count;
-        oddChar[0] = c;
+        oddTimes++;
+        oddChar = String.valueOf(c);
       }
 
-      if (oddTimes[0] >= 2) {
-        f[0] = true;
+      if (oddTimes > 1) {
+        f = true;
+        break;
       }
-    });
+    }
 
-    if (f[0]) {
-      return null;
+    if (f) {
+      return "Cannot make Palindrome!";
     }
 
     //create string
-    map.forEach((c, count) -> {
-      if (isEven(count)) {
-        for (int times = 0; times < count / 2; times++) {
-          ans[0] += c;
-        }
-      }
-    });
-
-    String oddChars = "";
-    if (oddTimes[0] == 1) {
-      for (int times = 0; times < oddTotal[0]; times++) {
-        oddChars += oddChar[0];
+    for (char c : map.keySet()) {
+      Integer count = map.get(c);
+      for (int times = 0; times < count / 2; times++) {
+        ans += c;
       }
     }
 
-    String rev = new StringBuilder(ans[0]).reverse().toString();
-
-    if (oddTimes[0] == 1) {
-      ans[0] += oddChars;
-    }
-
-    return ans[0] + rev;
+    return ans + oddChar + new StringBuilder(ans).reverse();
   }
 
   public static void main(String[] args) {
     System.out.println(makePalin(new String("carerac")));//craearc
     System.out.println(makePalin(new String("aab")));
-    System.out.println(makePalin(new String("code")));
+    System.out.println(makePalin(new String("code"))); //Cannot make Palindrome!
     System.out.println(makePalin(new String("lol")));
     System.out.println(makePalin(new String("l")));
     System.out.println(makePalin(new String("lo")));

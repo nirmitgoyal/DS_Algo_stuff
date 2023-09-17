@@ -20,7 +20,7 @@ public class Contains {
 
             //1. remove
             if (isSafe(indexOld, n)) {
-                textMap.put(c, (textMap.get(c) - 1));
+                textMap.put(c, textMap.get(c) - 1);
                 removeKeyIfValueIs0(textMap, c);
             }
 

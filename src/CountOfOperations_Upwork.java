@@ -78,6 +78,8 @@ public class Solution {
 
   public static void main(String[] args) {
     assert solution("00") == 0 : "Test Case 1 Failed";
+    assert solution("0") == 0 : "Test Case 1 Failed";
+    assert solution("") == 0 : "Test Case 1 Failed";
 
     // Test Case 1
     assert solution("011100") == 7 : "Test Case 1 Failed";
