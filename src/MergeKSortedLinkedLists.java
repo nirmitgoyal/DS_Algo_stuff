@@ -39,8 +39,5 @@ public class MergeKSortedLinkedLists {
   class Element {
 
     int data, linkedListIndex, currNodeIndex;
-
-    public Element(int data, int i, int i1) {
-    }
   }
 }
