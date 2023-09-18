@@ -11,13 +11,13 @@ class CustomComparator implements Comparator<Element> {
     public int compare(Element first, Element second) {
         if (first.h.equals(second.h))
             return first.c.compareTo(second.c);
-        return -first.h.compareTo(second.h);
+        return second.h.compareTo(first.h);
     }
 }
 
 public class QueueReconstructionByHeight {
 
-    List<Element> QueueReconstructionByHeight(ArrayList<Element> a) { // [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]
+    List<Element> QueueReconstructionByHeight(List<Element> a) { // [[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]
         List<Element> result = new ArrayList<>();
 
         a.sort(new CustomComparator()); // [ [7, 0] [7, 1] [6, 1] [5, 0] [5, 2] [4, 4] ]
