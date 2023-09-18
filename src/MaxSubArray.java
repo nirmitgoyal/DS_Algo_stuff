@@ -5,15 +5,15 @@ public class MaxSubArray {
     public int maxSubArray(int[] a) { //works for all -ve number as well
         int
                 max = MIN_VALUE,
-                runningSum = 0;
+                prefixSum = 0;
 
         for (int e : a) {
-            if (runningSum < 0)
-                runningSum = e;
+            if (prefixSum < 0)
+                prefixSum = e;
             else
-                runningSum += e;
+                prefixSum += e;
 
-            max = Math.max(max, runningSum);
+            max = Math.max(max, prefixSum);
         }
 
         return max;
