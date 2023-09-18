@@ -1,5 +1,5 @@
 public class IsNonDecreasingArray {
-
+    // Approach 1
     boolean isNonDecreasingArrayGreedy(int[] a,int k) {
         int count = 0; //the number of changes
 
