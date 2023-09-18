@@ -2,7 +2,6 @@ import static java.lang.Math.min;
 import static utils.Utils.isSafe;
 
 public class JumpToTheEnd {
-    private static final int MIN_COUNT_REQUIRED_FOR_A_HOP = 1;
 
     int JumpToTheEnd(int[] a) {//3 2 5 1 1 9 3 4 // O(n^2)
         int n = a.length;
@@ -16,7 +15,7 @@ public class JumpToTheEnd {
         for (int i = 0; i < n; i++)
             for (int times = 0; times < a[i]; times++)
                 if (isSafe(i + times, n))
-                    minJumps[i + times] = min(minJumps[i + times], minJumps[i] + MIN_COUNT_REQUIRED_FOR_A_HOP);
+                    minJumps[i + times] = min(minJumps[i + times], minJumps[i] + 1);
 
         return minJumps[n - 1];
     }
