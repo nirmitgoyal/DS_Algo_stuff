@@ -1,43 +1,39 @@
-import models.Node;
-
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
+import models.ListNode;
+import models.Node;
 
 public class RemoveZeroSumConsecutiveLLNodes {
 
-    Node removeZeroSumConsecutiveLLNodes(Node head) {
-        Node dummy = new Node(null);
-        dummy.next = head;
+  /*
+  1 2 -3 3 1
 
-        Node curr = head;
-        Map<Integer, Node> map = new LinkedHashMap<>();
-        int sum = 0;
+  0->dummy
+  1->1
+  3->2
+  0->-3
+  3->3
+  4->1
 
-        while (curr != null) {
-            sum += curr.data;
+  dummy->3->1
+   */
+  ListNode removeZeroSumConsecutiveLLNodes(ListNode head) {
+    int prefixSum = 0;
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
 
-            if (map.containsKey(sum)) {
-                Node prev = map.get(sum);
-                Node next = curr.next;
-
-                //remove all nodes from the map after prev, to not have the stale data
-                Node curr2 = prev.next;
-                int sumToRemove = prev.data;
-                while (curr2 != next) {
-                    sumToRemove += curr2.data;
-                    map.remove(sumToRemove);
-                    curr2 = curr2.next;
-                }
-
-                //manipulate LL pointer
-                prev.next = next;
-            } else {
-                map.put(sum, curr);
-            }
-
-            curr = curr.next;
-        }
-
-        return dummy.next;
+    Map<Integer, ListNode> seen = new HashMap<>();
+    for (ListNode i = dummy; i != null; i = i.next) {
+      prefixSum += i.data;
+      seen.put(prefixSum, i);
     }
+
+    prefixSum = 0;
+    for (ListNode i = dummy; i != null; i = i.next) {
+      prefixSum += i.data;
+      i.next = seen.get(prefixSum).next;
+    }
+
+    return dummy.next;
+  }
 }

@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="DS Algo stuff" target="1.8" />
+      <module name="PS_DS_A" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
