@@ -26,11 +26,10 @@ public class ThreeSum {
                 result.add(new Indexes(startIndex, l, r));
                 l++;
                 r--;
-            } else if (sum < targetSum) {
+            } else if (sum < targetSum) 
                 l++;
-            } else {
+            else 
                 r--;
-            }
         }
     }
 
