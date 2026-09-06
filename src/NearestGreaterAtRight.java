@@ -11,14 +11,13 @@ public class NearestGreaterAtRight {
         Stack<Integer> stack = new Stack<>();
 
         for (int i = n - 1; i >= 0; i--) {
-            if (stack.isEmpty()) {
+            if (stack.isEmpty()) 
                 ans.add(-1);
-            } else if (!isElementGreaterThanOrEqualToStackTop(s, a[i])) {
+            else if (!isElementGreaterThanOrEqualToStackTop(s, a[i])) 
                 ans.add(stack.peek());
-            } else {
-                while (!stack.isEmpty() && isElementGreaterThanOrEqualToStackTop(s, a[i])) {
+            else {
+                while (!stack.isEmpty() && isElementGreaterThanOrEqualToStackTop(s, a[i])) 
                     stack.pop();
-                }
 
                 if (stack.isEmpty())
                     ans.add(-1);
