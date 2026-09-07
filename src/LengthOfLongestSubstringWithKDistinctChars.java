@@ -11,13 +11,13 @@ class LengthOfLongestSubstringTwoDistinct {
     int right = 0;
     Map<Character, Integer> map = new HashMap<>(); // character -> its rightmost position
 
-    int max_len = 2;
+    int max_len = 0;
 
     while (right < n) {
       map.put(s.charAt(right), right);
 
       // slidewindow contains k characters
-      if (map.size() == 2) {
+      if (map.size() == 3) {
         // delete the leftmost character
         int index_to_delete = Collections.min(map.values());
         map.remove(s.charAt(index_to_delete));
