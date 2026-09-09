@@ -14,18 +14,16 @@ public class TopKMostFrequentElements {
     Map<Integer, Integer> map = new HashMap<>(); //data -> count
     PriorityQueue<Element> pq = new PriorityQueue<>(new CustomComparator());
 
-    for (int e : a) {
+    for (int e : a) 
       map.put(e, (map.getOrDefault(e, 0) + 1));
-    }
 
     for (Integer data: map.keySet()) {
       Integer count = map.get(data);
       pq.add(new Element(data, count));
     }
 
-    for (int i = 0; i < k; i++) { //assuming atleast k elements are there
+    for (int i = 0; i < k; i++)  //assuming atleast k elements are there
       result.add(pq.poll().data);
-    }
 
     return result;
   }
@@ -39,7 +37,6 @@ public class TopKMostFrequentElements {
 
   @AllArgsConstructor
   class Element {
-
     Integer data, count;
   }
 }
