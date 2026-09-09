@@ -21,28 +21,25 @@ public class RunningMedian {
   }
 
   private void addElements(int e, Queue<Integer> minHeap, Queue<Integer> maxHeap) {
-    if (maxHeap.isEmpty() || e <= maxHeap.peek()) {
+    if (maxHeap.isEmpty() || e <= maxHeap.peek()) 
       maxHeap.add(e);
-    } else {
+    else 
       minHeap.add(e);
-    }
   }
 
   private void rebalance(Queue<Integer> minHeap, Queue<Integer> maxHeap) {
-    if (maxHeap.size() - minHeap.size() >= 2) {
+    if (maxHeap.size() - minHeap.size() >= 2) 
       minHeap.add(maxHeap.poll());
-    } else if (minHeap.size() - maxHeap.size() >= 2) {
+    else if (minHeap.size() - maxHeap.size() >= 2) 
       maxHeap.add(minHeap.poll());
-    }
   }
 
   private Integer median(Queue<Integer> minHeap, Queue<Integer> maxHeap) {
-    if (maxHeap.size() > minHeap.size()) {
+    if (maxHeap.size() > minHeap.size()) 
       return maxHeap.peek();
-    } else if (minHeap.size() > maxHeap.size()) {
+    else if (minHeap.size() > maxHeap.size()) 
       return minHeap.peek();
-    } else {
+    else 
       return (maxHeap.peek() + minHeap.peek()) / 2;
-    }
   }
 }
