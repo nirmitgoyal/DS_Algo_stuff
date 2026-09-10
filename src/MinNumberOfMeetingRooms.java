@@ -16,9 +16,8 @@ public class MinNumberOfMeetingRooms {
 
     for (Interval interval : intervals) {
       //prune the invalid intervals
-      while (!pq.isEmpty() && (interval.start >= pq.peek().end)) {
+      while (!pq.isEmpty() && (interval.start >= pq.peek().end)) 
         pq.poll();
-      }
 
       pq.add(interval);
 
