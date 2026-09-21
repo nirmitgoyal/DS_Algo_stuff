@@ -13,9 +13,8 @@ public class MergeKSortedLinkedLists {
 
     Queue<Element> pq = new PriorityQueue<>();
     int k = a.size();
-    for (int i = 0; i < k; i++) {
+    for (int i = 0; i < k; i++) 
       pq.add(new Element(a.get(i).data, i, 0));
-    }
 
     while (!pq.isEmpty()) {
       Element smallest = pq.poll();
@@ -28,10 +27,8 @@ public class MergeKSortedLinkedLists {
         curr = curr.next;
       }
 
-      if (a.get(smallest.linkedListIndex).next != null) {
-        pq.add(new Element(a.get(smallest.linkedListIndex).next.data, smallest.linkedListIndex,
-            smallest.currNodeIndex + 1));
-      }
+      if (a.get(smallest.linkedListIndex).next != null) 
+        pq.add(new Element(a.get(smallest.linkedListIndex).next.data, smallest.linkedListIndex, smallest.currNodeIndex + 1));
     }
 
     return head;
@@ -39,7 +36,6 @@ public class MergeKSortedLinkedLists {
 
   @AllArgsConstructor
   class Element {
-
     int data, linkedListIndex, currNodeIndex;
   }
 }
