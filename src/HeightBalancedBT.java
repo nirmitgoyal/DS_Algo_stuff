@@ -33,7 +33,9 @@ public class HeightBalancedBT {
 
         return (max(LSTH, RSTH) + 1);
     }
-
+    
+    // ----------------------------------------------------------------
+    
     boolean height3(Node node) {
         return height3Helper(node).isBalanaced;
     }
